@@ -1,0 +1,110 @@
+# Reference protocol pi0 and the perturbation grid Pi.
+#
+# ============================ FROZEN AT S1 ============================
+# This file is frozen. Its digest is recorded in protocol/pi0.frozen.sha256 and
+# a parsed snapshot in protocol/pi0.frozen.json; every CLI entry point refuses to
+# run if the two disagree. Nothing here may change without re-running the whole
+# audit and saying so in the paper (idea section 10, discipline red lines).
+#
+# To change it deliberately:  python -m ape.cli freeze --pi protocol/pi0.yaml --force
+# That rewrites the digest, changes every pi_hash, and invalidates every cached
+# artefact under outputs/.
+# =====================================================================
+
+# The authority for every value below is prereg/S1_freeze_2026-09-03.yaml.
+# Where the two disagree, the freeze artefact wins and this file is corrected.
+prereg_file: "prereg/S1_freeze_2026-09-03.yaml"
+protocol_version: "1.0-S1-2026-09-03"
+frozen: true
+frozen_by: authors
+frozen_at: "2026-09-03T10:17:25Z"   # UTC, as recorded in the freeze artefact
+
+# Provenance of the inputs this freeze was taken against (reported by track C
+# and independently recomputed here).
+manifest_md5: "b7a976594deeaed8cfff0ea1630dbd96"
+# sha256 of the sorted dev video_id list joined by a single "\n", UTF-8, no
+# trailing newline
+dev_hash: "31ed09e84d2c12ffa37786ed1810b9d4932bb8063ee36d1497cff48252025565"
+
+# The audit set is the frozen test split and nothing else. train and dev never
+# enter an audit number; dev is diagnostic only and must be asked for explicitly
+# (--split dev), which stamps audit_split into every output so a diagnostic run
+# can never be mistaken for an audit one.
+audit_split: test
+
+time_unit: seconds
+
+delta_s: 0.5                    # prefix step of pi0
+pre_anchor_outputs_bot: true    # delta < 0 always yields BOT and is scored wrong
+
+# Horizons: the 25/50/75 percentiles of the post-anchor length L+ on the 102-clip
+# development subset (4.11 / 10.03 / 21.82 s), rounded DOWN to a multiple of
+# delta_s so the frozen H never exceeds the measured quantile and the integrated
+# window equals H exactly (effective_h_s == h_s). Reference horizon is the middle
+# entry, 10.0 s. Cohort sizes on the audit (test) split: 1328 / 1112 / 742.
+h_list_s: [4.0, 10.0, 21.5]
+grid_max_s: 21.5                # evaluation grid reaches this far past the anchor
+r0: 0.9                         # pre-registered rank-preservation floor
+bootstrap_n: 1000
+seed: 20260903
+alpha_pairs: 0.05
+
+perturb:
+  eps_sys_s: [-1.0, -0.5, -0.25, 0.0, 0.25, 0.5, 1.0]
+  eps_jit_sd_s: [0.0, 0.1, 0.25, 0.5]
+  delta_s: [0.25, 0.5, 1.0]
+  h_s: [4.0, 10.0, 21.5]
+  plaus:
+    eps_sys_s: [-0.25, 0.25]
+    eps_jit_sd_s: [0.0, 0.25]
+    delta_s: [0.25, 1.0]
+    h_s: [4.0, 21.5]
+
+commit:
+  rho_levels: [0.7, 0.9]
+
+# The frozen metric family M of contract section 8. S_H is reported at two
+# pre-registered post-anchor times; these two numbers are part of the freeze.
+metric_family:
+  s_report_delta_s: [1.0, 3.0]
+
+# Answer matrices are produced once on the finest step below and coarser steps
+# are obtained by sub-sampling; a system whose card sets
+# subsampling_equivalent: false is re-run per step instead and read from its
+# <system_id>__stride<factor> directories (idea 3.1 item 5).
+answers:
+  delta_fine_s: 0.25
+  # cached columns extend this far before the anchor and past grid_max_s, so
+  # that anchor perturbations can be evaluated without re-running any model
+  pad_s: 2.0
+  stride_suffix: "__stride"
+
+# Gauge-block factor table (idea 3.6), frozen with pi0.
+blocks:
+  - {family: oracle, params: {}}
+  - {family: lock, params: {d0: 1.0}}
+  - {family: lock, params: {d0: 3.0}}
+  - {family: lock, params: {d0: 3.0}, commit_after_s: 3.0}
+  - {family: lock, params: {d0: 8.0}}
+  - {family: lock, params: {d0: 18.0}}
+  - {family: osc, params: {p: 1.0, d0: 4.0}}
+  - {family: osc, params: {p: 0.5, d0: 6.0}}
+  - {family: osc, params: {p: 2.0, d0: 15.0}}
+  - {family: frac, params: {c: 0.6}}
+  - {family: rand, params: {eta: 0.5}}
+  - {family: rand, params: {eta: 0.9}}
+
+# Reporting thresholds for the phenomena deliverable (idea 3.7). These select
+# what is reported; they decide nothing.
+phenomena:
+  conf_threshold: 0.9
+  short_prefix_s: 1.0
+  pre_anchor_s: 2.0
+
+# Knobs deliberately left un-characterised (idea 3.8 honesty list).
+uncharacterised:
+  prefix_start: "clip head; coupled to the cohort, declared in Limitations"
+  frame_rate_resampling: "system-side input pipeline, reported per system"
+  aggregation: "cluster level, frozen; appendix gives the alternatives"
+  class_mapping_table: "table-level frozen artefact, published"
+  anchor_definition_gap: "not measured; only the tolerance eps_max is delivered"

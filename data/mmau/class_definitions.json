@@ -1,0 +1,292 @@
+[
+  {
+    "code": 1,
+    "definition": "ego-car hits a crossing pedestrian",
+    "source_row": 2
+  },
+  {
+    "code": 2,
+    "definition": "ego-car hits a pedestrian",
+    "source_row": 3
+  },
+  {
+    "code": 3,
+    "definition": "ego-car hits a crossing cyclist",
+    "source_row": 4
+  },
+  {
+    "code": 4,
+    "definition": "ego-car hits a cyclist",
+    "source_row": 5
+  },
+  {
+    "code": 5,
+    "definition": "ego-car hits a crossing motorbike",
+    "source_row": 6
+  },
+  {
+    "code": 6,
+    "definition": "ego-car hits a motorbike",
+    "source_row": 7
+  },
+  {
+    "code": 7,
+    "definition": "ego-car hits a crossing truck",
+    "source_row": 8
+  },
+  {
+    "code": 8,
+    "definition": "ego-car hits a truck",
+    "source_row": 9
+  },
+  {
+    "code": 9,
+    "definition": "ego-car is overtaken by a truck",
+    "source_row": 10
+  },
+  {
+    "code": 10,
+    "definition": "ego-car hits a crossing car",
+    "source_row": 11
+  },
+  {
+    "code": 11,
+    "definition": "ego-car hits a car",
+    "source_row": 12
+  },
+  {
+    "code": 12,
+    "definition": "ego-car is overtaken by a car",
+    "source_row": 13
+  },
+  {
+    "code": 13,
+    "definition": "ego-car hits large roadblocks",
+    "source_row": 14
+  },
+  {
+    "code": 14,
+    "definition": "ego-car hits a curb",
+    "source_row": 15
+  },
+  {
+    "code": 15,
+    "definition": "ego-car hits small roadblocks road pothholes",
+    "source_row": 16
+  },
+  {
+    "code": 16,
+    "definition": "ego-car hits trees",
+    "source_row": 17
+  },
+  {
+    "code": 17,
+    "definition": "ego-car hits telegraphpoles",
+    "source_row": 18
+  },
+  {
+    "code": 18,
+    "definition": "ego-car hits other road facilties",
+    "source_row": 19
+  },
+  {
+    "code": 19,
+    "definition": "motorbike hits large roadblocks",
+    "source_row": 20
+  },
+  {
+    "code": 20,
+    "definition": "truck hits large roadblocks",
+    "source_row": 21
+  },
+  {
+    "code": 21,
+    "definition": "car hits large roadblocks",
+    "source_row": 22
+  },
+  {
+    "code": 22,
+    "definition": "motorbike hits a curb",
+    "source_row": 23
+  },
+  {
+    "code": 23,
+    "definition": "truck hits a curb",
+    "source_row": 24
+  },
+  {
+    "code": 24,
+    "definition": "car hits a curb",
+    "source_row": 25
+  },
+  {
+    "code": 26,
+    "definition": "truck hits small roadblocks road pothholes",
+    "source_row": 26
+  },
+  {
+    "code": 27,
+    "definition": "car hits small roadblocks road pothholes",
+    "source_row": 27
+  },
+  {
+    "code": 29,
+    "definition": "truck hits trees",
+    "source_row": 28
+  },
+  {
+    "code": 30,
+    "definition": "car hits trees",
+    "source_row": 29
+  },
+  {
+    "code": 32,
+    "definition": "truck hits telegraphpoles",
+    "source_row": 30
+  },
+  {
+    "code": 33,
+    "definition": "car hits telegraphpoles",
+    "source_row": 31
+  },
+  {
+    "code": 34,
+    "definition": "motorbike hits other road facilities",
+    "source_row": 32
+  },
+  {
+    "code": 35,
+    "definition": "truck hits other road facilities",
+    "source_row": 33
+  },
+  {
+    "code": 36,
+    "definition": "car hits other road facilities",
+    "source_row": 34
+  },
+  {
+    "code": 37,
+    "definition": "motorbike falls down",
+    "source_row": 35
+  },
+  {
+    "code": 38,
+    "definition": "motorbike hits motorbike",
+    "source_row": 36
+  },
+  {
+    "code": 39,
+    "definition": "truck is out of control",
+    "source_row": 37
+  },
+  {
+    "code": 40,
+    "definition": "truck hits truck",
+    "source_row": 38
+  },
+  {
+    "code": 41,
+    "definition": "truck has failure of components",
+    "source_row": 39
+  },
+  {
+    "code": 42,
+    "definition": "car is out of control",
+    "source_row": 40
+  },
+  {
+    "code": 43,
+    "definition": "car hits car",
+    "source_row": 41
+  },
+  {
+    "code": 44,
+    "definition": "car has failure of components",
+    "source_row": 42
+  },
+  {
+    "code": 45,
+    "definition": "truck hits motorbike",
+    "source_row": 43
+  },
+  {
+    "code": 47,
+    "definition": "motorbike scratches truck",
+    "source_row": 44
+  },
+  {
+    "code": 48,
+    "definition": "truck hits car",
+    "source_row": 45
+  },
+  {
+    "code": 49,
+    "definition": "car scratches truck",
+    "source_row": 46
+  },
+  {
+    "code": 50,
+    "definition": "car hits motorbike",
+    "source_row": 47
+  },
+  {
+    "code": 51,
+    "definition": "motorbike scratches car",
+    "source_row": 48
+  },
+  {
+    "code": 52,
+    "definition": "motorbike hits pedestrian",
+    "source_row": 49
+  },
+  {
+    "code": 53,
+    "definition": "motorbike hits cyclist",
+    "source_row": 50
+  },
+  {
+    "code": 54,
+    "definition": "truck hits pedestrian",
+    "source_row": 51
+  },
+  {
+    "code": 55,
+    "definition": "truck hits cyclist",
+    "source_row": 52
+  },
+  {
+    "code": 56,
+    "definition": "car hits pedestrian",
+    "source_row": 53
+  },
+  {
+    "code": 57,
+    "definition": "car hits cyclist",
+    "source_row": 54
+  },
+  {
+    "code": 58,
+    "definition": "pedestrian falls down",
+    "source_row": 55
+  },
+  {
+    "code": 59,
+    "definition": "cyclist falls down",
+    "source_row": 56
+  },
+  {
+    "code": 60,
+    "definition": "cyclist hits cyclist",
+    "source_row": 57
+  },
+  {
+    "code": 61,
+    "definition": "ego-car is out of control",
+    "source_row": 58
+  },
+  {
+    "code": 62,
+    "definition": "ego-car has failure of components",
+    "source_row": 59
+  }
+]

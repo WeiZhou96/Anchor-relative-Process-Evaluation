@@ -1,0 +1,92 @@
+[
+  {
+    "video_id": "-RrDtLjWsT4_00",
+    "offset_s": 0,
+    "target_time_s": 6.0,
+    "decoded_pts_s": 6.0,
+    "frame_index": 180,
+    "local": "accident_-RrDtLjWsT4_00_0.png",
+    "sha256": "cd272414ec34ca7528744c91f68e1cff0a04b087f337e49c1d2deb1a9cd24fe3",
+    "processing": "Sequential OpenCV decoding, last decoded frame at or before requested cutoff; no crop/enhancement; original decoded dimensions."
+  },
+  {
+    "video_id": "-RrDtLjWsT4_00",
+    "offset_s": 3,
+    "target_time_s": 9.0,
+    "decoded_pts_s": 9.0,
+    "frame_index": 270,
+    "local": "accident_-RrDtLjWsT4_00_3.png",
+    "sha256": "a875c5848cd363959a936ce1a47c719f096bdedbfb7eb6691a412732f73fa3be",
+    "processing": "Sequential OpenCV decoding, last decoded frame at or before requested cutoff; no crop/enhancement; original decoded dimensions."
+  },
+  {
+    "video_id": "-RrDtLjWsT4_00",
+    "offset_s": 10,
+    "target_time_s": 16.0,
+    "decoded_pts_s": 16.0,
+    "frame_index": 476,
+    "local": "accident_-RrDtLjWsT4_00_10.png",
+    "sha256": "e37d36aaa255b4ab4a35f53283b17064a9bde1fc4a392aaf31c0fc54c99bc1e1",
+    "processing": "Sequential OpenCV decoding, last decoded frame at or before requested cutoff; no crop/enhancement; original decoded dimensions."
+  },
+  {
+    "video_id": "-NgnSm_oEB4_00",
+    "offset_s": 0,
+    "target_time_s": 3.375,
+    "decoded_pts_s": 3.375,
+    "frame_index": 50,
+    "local": "accident_-NgnSm_oEB4_00_0.png",
+    "sha256": "063f322336cd8da86e4ab81ae95a503bc843df9e0a96bd9c7aec1dbc2162808d",
+    "processing": "Sequential OpenCV decoding, last decoded frame at or before requested cutoff; no crop/enhancement; original decoded dimensions."
+  },
+  {
+    "video_id": "-NgnSm_oEB4_00",
+    "offset_s": 3,
+    "target_time_s": 6.375,
+    "decoded_pts_s": 6.375,
+    "frame_index": 95,
+    "local": "accident_-NgnSm_oEB4_00_3.png",
+    "sha256": "db383f4de7c38f3dd3f73ad69fdac7bd94910880089a0bbdd538e6dc73232d59",
+    "processing": "Sequential OpenCV decoding, last decoded frame at or before requested cutoff; no crop/enhancement; original decoded dimensions."
+  },
+  {
+    "video_id": "-NgnSm_oEB4_00",
+    "offset_s": 10,
+    "target_time_s": 13.375,
+    "decoded_pts_s": 13.375,
+    "frame_index": 200,
+    "local": "accident_-NgnSm_oEB4_00_10.png",
+    "sha256": "6a1fc47919fae1101530ed6a589395a1f9163ffcfee06b7c37a065fb74b9ef6c",
+    "processing": "Sequential OpenCV decoding, last decoded frame at or before requested cutoff; no crop/enhancement; original decoded dimensions."
+  },
+  {
+    "video_id": "-PpBteU0p3Q_00",
+    "offset_s": 0,
+    "target_time_s": 3.292,
+    "decoded_pts_s": 3.2916666666666665,
+    "frame_index": 49,
+    "local": "accident_-PpBteU0p3Q_00_0.png",
+    "sha256": "3d003d8c2fb101d4ffc89e65b99719cd2003a6b78aac7b164160c64f0fafb1f2",
+    "processing": "Sequential OpenCV decoding, last decoded frame at or before requested cutoff; no crop/enhancement; original decoded dimensions."
+  },
+  {
+    "video_id": "-PpBteU0p3Q_00",
+    "offset_s": 3,
+    "target_time_s": 6.292,
+    "decoded_pts_s": 6.291666666666666,
+    "frame_index": 94,
+    "local": "accident_-PpBteU0p3Q_00_3.png",
+    "sha256": "480ce710afc50cedc0fd7c243d5283316416897d0d6b5dfc69785e592a722041",
+    "processing": "Sequential OpenCV decoding, last decoded frame at or before requested cutoff; no crop/enhancement; original decoded dimensions."
+  },
+  {
+    "video_id": "-PpBteU0p3Q_00",
+    "offset_s": 10,
+    "target_time_s": 13.292,
+    "decoded_pts_s": 13.291666666666666,
+    "frame_index": 199,
+    "local": "accident_-PpBteU0p3Q_00_10.png",
+    "sha256": "267518e84ff177f86228266ae1a49dd4974c753f13471ffeba713a8785a7d0f3",
+    "processing": "Sequential OpenCV decoding, last decoded frame at or before requested cutoff; no crop/enhancement; original decoded dimensions."
+  }
+]

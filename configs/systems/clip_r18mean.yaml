@@ -1,0 +1,18 @@
+# Whole-clip classifier: mean-pooled features + linear head.
+system_id: clip__r18mean__seed20260903
+family: clip
+entry: systems/train_clip.py
+features: features_r18_4fps
+head: linear(512 -> 5)
+pooling: mean over the prefix (whole clip at training time)
+optimizer: adam
+lr: 0.01
+weight_decay: 1.0e-4
+epochs_max: 400
+patience: 60
+seed: 20260903
+trained_on_split: train
+model_selection: epoch with the best macro accuracy on split=dev
+notes: >-
+  At inference each prefix is pooled only over frames with t_s <= end_s, so the
+  system is causal even though it was trained on whole clips.

@@ -1,0 +1,17 @@
+# Feature cache shared by every trained system in the library.
+# One decode pass; every prefix is a t_s <= end_s slice of it.
+name: features_r18_4fps
+backbone: resnet18
+backbone_weights: torchvision ResNet18_Weights.IMAGENET1K_V1
+feature_dim: 512
+target_fps: 4.0
+frame_selection: >-
+  first decoded frame whose timestamp reaches each 0.25 s tick; the true
+  timestamp is stored, so prefixes are formed by timestamp and never by frame
+  stride (native rates run 3.9 to 49.7 fps)
+resize_short_side: 256
+center_crop: 224
+normalization: imagenet
+dtype_on_disk: float16
+out_dir: outputs/features
+fallback_if_offline: random-initialised backbone, recorded in the cache meta and cards

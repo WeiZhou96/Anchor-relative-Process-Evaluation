@@ -1,0 +1,22 @@
+# Answer grid shared by every system directory under outputs/answers/.
+# Fixed by the A track on 2026-09-03 so that anchor perturbations can be applied
+# by shifting j without falling outside the cached matrix.
+delta_s: 0.25
+j_min: -11        # end_s = anchor - 2.75 s
+j_max: 88         # end_s = anchor + 22.0 s
+n_j: 100
+pre_anchor_rows: >-
+  carry the system's raw Top-1 and probabilities. Masking delta < 0 to the bot
+  code is the protocol layer's job; a system that masked itself would push every
+  eps_sys < 0 scan point outside the cache and be charged as an error.
+bot_rows: >-
+  pred = -1 only when the prefix contains no frame at all, which can happen at
+  negative j on a clip whose anchor sits near its head.
+committed_column: >-
+  false for every non-commitment system; monotone non-decreasing for commitment
+  systems, which may only fire at j >= 0 because tau_c is measured from the anchor.
+coarser_steps: >-
+  keep the columns with j mod k == 0, which preserves j = 0. Valid for the clip
+  and prefix classifiers and for the trivial systems except random; the
+  post-processing and commitment arms are stateful and must be regenerated with
+  --stride k.

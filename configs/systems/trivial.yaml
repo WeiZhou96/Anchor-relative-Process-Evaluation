@@ -1,0 +1,15 @@
+# Trivial systems: degenerate endpoints for the rank-preservation estimate.
+family: trivial
+entry: systems/trivial.py
+systems:
+  - system_id: trivial__majority
+    rule: constant split=train majority class
+  - system_id: trivial__random
+    rule: independent uniform draw per grid point
+    seed: 20260903
+  - system_id: trivial__oracle
+    rule: ground-truth class from delta >= 0 onward
+    uses_ground_truth: true
+  - system_id: trivial__constbot
+    rule: never answers; every step is the bot code and counts wrong
+reads_video: false

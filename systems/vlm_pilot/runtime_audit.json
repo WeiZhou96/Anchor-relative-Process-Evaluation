@@ -1,0 +1,58 @@
+{
+  "initial_route": "HF Xet slow but alive, explicitly stopped",
+  "server_http_probe": [
+    {
+      "host": "https://hf-mirror.com",
+      "status": 206,
+      "bytes": 2097152,
+      "header_s": 12.62613426335156,
+      "elapsed_s": 34.72602183930576,
+      "content_range": "bytes 0-2097151/3900233256"
+    },
+    {
+      "host": "https://huggingface.co",
+      "status": 206,
+      "bytes": 2097152,
+      "header_s": 5.848271170631051,
+      "elapsed_s": 21.200505977496505,
+      "content_range": "bytes 0-2097151/3900233256"
+    }
+  ],
+  "relay_workers": [
+    8,
+    16,
+    4
+  ],
+  "failed_chunk_events": 30,
+  "repair_remaining_chunks": [
+    28,
+    2
+  ],
+  "all_model_files_verified": true,
+  "one_actual_inference_launch": true,
+  "actual_inference_exit_0": true,
+  "actual_inference_events": [
+    "The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. ",
+    "completed 11 / 220 elapsed_s 6.8",
+    "completed 22 / 220 elapsed_s 8.9",
+    "completed 33 / 220 elapsed_s 10.8",
+    "completed 44 / 220 elapsed_s 12.5",
+    "completed 55 / 220 elapsed_s 14.3",
+    "completed 66 / 220 elapsed_s 16.3",
+    "completed 77 / 220 elapsed_s 18.3",
+    "completed 88 / 220 elapsed_s 20.2",
+    "completed 99 / 220 elapsed_s 22.2",
+    "completed 110 / 220 elapsed_s 24.2",
+    "completed 121 / 220 elapsed_s 26.3",
+    "completed 132 / 220 elapsed_s 28.3",
+    "completed 143 / 220 elapsed_s 30.4",
+    "completed 154 / 220 elapsed_s 32.4",
+    "completed 165 / 220 elapsed_s 34.0",
+    "completed 176 / 220 elapsed_s 36.2",
+    "completed 187 / 220 elapsed_s 38.1",
+    "completed 198 / 220 elapsed_s 40.0",
+    "completed 209 / 220 elapsed_s 41.8",
+    "completed 220 / 220 elapsed_s 43.4",
+    "INFERENCE EXIT 0"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "code_head": "c62f7b27221cf7467cfd45349e2fe64f773100b7",
+  "started_unix": 1790477748.878655,
+  "seed": 20260931,
+  "trials": 1000,
+  "bootstrap": 2000,
+  "only_h10_decomposition": true,
+  "complete": true,
+  "finished_unix": 1790478001.6911328,
+  "summaries": [
+    {
+      "family": "decomposition_H10",
+      "weighting": "macro",
+      "coordinates": 648,
+      "n": 1113,
+      "clusters": 1109,
+      "trials": 1000,
+      "covered": 0.921,
+      "covered_mcse": 0.008529888627643386,
+      "information_guard_covered": 0.922,
+      "information_guard_covered_mcse": 0.008480330182251158,
+      "mean_width": 0.9782577090052816,
+      "information_guard_width": 0.9806806583267259,
+      "mean_uninformative_coordinates": 0.079,
+      "wrong_direction_fraction": 0.0,
+      "population_low_support_coordinates": 0
+    },
+    {
+      "family": "decomposition_H10",
+      "weighting": "micro",
+      "coordinates": 648,
+      "n": 1113,
+      "clusters": 1109,
+      "trials": 1000,
+      "covered": 0.949,
+      "covered_mcse": 0.006956938982052382,
+      "information_guard_covered": 0.949,
+      "information_guard_covered_mcse": 0.006956938982052382,
+      "mean_width": 0.8696465761097896,
+      "information_guard_width": 0.872069757274111,
+      "mean_uninformative_coordinates": 0.079,
+      "wrong_direction_fraction": 0.0,
+      "population_low_support_coordinates": 0
+    }
+  ],
+  "claim": "Empirical population calibration only; no universal coverage guarantee"
+}

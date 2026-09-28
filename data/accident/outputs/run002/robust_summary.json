@@ -1,0 +1,182 @@
+[
+  {
+    "horizon": 10.0,
+    "n": 1094,
+    "n_clusters": 1092,
+    "redrawn_bootstrap": 0,
+    "protocols": [
+      [
+        -0.5,
+        0.25
+      ],
+      [
+        -0.5,
+        0.5
+      ],
+      [
+        -0.5,
+        1.0
+      ],
+      [
+        0.0,
+        0.25
+      ],
+      [
+        0.0,
+        0.5
+      ],
+      [
+        0.0,
+        1.0
+      ],
+      [
+        0.5,
+        0.25
+      ],
+      [
+        0.5,
+        0.5
+      ],
+      [
+        0.5,
+        1.0
+      ]
+    ],
+    "weightings": {
+      "micro": {
+        "critical": 4.065180441177292,
+        "statuses": {
+          "0.0": {
+            "inconclusive": 61,
+            "robust_a": 34,
+            "protocol_specific": 7,
+            "robust_b": 6
+          },
+          "0.125": {
+            "inconclusive": 72,
+            "robust_a": 26,
+            "robust_b": 5,
+            "protocol_specific": 5
+          },
+          "0.25": {
+            "inconclusive": 77,
+            "robust_a": 20,
+            "protocol_specific": 7,
+            "robust_b": 4
+          }
+        }
+      },
+      "macro": {
+        "critical": 4.327572009406382,
+        "statuses": {
+          "0.0": {
+            "inconclusive": 60,
+            "robust_a": 22,
+            "robust_b": 19,
+            "protocol_specific": 7
+          },
+          "0.125": {
+            "inconclusive": 68,
+            "robust_a": 15,
+            "protocol_specific": 14,
+            "robust_b": 11
+          },
+          "0.25": {
+            "inconclusive": 82,
+            "robust_a": 12,
+            "robust_b": 8,
+            "protocol_specific": 6
+          }
+        }
+      }
+    }
+  },
+  {
+    "horizon": 4.0,
+    "n": 1297,
+    "n_clusters": 1273,
+    "redrawn_bootstrap": 0,
+    "protocols": [
+      [
+        -0.5,
+        0.25
+      ],
+      [
+        -0.5,
+        0.5
+      ],
+      [
+        -0.5,
+        1.0
+      ],
+      [
+        0.0,
+        0.25
+      ],
+      [
+        0.0,
+        0.5
+      ],
+      [
+        0.0,
+        1.0
+      ],
+      [
+        0.5,
+        0.25
+      ],
+      [
+        0.5,
+        0.5
+      ],
+      [
+        0.5,
+        1.0
+      ]
+    ],
+    "weightings": {
+      "micro": {
+        "critical": 4.062868850771366,
+        "statuses": {
+          "0.0": {
+            "inconclusive": 67,
+            "robust_a": 24,
+            "protocol_specific": 12,
+            "robust_b": 5
+          },
+          "0.125": {
+            "inconclusive": 92,
+            "robust_a": 10,
+            "protocol_specific": 5,
+            "robust_b": 1
+          },
+          "0.25": {
+            "inconclusive": 102,
+            "protocol_specific": 4,
+            "robust_a": 2
+          }
+        }
+      },
+      "macro": {
+        "critical": 4.283144992362617,
+        "statuses": {
+          "0.0": {
+            "inconclusive": 72,
+            "protocol_specific": 19,
+            "robust_a": 11,
+            "robust_b": 6
+          },
+          "0.125": {
+            "inconclusive": 103,
+            "protocol_specific": 4,
+            "robust_a": 1
+          },
+          "0.25": {
+            "inconclusive": 107,
+            "protocol_specific": 1
+          }
+        }
+      }
+    }
+  }
+]

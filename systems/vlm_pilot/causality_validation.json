@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "queries": 220,
+  "clips": 20,
+  "future_timestamp_invariance": true,
+  "future_frame_violations": 0,
+  "min_causal_margin_s": 0.0,
+  "max_timestamp_approximation_s": 0.22880000000000056,
+  "class_counts": {
+    "head-on": 2,
+    "rear-end": 4,
+    "t-bone": 3,
+    "sideswipe": 0,
+    "single": 11
+  },
+  "unique_source_clusters": 19
+}

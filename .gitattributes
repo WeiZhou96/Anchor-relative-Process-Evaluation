@@ -1,0 +1,32 @@
+# LF for ordinary text; preserve byte-exact imported records listed below.
+* text=auto eol=lf
+*.npz binary
+*.npy binary
+
+# Historical CRLF: source bytes / provenance and embedded SHA-256 must remain intact.
+/data/accident/manifest/decode_probe.csv -text
+/data/accident/manifest/manifest_real.csv -text
+/data/accident/manifest/manifest_real_v1_official.csv -text
+/data/accident/outputs/r2c/tables/primary/tableS_A1_reversals.csv -text
+/data/accident/outputs/r2c/tables/primary/tableS_A3_prefix_accuracy.csv -text
+/data/accident/outputs/r2c/tables/primary/tableS_A4_region.csv -text
+/data/accident/outputs/r2c/tables/primary/tableS_A5_region.csv -text
+/data/accident/outputs/r2c/tables/primary/tableS_G2_two_arms.csv -text
+/data/accident/outputs/r2c/tables/primary/tableS_G3_two_rules.csv -text
+/data/accident/outputs/r2c/tables/primary/tableS_G5_response_shape.csv -text
+/data/accident/outputs/r2c/tables/primary/tableS_Pb_jitter.csv -text
+/data/accident/outputs/r2c/tables/primary/tableS_Pc_stride.csv -text
+/data/accident/outputs/r2c/tables/table1_audit_H10p00.csv -text
+/data/accident/outputs/r2c/tables/table3_characterization.csv -text
+/data/mmau/deliverables/anchor_shift_20260921/RESULTS.json -text
+/data/mmau/deliverables/control_pilot_20260920/RESULTS.json -text
+/data/mmau/deliverables/input_stride_20260921/RESULTS.json -text
+/data/mmau/deliverables/overlap_dense_20260920/sensitivity/summary.json -text
+/figures/qualitative/accident_cases.json -text
+/figures/qualitative/accident_frames.json -text
+/figures/qualitative/mmau_cases.json -text
+/mmau/study/input_stride_20260921/evaluate_stride.py -text
+/mmau/study/input_stride_20260921/verify_stride.py -text
+/scripts/m3_reanalysis.py -text
+/systems/vlm_pilot/model_inventory.json -text
+/tests/fixtures/manifest_min.csv -text

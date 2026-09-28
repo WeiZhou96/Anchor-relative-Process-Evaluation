@@ -1,0 +1,157 @@
+# S1 冻结清单模板（APE 协议预注册）
+#
+# 用法：S1 阶段把每一项从 candidate 改成实际取值，把 frozen 改成 true，填冻结人与时间戳，
+# 然后连同生成它的脚本一起提交存档。冻结之后任何改动都必须新建一个版本文件
+# （S1_freeze_v2.yaml、v3……），保留旧版本，并在论文里声明改了什么、为什么改、
+# 哪些结果是在旧版本下得到的。禁止就地覆盖本文件。
+#
+# 依据：契约 §5.2、§8；idea §3.4「参考协议 π0 的定法」、§3.8、§4.4、§10 的 S1 行。
+
+meta:
+  freeze_id: "S1"
+  protocol_version: "0.1-unfrozen"    # 冻结时改为 "1.0"
+  frozen: false                        # 冻结时改为 true，改了就不能再动本文件
+  frozen_by: ""                        # 冻结人姓名
+  frozen_at_utc: ""                    # ISO-8601 时间戳，例 2026-09-10T03:21:00Z
+  git_commit: ""                       # 冻结时刻的代码提交号
+  supersedes: ""                       # 若本文件是修订版，写它取代的版本文件名
+  note: ""
+
+# ---------------------------------------------------------------------------
+# 1. 参考协议 π0 各分量（契约 §5.2）
+# ---------------------------------------------------------------------------
+pi0:
+  time_unit: "seconds"
+  pre_anchor_outputs_bot: true         # δ<0 一律 ⊥，不进主分数
+  prefix_start: "clip_head"            # 未标定旋钮，冻结为片头，进 Limitations
+  delta_s: null                        # 前缀步长，候选 {0.25, 0.5, 1.0}，取使多数来源可用的值
+  eps_sys_s: 0.0                       # 参考协议下共模偏移为零
+  eps_jit_sd_s: 0.0                    # 参考协议下独立抖动为零
+  h_ref_s: null                        # 参考观察窗，取 H 三档的中档
+  grid_max_s: null                     # 评测网格最远到锚后多少秒
+  pi_hash: ""                          # 由 ape/protocol.py 计算，冻结后回填
+
+# ---------------------------------------------------------------------------
+# 2. H 三档（idea §3.2 第 1 条：只在开发子集上取 L+ 的 25/50/75 分位）
+# ---------------------------------------------------------------------------
+horizons:
+  source: "dev subset L+ quantiles"
+  dev_subset_n: null
+  short_s: null                        # 25% 分位
+  mid_s: null                          # 50% 分位，同时是 pi0.h_ref_s
+  long_s: null                         # 75% 分位
+  cohort_sizes:                        # 每档在审计集上的 N_H，冻结时填实测值
+    short: null
+    mid: null
+    long: null
+  min_cohort_rule: ""                  # 由开发子集预实验区间宽度反推的 N_H 下限规则（G0 判据）
+
+# ---------------------------------------------------------------------------
+# 3. 冻结的指标族 M（契约 §8；idea §5.1）
+# ---------------------------------------------------------------------------
+metric_family:
+  - "RMSCD@H"
+  - "S_H(delta_k1)"                    # 预注册的第一个时点
+  - "S_H(delta_k2)"                    # 预注册的第二个时点
+  - "end_window_macro_acc"
+  - "median_flips"
+prereg_delta_k_s: [null, null]         # 上面两个 k 对应的 δ 取值，冻结前写死
+secondary_reported_only:               # 只报告不进 M、不进 G2 判定
+  - "full_clip_macro_acc"
+  - "commit_triplet(rho, tau_c, e_c)"
+  - "class_conditional_S_H"
+
+# ---------------------------------------------------------------------------
+# 4. 统计与判据
+# ---------------------------------------------------------------------------
+statistics:
+  unit_of_analysis: "source_event_cluster"
+  r0: 0.9                              # 名次保持率门槛，预注册为 0.9
+  bootstrap_n: 1000                    # 簇级配对 bootstrap 次数
+  bootstrap_seed: 20260903
+  alpha_pairs: 0.05                    # 组成 P 的配对检验显著性水平
+  paired_test: "cluster-level paired bootstrap"
+  multiple_comparison: "Holm"          # 多重比较校正方法，实验前冻结
+  significance_recomputed_per_resample: true
+  ranking_pairs_P: "only real systems significant at pi0; block-included version reported separately"
+  mrd_quantile: 0.95                   # MRD 取 |M(a;pi)-M(a;pi0)| 的 95% 分位
+  min_real_systems_rule: ""            # 真实系统数下限，由开发子集预实验区间宽度反推
+
+# ---------------------------------------------------------------------------
+# 5. 扰动网格 Π 与 Π_plaus（契约 §5.2 perturb）
+# ---------------------------------------------------------------------------
+perturbation_grid:
+  eps_sys_s: [-1.0, -0.5, -0.25, 0.0, 0.25, 0.5, 1.0]
+  eps_jit_sd_s: [0.0, 0.1, 0.25, 0.5]
+  delta_s: [0.25, 0.5, 1.0]
+  h_s: [null, null, null]              # 冻结后填 H 三档
+  jitter_seed: 20260903
+  plausible_subgrid:                   # π0 每个分量前后各一档
+    eps_sys_s: [-0.25, 0.25]
+    eps_jit_sd_s: [0.0, 0.25]
+    delta_s: [0.25, 1.0]
+    h_s: [null, null]
+  rationale: ""                        # 边界与理由，进正文
+  note: "冻结后看到结果不得加档；全网格版本与 plausible 版本并排报"
+
+# ---------------------------------------------------------------------------
+# 6. 量块因子表（idea §3.6；解析预期必须在代码运行前写下）
+# ---------------------------------------------------------------------------
+blocks:
+  lock:
+    d0_s: []                           # 锁定延迟档位
+  osc:
+    p_s: []                            # 振荡周期
+    d0_s: []
+  frac:
+    c: []                              # 按视频总长比例作答的位置
+  rand:
+    eta: []                            # 随机作答概率
+  oracle:
+    enabled: true
+  mixture: ""                          # 混合比
+  analytic_expectations_written_before_run: false   # 冻结时必须为 true
+  blocks_excluded_from_main_R_and_MRD: true
+
+# ---------------------------------------------------------------------------
+# 7. 系统库清单（契约 §5.4 system_card；idea §4.3）
+# ---------------------------------------------------------------------------
+system_library:
+  trivial: []                          # majority / random / oracle / constant-bot
+  trained_classifiers: []              # 整段分类器、多前缀分类器，含骨干与种子
+  postproc_and_commit: []              # EMA / 多数票 / 滞回 / patience / MSP / margin
+  readonly_vlm: []                     # 只读视频语言模型，提示模板冻结后不再刷
+  published_baselines: []
+  train_data_unknown_flagged: []       # 可能在评测视频上预训练的系统
+  failed_systems: []                   # 跑不通的逐条记录，不静默剔除
+
+# ---------------------------------------------------------------------------
+# 8. 数据与划分留痕
+# ---------------------------------------------------------------------------
+data:
+  manifest_real_path: "data/manifest/manifest_real.csv"
+  manifest_real_sha256: ""             # 冻结时回填
+  manifest_synthetic_path: "data/manifest/manifest_synthetic.csv"
+  manifest_synthetic_sha256: ""
+  dev_subset:
+    carved_from: "split_in_distribution == train"
+    granularity: "source_event_cluster"
+    fraction: 0.20
+    seed: 20260903
+    n_clips: null
+    n_clusters: null
+    cluster_id_list_sha256: ""         # dev 簇 ID 排序后拼接的哈希，用于事后验证划分未被改动
+  phash_threshold: null                # 源事件簇去重的感知哈希阈值
+  phash_false_merge_upper_bound: null  # 人工抽检误合率上限，冻结条件
+  audit_set_untouched_before_freeze: true
+
+# ---------------------------------------------------------------------------
+# 9. 冻结后的纪律（不是配置，是承诺）
+# ---------------------------------------------------------------------------
+discipline:
+  - "S1 之后不回改协议；要改则全部重跑并在论文声明"
+  - "冻结后任何改动须新建版本文件并在论文声明，禁止就地覆盖"
+  - "冻结前的一切查看只在开发子集，审计集永不参与"
+  - "看到审计结果不得增删扰动网格档位、不得改 H 档、不得改 r0"
+  - "量块解析预期在代码运行前写下并存档"
+  - "跑不通的系统记录失败原因并列出，不静默剔除"

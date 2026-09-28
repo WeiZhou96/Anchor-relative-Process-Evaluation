@@ -1,0 +1,16 @@
+# Installed derived data and run products (see README: Data)
+outputs/
+data/manifest/
+tmp/
+external/
+figures/out/
+
+# Python bytecode and test caches
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Model weights and cached feature archives, wherever they land
+*.pt
+*.pth
+*.npz

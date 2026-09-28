@@ -1,0 +1,16 @@
+H,Metric,Min R,Min alternative,R domain,Alternative domain,Added,Removed,Intersection,Ruler degenerate
+4.0,RMSCD@H,0.872097,0.727453,42,30,0,12,30,False
+4.0,S_H@1,0.938410,0.830096,54,41,0,13,41,False
+4.0,S_H@3,0.913649,0.715617,54,21,0,33,21,False
+4.0,end_window_macro_acc,0.827192,0.693430,24,24,0,0,24,False
+4.0,median_flips,0.504172,0.140568,30,13,0,17,13,True
+10.0,RMSCD@H,0.955624,0.881392,54,48,0,6,48,False
+10.0,S_H@1,0.974436,0.899399,54,53,0,1,53,False
+10.0,S_H@3,0.953096,0.820246,54,36,0,18,36,False
+10.0,end_window_macro_acc,0.919586,0.775180,54,32,0,22,32,False
+10.0,median_flips,0.183197,0.362624,29,11,2,20,9,True
+21.5,RMSCD@H,0.880544,0.703187,48,30,0,18,30,False
+21.5,S_H@1,0.920809,0.794304,54,40,0,14,40,False
+21.5,S_H@3,0.864357,0.690623,42,36,0,6,36,False
+21.5,end_window_macro_acc,0.920378,0.704449,54,30,0,24,30,False
+21.5,median_flips,0.116131,0.192188,18,13,0,5,13,True

@@ -1,0 +1,77 @@
+{
+  "definition": "SHA-256 of the decoded frame as a C-contiguous RGB uint8 array (height x width x 3), row-major bytes; independent of the PNG encoder.",
+  "frames": {
+    "accident_-RrDtLjWsT4_00_0.png": {
+      "shape_hwc": [
+        1080,
+        1584,
+        3
+      ],
+      "rgb_uint8_sha256": "341724e356820a862903dbe22da874d71c0b7130bffdb7ac0b1276d1b1e4bada"
+    },
+    "accident_-RrDtLjWsT4_00_3.png": {
+      "shape_hwc": [
+        1080,
+        1584,
+        3
+      ],
+      "rgb_uint8_sha256": "1dd2b658ebb4574ff91090dcf04a20c3cf669fa9c3713c0e2eba74ff6aa789ea"
+    },
+    "accident_-RrDtLjWsT4_00_10.png": {
+      "shape_hwc": [
+        1080,
+        1584,
+        3
+      ],
+      "rgb_uint8_sha256": "e36eafd603639fc7aee086fa12146624d727460b791dc496dd8c2e6115740449"
+    },
+    "accident_-NgnSm_oEB4_00_0.png": {
+      "shape_hwc": [
+        720,
+        1080,
+        3
+      ],
+      "rgb_uint8_sha256": "87700b684a583cf076a1f685122c2ee5de16ae7b173f95aaa8b7608384f80a2e"
+    },
+    "accident_-NgnSm_oEB4_00_3.png": {
+      "shape_hwc": [
+        720,
+        1080,
+        3
+      ],
+      "rgb_uint8_sha256": "c944b7b6bda18bf9a6c59143a15c9de55bf34e13b9045b13b20563afd6adae54"
+    },
+    "accident_-NgnSm_oEB4_00_10.png": {
+      "shape_hwc": [
+        720,
+        1080,
+        3
+      ],
+      "rgb_uint8_sha256": "849b67900586d2921e311fd07d29361129338520cbfa5d96375e4385b71da900"
+    },
+    "accident_-PpBteU0p3Q_00_0.png": {
+      "shape_hwc": [
+        720,
+        1280,
+        3
+      ],
+      "rgb_uint8_sha256": "0a0223895b6e799ba924f3a653e93e597c3dc588996d1a0183686122c9455c78"
+    },
+    "accident_-PpBteU0p3Q_00_3.png": {
+      "shape_hwc": [
+        720,
+        1280,
+        3
+      ],
+      "rgb_uint8_sha256": "ce32e878cad5fa068bfd4420255977e77e37ab50b9bb014e44b6979f59ae517d"
+    },
+    "accident_-PpBteU0p3Q_00_10.png": {
+      "shape_hwc": [
+        720,
+        1280,
+        3
+      ],
+      "rgb_uint8_sha256": "7d2cf6d120111116e64ef65793406a1b7c7b935ca70e597bb52bf20117c812a8"
+    }
+  }
+}

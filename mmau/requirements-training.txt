@@ -1,0 +1,7 @@
+# Environment of the MM-AU model runs (pixel pilot, controls, anchor shift, input stride), Linux, Python 3.10.21.
+# The APE evaluations of the MM-AU predictions (evaluate_*.py, protocol_sensitivity.py) use the main environment.
+torch==2.6.0+cu124
+torchvision==0.21.0+cu124
+numpy==2.2.6
+Pillow==12.3.0
+# install torch/torchvision from the CUDA 12.4 index: pip install --index-url https://download.pytorch.org/whl/cu124 torch==2.6.0 torchvision==0.21.0

@@ -1,0 +1,86 @@
+{
+  "status": "complete",
+  "model_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+  "n_clips": 20,
+  "n_queries": 220,
+  "format_compliant_n": 220,
+  "format_compliance_fraction": 1.0,
+  "format_definition": "raw_output.strip() exactly equals one of five labels; no substring/alias acceptance; no constrained decoding or retry",
+  "model_load_s": 3.6326486822217703,
+  "generation_sum_s": 33.50979343242943,
+  "request_wall_sum_s": 39.71066216751933,
+  "decode_sum_s": 57.491301557049184,
+  "total_elapsed_s": 43.41152350232005,
+  "generation_queries_per_s": 6.565244887098971,
+  "cached_request_queries_per_s": 5.540073823799022,
+  "queries_per_s_including_amortized_decode": 2.263328759729505,
+  "mean_request_with_decode_s": 0.4418271078389478,
+  "latency_median_s": 0.18314612936228514,
+  "latency_p95_s": 0.19081024108454586,
+  "cold_first_request_s": 1.226343784481287,
+  "warm_queries_per_s": 5.690629565535561,
+  "cuda_max_allocated_mib": 15941.49755859375,
+  "cuda_max_reserved_mib": 16036.0,
+  "nvidia_smi_peak_mib": 16468,
+  "zero_future_frame_violations": true,
+  "full_cost_estimates": {
+    "real_all_rectangle_0_to_10_step1": {
+      "queries": 22297,
+      "estimated_gpu_hours": 2.736505284301394
+    },
+    "real_all_within_recorded_support_0_to_10_step1": {
+      "queries": 18192,
+      "estimated_gpu_hours": 2.232699651612816
+    },
+    "real_all_rectangle_0_to_21.5_step0.5": {
+      "queries": 89188,
+      "estimated_gpu_hours": 10.946021137205577
+    },
+    "real_all_rectangle_0_to_21.5_step0.25": {
+      "queries": 176349,
+      "estimated_gpu_hours": 21.643269066747393
+    },
+    "audit_test_rectangle_0_to_10_step1": {
+      "queries": 16654,
+      "estimated_gpu_hours": 2.0439412927638436
+    },
+    "audit_test_within_recorded_support_0_to_10_step1": {
+      "queries": 14274,
+      "estimated_gpu_hours": 1.7518444825814279
+    },
+    "audit_test_rectangle_0_to_21.5_step0.5": {
+      "queries": 66616,
+      "estimated_gpu_hours": 8.175765171055374
+    },
+    "audit_test_rectangle_0_to_21.5_step0.25": {
+      "queries": 131718,
+      "estimated_gpu_hours": 16.165717497314034
+    },
+    "dev_rectangle_0_to_10_step1": {
+      "queries": 1122,
+      "estimated_gpu_hours": 0.13770278194313873
+    },
+    "dev_within_recorded_support_0_to_10_step1": {
+      "queries": 804,
+      "estimated_gpu_hours": 0.09867472075069833
+    },
+    "dev_rectangle_0_to_21.5_step0.5": {
+      "queries": 4488,
+      "estimated_gpu_hours": 0.5508111277725549
+    },
+    "dev_rectangle_0_to_21.5_step0.25": {
+      "queries": 8874,
+      "estimated_gpu_hours": 1.0891038208230064
+    }
+  },
+  "versions": {
+    "torch": "2.5.1",
+    "transformers": "5.2.0",
+    "accelerate": "1.12.0",
+    "huggingface_hub": "1.5.0",
+    "numpy": "2.0.1",
+    "opencv-python": "4.13.0.92"
+  },
+  "cost_caveat": "One model, one run, 8 frames per query; linear count extrapolation from H10-eligible dev clips, no test inference. Excludes download, one-time model loading, compressed frame cache creation and external contention. No currency price assumed."
+}

@@ -1,0 +1,43 @@
+{
+  "status": "passed",
+  "keys": [
+    "input_ids",
+    "attention_mask",
+    "pixel_values_videos",
+    "video_grid_thw",
+    "second_per_grid_ts"
+  ],
+  "shapes": {
+    "input_ids": [
+      1,
+      452
+    ],
+    "attention_mask": [
+      1,
+      452
+    ],
+    "pixel_values_videos": [
+      1456,
+      1176
+    ],
+    "video_grid_thw": [
+      1,
+      3
+    ],
+    "second_per_grid_ts": [
+      1
+    ]
+  },
+  "second_per_grid_ts": [
+    4.0
+  ],
+  "video_grid_thw": [
+    [
+      4,
+      14,
+      26
+    ]
+  ],
+  "device": "CPU",
+  "input": "artificial all-zero 8-frame tensor; no model inference"
+}

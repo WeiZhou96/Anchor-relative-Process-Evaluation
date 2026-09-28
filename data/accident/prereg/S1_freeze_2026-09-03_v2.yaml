@@ -1,0 +1,271 @@
+# S1 冻结清单 v2（修订版）—— APE 协议预注册
+#
+# 本文件取代 prereg/S1_freeze_2026-09-03.yaml（v1）。**v1 原样保留、未被修改**，
+# 按 v1 自己写下的纪律：冻结后任何改动须新建版本并在论文声明，禁止就地覆盖。
+#
+# 论文必须声明：协议在 S1 之后修订过一次，修订内容见本文件 amendments 段，
+# 以及哪些结果是在 v1 口径下得到的。v1 口径下没有产生任何进入论文的结果
+# （v1 冻结当日全量尚未跑完），因此本次修订不造成结果混用。
+#
+# 修订理由限于 v1 允许的三条：实现错误、数据错误、冻结时未预见的技术不可行。
+# 逐条对应见 amendments。没有一条是「看到结果后觉得不合适」。
+
+meta:
+  freeze_id: "S1"
+  version: "v2"
+  protocol_version: "1.0-S1-2026-09-03"      # 协议本身未改，改的是登记口径与判据定义
+  frozen: true
+  frozen_by: "authors"
+  frozen_at_utc: "2026-09-03T11:30:00Z"
+  supersedes: "prereg/S1_freeze_2026-09-03.yaml"
+  supersedes_git_commit: "ad855cb8"          # v1 冻结件所在提交（ad855cb87ccdf94a...）
+  note: >
+    A 的 S1 全量已完成并稳定：三个参考协议 pi_hash 分别为
+    77200b351bf1 (H=4.0) / 8ac32aae418b (H=10.0) / 3fb251dc210c (H=21.5)，
+    audit_split=test，N_H 1328 / 1113 / 742，52 个真实系统 + 12 个量块，
+    report_index 192 行。本修订把登记口径对齐到实际实现。
+
+# ===========================================================================
+# 修订条目
+# ===========================================================================
+amendments:
+
+  - id: A1
+    title: "后处理臂的身份改按规则名登记"
+    reason_class: "冻结时口径错误（登记错误，非结果驱动）"
+    what_v1_said: >
+      v1 的 system_library.postproc.arms 写作 [ema0p5, majority7, hysteresis0p2,
+      patience4]，即把某一个参数值当成臂的身份。
+    why_wrong: >
+      臂的参数是在 dev 上逐种子选出的，不是冻结常量。同一规则的三个种子会落在不同参数上，
+      按参数值登记会造成两种错误：一是三个种子被登记成三个不同的臂，种子离散无法统计；
+      二是登记名与实际跑出来的系统对不上（例如实际选出 ema0p2 而清单里写 ema0p5）。
+    what_v2_says: >
+      臂的身份是**规则名**：ema / majority / hysteresis / patience。
+      参数是该规则在每个种子上的 dev 选择结果，作为实测值登记，不作为身份。
+    measured_dev_selected_values:
+      ema:        {seed20260903: "0p7",  seed20260904: "0p2",  seed20260905: "0p2"}
+      hysteresis: {seed20260903: "0p2",  seed20260904: "0p05", seed20260905: "0p05"}
+      majority:   {seed20260903: "2",    seed20260904: "2",    seed20260905: "9"}
+      patience:   {seed20260903: "2",    seed20260904: "2",    seed20260905: "6"}
+    selection_protocol: "参数在 dev 子集上按 H=10.0 选，审计集不参与"
+    consequence: >
+      表 1b 与表 5b 按 arm_rule 分组给三种子的均值与标准差。承诺臂
+      （commit_msp / commit_margin）是阈值扫描而非 dev 选参：每个阈值在三个种子里都在，
+      若按规则名合并报出的是阈值离散而非种子离散，故这类规则按 `规则 @ 阈值` 分组。
+      判据是「同一种子内是否出现多个 arm_value」，由脚本检测，不写死名单。
+
+  - id: A2
+    title: "判据尺子改为逐指标同量纲，并补上尺子的定义"
+    reason_class: "冻结时未定义（补定义，不改数值口径）"
+    what_v1_said: >
+      v1 只写了「MRD 与窗末同分对的中位进程差比较」，没有定义这把尺子对每个指标怎么取，
+      实现里事实上是用 RMSCD 的中位进程差去比所有指标。
+    why_wrong: >
+      不同指标量纲不同（秒、比例、次数），用 RMSCD 的秒数去衡量一个比例型指标的 MRD 没有意义。
+    what_v2_says: >
+      每个指标 M 自带一把尺子：ruler(M) = 窗末同分系统对上 |M(a)-M(b)| 的中位数，
+      与 M 同量纲，含义是「本研究认为该指标值得报告的最小差」。
+      判据改为 MRD_plaus(M) 与 ruler(M) 比较；A 的 calibration.json 保留
+      ruler_rmscd_legacy 供追溯 v1 口径。
+    measured_rulers_by_metric:
+      H4.0:
+        RMSCD@H: 0.10015060240963858
+        S_H@1: 0.028990963855421686
+        S_H@3: 0.020331325301204822
+        end_window_macro_acc: 0.010118891055296855
+        median_flips: 0.0
+      H10.0:
+        RMSCD@H: 0.3724168912848169
+        S_H@1: 0.047619047619047616
+        S_H@3: 0.047619047619047616
+        end_window_macro_acc: 0.015310339916820126
+        median_flips: 0.0
+      H21.5:
+        RMSCD@H: 1.2392183288409662
+        S_H@1: 0.06469002695417791
+        S_H@3: 0.07008086253369272
+        end_window_macro_acc: 0.023010458171673354
+        median_flips: 0.0
+    ruler_varies_with_H: >
+      RMSCD 的尺子在三档上是 0.100 / 0.372 / 1.239 s，跨度超过一个数量级。
+      因此表 3 必须按 H 各出一份，绝不能把参考档的尺子搬到别的档上用。
+    median_flips_degenerate: >
+      median_flips 在三档上尺子都是 0：窗末同分对在该指标上完全同值，
+      尺子无法分辨它们。该指标的 verdict 只能读作「在本设置下不承担区分同分系统的功能」，
+      任何基于它的可比判断都不成立。表 3 已按 A 的 ruler_degenerate 标注。
+
+  - id: A3
+    title: "合格集合的浮点容差与 H=10.0 的 N_H 更正"
+    reason_class: "数据错误（浮点表示，非口径变更）"
+    what_v1_said: "H=10.0 档的审计集合格集合规模 N_H 记为 1112。"
+    what_v2_says: "N_H = 1113。合格判据 L+ >= H 加 1e-9 的容差。"
+    cause: >
+      片段 KUBbn-T3XYI_00 的锚后剩余长度恰好等于 10.0 s，但 duration - anchor_s 的
+      浮点结果落在 10.0 之下极微小处，无容差时被判为不合格。加 1e-9 容差后入池。
+    cohort_sizes_audit_test: {H4.0: 1328, H10.0: 1113, H21.5: 742}
+    note: >
+      v1 的 1112 来自 C 用 manifest 现算、未加容差；A 的实现加了容差，得 1113。
+      以 A 的实现为准，C 的表 4 交叉核对同步改用同一容差。
+
+  - id: A4
+    title: "trivial__random 补 stride 重生成件"
+    reason_class: "冻结时未预见的技术不可行（子采样等价性不成立）"
+    what_v1_said: "作答矩阵在最细步长产出一次，粗步长由子采样得到。"
+    why_insufficient: >
+      trivial__random 每次被问都独立掷一次，其作答不是前缀端点的函数，
+      子采样与按粗步长重跑不等价（契约 §5.4 要求逐系统实测该等价性）。
+    what_v2_says: >
+      trivial__random 按每个步长单独重生成作答矩阵并标注；
+      其余系统的等价性实测通过，仍用子采样。A 的 calibration.json 的
+      stride_reruns 字段登记了逐系统的重跑步长。
+
+  - id: A5
+    title: "扫描规模、p 值方法与分辨率守卫入册"
+    reason_class: "冻结时未登记（补登记）"
+    what_v2_says:
+      plaus_grid_points: 54          # 3 x 2 x 3 x 3：各轴取 π0 前后各一档并含 π0 自身
+      axis_scan_points: 14           # 7 + 4 + 3 + 3 = 17，减去四条轴共用的 π0 点 3 次 = 14
+      scan_mode: "axis"
+      p_method: "normal"
+      correction: "holm"
+      correction_resolution:
+        alpha: 0.05
+        n_boot: 1000
+        n_pairs: 1326
+        percentile_p_floor: 0.001
+        smallest_adjusted_p_reachable: 1.326
+        percentile_ok: false
+        n_boot_needed_for_percentile: 26520
+    rationale: >
+      n_boot=1000 时 percentile 型 p 的下限是 1/1000；1326 个配对经 Holm 校正后
+      最小可达的校正 p 是 1.326，已经大于 alpha=0.05，也就是说没有任何一对可能被判显著。
+      因此配对检验的 p 改用正态近似，并把这条分辨率守卫写进登记与表注。
+      要改回 percentile 需 n_boot ≈ 26520，本轮算力不支持。
+    honesty_note: >
+      扫描形态是 axis 而非填满网格：结论只能表述为「沿各轴的响应」，
+      不得叙述成填满网格意义上的可比域。表 3 与图 3 的表注均已写明。
+
+# ===========================================================================
+# 冻结值（未被上述修订触及的部分与 v1 完全一致，此处重列以便本文件自足）
+# ===========================================================================
+pi0:
+  time_unit: "seconds"
+  pre_anchor_outputs_bot: true
+  prefix_start: "clip_head"
+  delta_s: 0.5
+  delta_candidates_s: [0.25, 0.5, 1.0]
+  eps_sys_s: 0.0
+  eps_jit_sd_s: 0.0
+  h_ref_s: 10.0
+  grid_max_s: 21.5
+  seed: 20260903
+  pi_hash_by_h:
+    H4.0: "77200b351bf1"
+    H10.0: "8ac32aae418b"
+    H21.5: "3fb251dc210c"
+
+horizons:
+  source: "dev subset L+ quantiles, rounded DOWN to a multiple of 0.5 s"
+  dev_subset_n: 102
+  measured_quantiles_s: {q25: 4.11, q50: 10.03, q75: 21.82}
+  h_list_s: [4.0, 10.0, 21.5]
+  cohort_sizes_audit_test: {H4.0: 1328, H10.0: 1113, H21.5: 742}   # A3 更正
+  eligibility_tolerance_s: 1.0e-9                                   # A3 新增
+
+metric_family:
+  - "RMSCD@H"
+  - "S_H@1.0"
+  - "S_H@3.0"
+  - "end_window_macro_acc"
+  - "median_flips"
+prereg_delta_k_s: [1.0, 3.0]
+
+statistics:
+  unit_of_analysis: "源视频簇（source video cluster）"
+  audit_split: "test"
+  r0: 0.9
+  bootstrap_n: 1000
+  bootstrap_seed: 20260903
+  alpha_pairs: 0.05
+  paired_test: "cluster-level paired bootstrap"
+  p_method: "normal"                 # A5
+  multiple_comparison: "Holm"
+  mrd_quantile: 0.95
+  ruler_definition: >
+    median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's
+    own units; the smallest difference this study treats as worth reporting for M.
+  unit_caveat: >
+    簇是「同一源视频」而不是「同一类事故」。manifest v2 全部 1789 个簇中有 54 个含多于一种
+    碰撞类型（2 类 37、3 类 15、4 类 2）；按划分 train 31 / dev 6 / test 17；
+    按合格集合 H=4.0 档 29 个（其中恰含 2 类的 21 个）、H=10.0 档 1 个、H=21.5 档 0 个。
+    簇只承担统计独立性，不承担类别同质性。
+
+perturbation_grid:
+  eps_sys_s: [-1.0, -0.5, -0.25, 0.0, 0.25, 0.5, 1.0]
+  eps_jit_sd_s: [0.0, 0.1, 0.25, 0.5]
+  delta_s: [0.25, 0.5, 1.0]
+  h_s: [4.0, 10.0, 21.5]
+  jitter_seed: 20260903
+  plausible_subgrid:
+    eps_sys_s: [-0.25, 0.25]
+    eps_jit_sd_s: [0.0, 0.25]
+    delta_s: [0.25, 1.0]
+    h_s: [4.0, 21.5]
+  plaus_grid_points: 54              # A5；3 x 2 x 3 x 3
+  axis_scan_points: 14               # A5；17 个轴上取值减去重复计入的 π0 三次
+  scan_mode: "axis"                  # A5
+
+blocks:
+  count: 12
+  analytic_expectations_written_before_run: true
+  blocks_excluded_from_main_R_and_MRD: true
+
+system_library:
+  seeds: [20260903, 20260904, 20260905]
+  distinct_systems: 20
+  real_system_instances: 52
+  trivial: [trivial__majority, trivial__random, trivial__oracle, trivial__constbot]
+  trained_classifiers: [clip__r18mean, prefix__gru128, prefix__gru512]
+  postproc:
+    parent: prefix__gru512
+    arms_by_rule: [ema, majority, hysteresis, patience]        # A1
+    parameter_selected_on_dev_per_seed: true                   # A1
+  commit:
+    parent: prefix__gru512
+    arms_by_rule: [commit_msp, commit_margin]
+    threshold_sweep: true                                      # 每个阈值三种子俱全
+    msp_thresholds: ["0p5", "0p6", "0p7", "0p8", "0p9"]
+    margin_thresholds: ["0p1", "0p2", "0p4", "0p6"]
+  stride_reruns_required: [trivial__random]                    # A4
+  readonly_vlm: []
+  published_baselines: []
+  failed_systems: []
+
+data:
+  manifest_version: "v2 (leak-repaired)"
+  manifest_real_md5: "b7a976594deeaed8cfff0ea1630dbd96"
+  manifest_real_v1_md5: "15ee59a605889ff39a160748d39d9019"
+  manifest_synthetic_md5: "94246e7f2c4fe99130d1e589d9ffc6f0"
+  splits_frozen: {train: 411, dev: 102, test: 1514}
+  clusters_frozen: {train: 283, dev: 68, test: 1438}
+  dev_subset:
+    n_clips: 102
+    n_clusters: 68
+    seed: 20260903
+    video_id_list_sha256: "31ed09e84d2c12ffa37786ed1810b9d4932bb8063ee36d1497cff48252025565"
+    hash_recipe: >
+      sha256 of the sorted video_id list joined by a single newline, UTF-8, no trailing
+      newline.
+  audit_set_untouched_before_freeze: true
+  decode_failures: 0
+
+discipline:
+  - "本文件冻结后同样禁止就地覆盖；再有修订须出 v3 并在论文声明"
+  - "v1 保留不改，论文须声明修订发生过、改了什么"
+  - "冻结前的一切查看只在开发子集，审计集永不参与"
+  - "看到审计结果不得增删扰动网格档位、不得改 H 档、不得改 r0"
+  - "主结果不含量块；含量块版本并排另报，永不合并"
+  - "平凡系统是 trivial anchor，检验退化行为用，不进任何结论"
+  - "尺子为零的指标不承担区分同分系统的功能，不得据其作可比判断"
+  - "扫描形态是 axis，不得叙述成填满网格的可比域"

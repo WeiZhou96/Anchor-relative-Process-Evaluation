@@ -1,0 +1,349 @@
+{
+  "N_H": 1113,
+  "RMSCD": 7.038185085354897,
+  "RMSCD_macro": 7.472099841631225,
+  "S_H": [
+    0.24528301886792453,
+    0.25426774483378256,
+    0.2605570530098832,
+    0.2695417789757412,
+    0.2776280323450135,
+    0.2866127583108715,
+    0.2893081761006289,
+    0.29559748427672955,
+    0.2973944294699012,
+    0.3018867924528302,
+    0.302785265049416,
+    0.30727762803234504,
+    0.3081761006289308,
+    0.30997304582210244,
+    0.31266846361185985,
+    0.31356693620844567,
+    0.31356693620844567,
+    0.31356693620844567,
+    0.31356693620844567,
+    0.31446540880503143,
+    0.31716082659478884
+  ],
+  "S_H_macro": [
+    0.20882959351736058,
+    0.21661756070172283,
+    0.2221216536947101,
+    0.22814743379079835,
+    0.23421487986130307,
+    0.2431424298424719,
+    0.24473727971539372,
+    0.24854598511967724,
+    0.24967912959559788,
+    0.25484396927207686,
+    0.2559803329084406,
+    0.2634771510715969,
+    0.2650644526588985,
+    0.2661451637143396,
+    0.26893202980454756,
+    0.27051933139184914,
+    0.27051933139184914,
+    0.27051933139184914,
+    0.27051933139184914,
+    0.2710334702093299,
+    0.2732505449011346
+  ],
+  "alt_cohorts": {
+    "conclusion_stable": null,
+    "conclusion_stable_note": "cross-system determination; decided in the reporting stage, not per system",
+    "dynamic_denominator": {
+      "RMSCD": 6.964487719367063,
+      "S_at_ref": 0.26590756865371734,
+      "n_at_H": 1113,
+      "n_at_start": 1514,
+      "note": "D3: stable correctness to each clip's own end with a risk set that shrinks as clips run out; same quantity as the protocol row, different denominator. The drop from n_at_start to n_at_H is the survivorship exposure",
+      "plain_accuracy_area": 6.964487719367063,
+      "plain_accuracy_at_ref": 0.26590756865371734,
+      "plain_accuracy_note": "instantaneous accuracy among survivors: a DIFFERENT quantity (right now, not right from now on). Do not place it in the same column as the other rows' RMSCD / S_at_ref"
+    },
+    "fixed_H_cohort": {
+      "RMSCD": 7.038185085354897,
+      "S_at_ref": 0.2605570530098832,
+      "n": 1113,
+      "note": "the protocol: one cohort fixed before any grid point is scored"
+    },
+    "length_stratified_change": {
+      "fixed_H_cohort": 0.24535183343450928,
+      "note": "mean(long half) - mean(short half) of the per-video delay, split at the median post-anchor length; a convention that confounds stability with remaining length shows a large gap",
+      "per_clip_end": 1.9518975722801581
+    },
+    "per_clip_end": {
+      "RMSCD": 6.041941875825628,
+      "S_at_ref": 0.2760898282694848,
+      "frac_ever_stable": 0.6776750330250991,
+      "n": 1514,
+      "note": "D2: stable to each clip's own end, censored at H for comparison, denominator = every clip. Short clips are advantaged by construction: a clip whose video ends before delta_ref counts as stable there because it never had the chance to err afterwards. That vacuous credit is the short-clip bias this row exists to show"
+    },
+    "s_ref_delta_s": 1.0
+  },
+  "arm_rule": "commit_msp",
+  "arm_value": 0.9,
+  "audit_split": "test",
+  "backbone": "clipb16",
+  "bootstrap": {
+    "RMSCD@H": {
+      "ci_hi": 7.299503226544103,
+      "ci_lo": 6.781106398356665,
+      "n_boot": 1000,
+      "point": 7.038185085354897
+    },
+    "S_H@1": {
+      "ci_hi": 0.2853381766748104,
+      "ci_lo": 0.2351259323839969,
+      "n_boot": 1000,
+      "point": 0.2605570530098832
+    },
+    "S_H@3": {
+      "ci_hi": 0.31536977534944427,
+      "ci_lo": 0.26320146466968314,
+      "n_boot": 1000,
+      "point": 0.2893081761006289
+    },
+    "end_window_macro_acc": {
+      "ci_hi": 0.3023668827293835,
+      "ci_lo": 0.24406069426422494,
+      "n_boot": 1000,
+      "point": 0.2732505449011346
+    },
+    "median_flips": {
+      "ci_hi": 0.0,
+      "ci_lo": 0.0,
+      "n_boot": 1000,
+      "point": 0.0
+    }
+  },
+  "card": {
+    "answers_read_from": "r2__clipb16__gru512__msp0p9__seed20260903__stride2",
+    "arm_rule": "commit_msp",
+    "arm_value": 0.9,
+    "backbone": "clipb16",
+    "causal": true,
+    "cost_note": "Fixed pretrained 4 fps encoder; cached causal prefixes; weights trained only on train; all selection on dev",
+    "delta_s": 0.25,
+    "description": "R2 preregistered balanced classifier or causal rule; rule and backbone define identity",
+    "dev_summary": {
+      "H": 10.0,
+      "N_H": 52,
+      "end_acc": 0.5961538461538461,
+      "end_macro_acc": 0.4670769230769231,
+      "median_flips": 0.0,
+      "rmscd": 4.584134615384616,
+      "s_at_0": 0.4230769230769231
+    },
+    "dev_tuned_params": {
+      "H_used_for_selection": 10.0,
+      "grid": [
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9
+      ],
+      "rule": "msp",
+      "selected_at_delta_s": 0.25,
+      "threshold": 0.9,
+      "threshold_sweep": true
+    },
+    "family": "commit",
+    "freeze_commit": "153ac3fe57520f4892c9cf9214159cbbbbeca1a3",
+    "model_kind": "gru512",
+    "parent_system_id": "r2__clipb16__gru512__seed20260903",
+    "pre_anchor_rows": "Raw base predictions; commitment may not fire at negative j; protocol layer masks negative delta",
+    "seed": 20260903,
+    "selection_sealed_utc": "2026-09-08T16:20:39.286775+00:00",
+    "stride_from_finest": 1,
+    "subsampling_equivalent": false,
+    "subsampling_note": "Regenerated at this delta from the base trajectory, using the fine-grid selected rule and parameters",
+    "system_id": "r2__clipb16__gru512__msp0p9__seed20260903",
+    "train_data_unknown": true,
+    "trained_on_split": "train"
+  },
+  "class_counts": {
+    "head-on": 69,
+    "rear-end": 176,
+    "sideswipe": 126,
+    "single": 353,
+    "t-bone": 389
+  },
+  "class_fractions": {
+    "head-on": 0.06199460916442048,
+    "rear-end": 0.15813117699910154,
+    "sideswipe": 0.11320754716981132,
+    "single": 0.31716082659478884,
+    "t-bone": 0.3495058400718778
+  },
+  "commit": {
+    "censoring": "tau_c = H for videos that never commit inside the window",
+    "e_c": 0.5668711656441717,
+    "n_committed": 815,
+    "rho": 0.7322551662174304,
+    "tau_c": 3.4928122192273134,
+    "tau_c_mean": 3.4928122192273134,
+    "tau_c_median": 0.0
+  },
+  "commit_threshold": 0.9,
+  "delta_s": 0.5,
+  "effective_h_s": 10.0,
+  "end_window_macro_acc": 0.2732505449011346,
+  "end_window_micro_acc": 0.31716082659478884,
+  "family": "commit",
+  "flip_rate": 0.22731356693620844,
+  "flips_mean": 0.22731356693620844,
+  "flips_median": 0.0,
+  "frozen_family": {
+    "RMSCD@H": 7.038185085354897,
+    "S_H@1": 0.2605570530098832,
+    "S_H@3": 0.2893081761006289,
+    "end_window_macro_acc": 0.2732505449011346,
+    "median_flips": 0.0
+  },
+  "full_clip_definition": "Top-1 at the longest cached causal prefix that still ends inside the clip; equals the whole-clip answer for family=clip systems.",
+  "full_clip_macro_acc": 0.2912729820788245,
+  "grid_offsets_s": [
+    0.0,
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    2.5,
+    3.0,
+    3.5,
+    4.0,
+    4.5,
+    5.0,
+    5.5,
+    6.0,
+    6.5,
+    7.0,
+    7.5,
+    8.0,
+    8.5,
+    9.0,
+    9.5,
+    10.0
+  ],
+  "group_key": "R2|clipb16|gru512|commit_msp|0.9",
+  "h_s": 10.0,
+  "library_round": "R2",
+  "lookup_quantization_s": 0.25,
+  "missing_lookup_rate": 0.0,
+  "model_kind": "gru512",
+  "n_clusters": 1109,
+  "parent_system_id": "r2__clipb16__gru512__seed20260903",
+  "phenomena": {
+    "K1": 0.3731228340392761,
+    "K2": 0.2912729820788245,
+    "K3": 0.0,
+    "K5": 0.0,
+    "K5_confident_cells": 1739,
+    "K5_definition": "prefix-cell granularity: among (video, grid point) cells with delta <= 1.0 s and MSP >= 0.9, the fraction whose Top-1 differs from the system's terminal Top-1. This is the table-5 K5. The video-level companion is phenomena.short_prefix_confident_inconsistent_video_rate. Cells clearing the threshold here: 1739. A NaN K5 means that count was zero, i.e. unmeasured, not zero",
+    "K5_video_rate": 0.0,
+    "K6": -10.0,
+    "correct_wrong_correct": 0.0,
+    "flip_rate": 0.22731356693620844,
+    "full": {
+      "K": {
+        "K1_prefix_equals_terminal_vs_prefix_equals_truth_agreement": 0.3731228340392761,
+        "K1_rate_prefix_equals_terminal": 0.9223462970093698,
+        "K1_rate_prefix_equals_truth": 0.29546913104864586,
+        "K2_full_clip_macro_acc": 0.2912729820788245,
+        "K2_full_clip_micro_acc": 0.33243486073674755,
+        "K3_terminal_wrong_but_had_correct_prefix": 0.0,
+        "K4_flips": {
+          "mean": 0.22731356693620844,
+          "median": 0.0,
+          "n": 1113,
+          "p25": 0.0,
+          "p75": 0.0
+        },
+        "K5_confident_cells": 1739,
+        "K5_definition": "prefix-cell granularity: among (video, grid point) cells with delta <= 1.0 s and MSP >= 0.9, the fraction whose Top-1 differs from the system's terminal Top-1. This is the table-5 K5. The video-level companion is phenomena.short_prefix_confident_inconsistent_video_rate. Cells clearing the threshold here: 1739. A NaN K5 means that count was zero, i.e. unmeasured, not zero",
+        "K5_short_prefix_confident_inconsistent_rate": 0.0,
+        "K5_video_rate": 0.0,
+        "K6_first_stable_correct_s": {
+          "mean": 7.056154537286613,
+          "median": 10.0,
+          "n": 1113,
+          "p25": 0.5,
+          "p75": 10.0
+        },
+        "K6_first_terminal_consistent_s": {
+          "mean": 0.8153638814016172,
+          "median": 0.0,
+          "n": 1113,
+          "p25": 0.0,
+          "p75": 0.0
+        },
+        "K6_ks_pvalue": 3.576283138142206e-246,
+        "K6_ks_statistic": 0.6810422282120395,
+        "K6_note": "first sustained agreement with the terminal prediction vs first sustained correctness; both censored at H",
+        "K6_paired_difference_s": {
+          "mean": -6.240790655884996,
+          "median": -10.0,
+          "n": 1113,
+          "p25": -10.0,
+          "p75": 0.0
+        }
+      },
+      "N_H": 1113,
+      "delta_s": 0.5,
+      "h_s": 10.0,
+      "interpretation": "report only; no pass mark, no ranking, no endorsement",
+      "phenomena": {
+        "conf_threshold": 0.9,
+        "confidence_cells_available": 3339,
+        "correct_wrong_correct_rate": 0.0,
+        "flip_rate_videos_with_any_flip": 0.22731356693620844,
+        "flips": {
+          "mean": 0.22731356693620844,
+          "median": 0.0,
+          "n": 1113,
+          "p25": 0.0,
+          "p75": 0.0
+        },
+        "last_flip_time_s": {
+          "mean": 3.5869565217391304,
+          "median": 3.0,
+          "n": 253,
+          "p25": 1.5,
+          "p75": 5.5
+        },
+        "pre_anchor_answer_rate": 0.9991015274034142,
+        "pre_anchor_cells_available": 4452,
+        "pre_anchor_confident_and_finally_correct": 0.23539982030548068,
+        "pre_anchor_confident_and_finally_wrong": 0.2605570530098832,
+        "pre_anchor_confident_cells": 1871,
+        "pre_anchor_s": 2.0,
+        "short_prefix_confident_cells": 1739,
+        "short_prefix_confident_inconsistent_rate": 0.0,
+        "short_prefix_confident_inconsistent_video_rate": 0.0,
+        "short_prefix_s": 1.0
+      },
+      "pi_hash": "8ac32aae418b",
+      "system_id": "r2__clipb16__gru512__msp0p9__seed20260903"
+    },
+    "interpretation": "report only; no pass mark, no ranking, no endorsement",
+    "last_flip_median_s": 3.0,
+    "pre_anchor_confident_cells": 1871,
+    "pre_anchor_overconfidence": 0.2605570530098832
+  },
+  "pi": {
+    "delta_s": 0.5,
+    "eps_jit_sd_s": 0.0,
+    "eps_sys_s": 0.0,
+    "h_s": 10.0,
+    "jit_seed": 20260903,
+    "pre_anchor_outputs_bot": true,
+    "protocol_version": "1.0-S1-2026-09-03"
+  },
+  "pi_hash": "8ac32aae418b",
+  "seed": "20260903",
+  "system_id": "r2__clipb16__gru512__msp0p9__seed20260903",
+  "track": "roadside",
+  "train_data_unknown": true
+}

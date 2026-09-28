@@ -1,0 +1,212 @@
+[
+  {
+    "elapsed_s": 0.11757740192115307,
+    "memory_mib": 18,
+    "utilization_percent": 0
+  },
+  {
+    "elapsed_s": 1.1582319717854261,
+    "memory_mib": 16178,
+    "utilization_percent": 36
+  },
+  {
+    "elapsed_s": 2.186964225023985,
+    "memory_mib": 16178,
+    "utilization_percent": 38
+  },
+  {
+    "elapsed_s": 3.256715977564454,
+    "memory_mib": 16178,
+    "utilization_percent": 0
+  },
+  {
+    "elapsed_s": 4.285537192597985,
+    "memory_mib": 16392,
+    "utilization_percent": 0
+  },
+  {
+    "elapsed_s": 5.317245565354824,
+    "memory_mib": 16468,
+    "utilization_percent": 53
+  },
+  {
+    "elapsed_s": 6.344013566151261,
+    "memory_mib": 16468,
+    "utilization_percent": 51
+  },
+  {
+    "elapsed_s": 7.372472098097205,
+    "memory_mib": 16468,
+    "utilization_percent": 86
+  },
+  {
+    "elapsed_s": 8.401791719719768,
+    "memory_mib": 16468,
+    "utilization_percent": 98
+  },
+  {
+    "elapsed_s": 9.43038727901876,
+    "memory_mib": 16468,
+    "utilization_percent": 51
+  },
+  {
+    "elapsed_s": 10.457351002842188,
+    "memory_mib": 16468,
+    "utilization_percent": 86
+  },
+  {
+    "elapsed_s": 11.486964842304587,
+    "memory_mib": 16468,
+    "utilization_percent": 85
+  },
+  {
+    "elapsed_s": 12.51561776921153,
+    "memory_mib": 16468,
+    "utilization_percent": 69
+  },
+  {
+    "elapsed_s": 13.544321985915303,
+    "memory_mib": 16468,
+    "utilization_percent": 85
+  },
+  {
+    "elapsed_s": 14.572011278942227,
+    "memory_mib": 16468,
+    "utilization_percent": 98
+  },
+  {
+    "elapsed_s": 15.605657570064068,
+    "memory_mib": 16468,
+    "utilization_percent": 54
+  },
+  {
+    "elapsed_s": 16.634753964841366,
+    "memory_mib": 16468,
+    "utilization_percent": 48
+  },
+  {
+    "elapsed_s": 17.662613969296217,
+    "memory_mib": 16468,
+    "utilization_percent": 75
+  },
+  {
+    "elapsed_s": 18.690095955505967,
+    "memory_mib": 16468,
+    "utilization_percent": 93
+  },
+  {
+    "elapsed_s": 19.71739332564175,
+    "memory_mib": 16468,
+    "utilization_percent": 62
+  },
+  {
+    "elapsed_s": 20.746217884123325,
+    "memory_mib": 16468,
+    "utilization_percent": 90
+  },
+  {
+    "elapsed_s": 21.775810945779085,
+    "memory_mib": 16468,
+    "utilization_percent": 67
+  },
+  {
+    "elapsed_s": 22.802863040938973,
+    "memory_mib": 16468,
+    "utilization_percent": 59
+  },
+  {
+    "elapsed_s": 23.83629192598164,
+    "memory_mib": 16468,
+    "utilization_percent": 65
+  },
+  {
+    "elapsed_s": 24.86507897824049,
+    "memory_mib": 16468,
+    "utilization_percent": 98
+  },
+  {
+    "elapsed_s": 25.89949276857078,
+    "memory_mib": 16468,
+    "utilization_percent": 55
+  },
+  {
+    "elapsed_s": 26.927137605845928,
+    "memory_mib": 16468,
+    "utilization_percent": 60
+  },
+  {
+    "elapsed_s": 27.959988545626402,
+    "memory_mib": 16468,
+    "utilization_percent": 78
+  },
+  {
+    "elapsed_s": 28.988533049821854,
+    "memory_mib": 16468,
+    "utilization_percent": 95
+  },
+  {
+    "elapsed_s": 30.019921757280827,
+    "memory_mib": 16468,
+    "utilization_percent": 94
+  },
+  {
+    "elapsed_s": 31.05171212553978,
+    "memory_mib": 16468,
+    "utilization_percent": 51
+  },
+  {
+    "elapsed_s": 32.08006279543042,
+    "memory_mib": 16468,
+    "utilization_percent": 89
+  },
+  {
+    "elapsed_s": 33.10866230353713,
+    "memory_mib": 16468,
+    "utilization_percent": 57
+  },
+  {
+    "elapsed_s": 34.23192639276385,
+    "memory_mib": 16468,
+    "utilization_percent": 0
+  },
+  {
+    "elapsed_s": 35.260432969778776,
+    "memory_mib": 16468,
+    "utilization_percent": 54
+  },
+  {
+    "elapsed_s": 36.288993967697024,
+    "memory_mib": 16468,
+    "utilization_percent": 81
+  },
+  {
+    "elapsed_s": 37.317428128793836,
+    "memory_mib": 16468,
+    "utilization_percent": 67
+  },
+  {
+    "elapsed_s": 38.34556375257671,
+    "memory_mib": 16468,
+    "utilization_percent": 52
+  },
+  {
+    "elapsed_s": 39.37385385483503,
+    "memory_mib": 16468,
+    "utilization_percent": 75
+  },
+  {
+    "elapsed_s": 40.40212815441191,
+    "memory_mib": 16468,
+    "utilization_percent": 57
+  },
+  {
+    "elapsed_s": 41.4309252332896,
+    "memory_mib": 16468,
+    "utilization_percent": 63
+  },
+  {
+    "elapsed_s": 42.45915290527046,
+    "memory_mib": 16468,
+    "utilization_percent": 70
+  }
+]

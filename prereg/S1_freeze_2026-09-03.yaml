@@ -1,0 +1,244 @@
+# S1 冻结清单 —— APE 协议预注册（已冻结）
+#
+# 本文件是冻结件，不是运行时配置。运行时配置是 protocol/pi0.yaml，两者的值必须一致；
+# 不一致以本文件为准并立即修正代码侧。
+#
+# 冻结后任何改动须新建版本（S1_freeze_<日期>_v2.yaml 等）并在论文声明，禁止就地覆盖本文件。
+# 允许的修订理由只有三条：实现错误、数据错误、冻结时未预见的技术不可行。
+# 「看到结果后觉得某档不合适」不是修订理由。
+
+meta:
+  freeze_id: "S1"
+  protocol_version: "1.0-S1-2026-09-03"
+  frozen: true
+  frozen_by: "authors"
+  frozen_at_utc: "2026-09-03T10:17:25Z"
+  git_commit: ""                 # 由本次冻结提交回填，见 prereg/README.md
+  supersedes: "prereg/S1_freeze_template.yaml (模板，frozen: false)"
+  note: >
+    作者确认后冻结。冻结依据：dev 子集 102 段的锚后长度分位、
+    manifest v2（源视频簇不跨划分）、A 的量块因子表与 B 的系统库清单。
+
+# ---------------------------------------------------------------------------
+# 1. 参考协议 π0
+# ---------------------------------------------------------------------------
+pi0:
+  time_unit: "seconds"
+  pre_anchor_outputs_bot: true       # δ<0 一律 ⊥，按错计，不进主分数
+  prefix_start: "clip_head"          # 未标定旋钮，冻结为片头，进 Limitations
+  delta_s: 0.5                       # 参考步长
+  delta_candidates_s: [0.25, 0.5, 1.0]
+  eps_sys_s: 0.0
+  eps_jit_sd_s: 0.0
+  h_ref_s: 10.0                      # 参考观察窗 = H 中档
+  grid_max_s: 21.5                   # 评测网格最远到锚后 21.5 s，等于 H 长档
+  seed: 20260903
+  pi_hash: ""                        # 由 ape/protocol.py 按本文件的值重算后回填
+
+# ---------------------------------------------------------------------------
+# 2. H 三档
+# ---------------------------------------------------------------------------
+horizons:
+  source: "dev subset L+ quantiles, rounded DOWN to a multiple of 0.5 s"
+  rule: >
+    在开发子集（102 段）上取锚后剩余长度 L+ 的 25/50/75 分位，各自向下取到 0.5 s 的整数倍。
+    向下取整保证冻结后的 H 不超过实测分位，合格集合不会因取整而缩小。
+  dev_subset_n: 102
+  measured_quantiles_s: {q25: 4.11, q50: 10.03, q75: 21.82}
+  short_s: 4.0
+  mid_s: 10.0                        # 同时是 pi0.h_ref_s
+  long_s: 21.5
+  h_list_s: [4.0, 10.0, 21.5]
+  # 各档在 manifest v2 上的合格集合规模（L+ >= H）
+  cohort_sizes_all_clips:  {H4.0: 1698, H10.0: 1352, H21.5: 884}
+  cohort_sizes_audit_test: {H4.0: 1328, H10.0: 1112, H21.5: 742}
+  min_cohort_rule: >
+    G0 判据：每档在审计集上的 N_H 不得低于开发子集预实验反推的下限。三档实测
+    1328 / 1112 / 742，均远高于任何合理下限，本轮不构成阻断。
+
+# ---------------------------------------------------------------------------
+# 3. 冻结的指标族 M（契约 §8；idea §5.1）
+# ---------------------------------------------------------------------------
+metric_family:
+  - "RMSCD@H"
+  - "S_H@1.0"
+  - "S_H@3.0"
+  - "end_window_macro_acc"
+  - "median_flips"
+prereg_delta_k_s: [1.0, 3.0]         # S_H 的两个预注册报告时点
+secondary_reported_only:             # 只报告，不进 M，不进 G2 判定
+  - "full_clip_macro_acc"
+  - "commit_triplet(rho, tau_c, e_c)"
+  - "class_conditional_S_H"
+  - "S_H_macro / RMSCD_macro"
+
+# ---------------------------------------------------------------------------
+# 4. 统计与判据
+# ---------------------------------------------------------------------------
+statistics:
+  unit_of_analysis: "源视频簇（source video cluster）"
+  unit_definition: >
+    一个簇 = 一个源视频。片段文件名去掉结尾的 1 到 3 位数字段后即簇号，
+    covers 两种命名 <id>_<NN> 与 <id>_<k>_<NN>。bootstrap 重采样簇，
+    该簇的全部前缀整组跟随。
+  unit_caveat: >
+    簇是「同一源视频」而不是「同一类事故」：同一路摄像头在不同时刻可能拍到不同类型的碰撞。
+    在 manifest v2 全部 1789 个簇中，有 54 个簇含多于一种碰撞类型
+    （2 类 37 个、3 类 15 个、4 类 2 个）。按划分看：train 31、dev 6、test 17。
+    按合格集合看：H=4.0 档 29 个（其中恰含 2 类的 21 个）、H=10.0 档 1 个、H=21.5 档 0 个。
+    因此「簇内同类」不成立，簇只承担统计独立性，不承担类别同质性；
+    类条件曲线仍按片段的类别标签计算，不按簇的多数类。
+  r0: 0.9
+  bootstrap_n: 1000
+  bootstrap_seed: 20260903
+  alpha_pairs: 0.05
+  paired_test: "cluster-level paired bootstrap"
+  multiple_comparison: "Holm"
+  significance_recomputed_per_resample: true
+  ranking_pairs_P: >
+    P 只收 π0 下配对检验显著的真实系统对；含量块的版本以 "<M> [with blocks]"
+    并排另报，与主结果永不合并。
+  mrd_quantile: 0.95
+  min_real_systems_rule: >
+    真实系统对数下限由开发子集预实验的区间宽度反推；不足时用量块补足，
+    补足版本单独标注，主结果仍只用真实系统。
+
+# ---------------------------------------------------------------------------
+# 5. 扰动网格 Π 与 Π_plaus
+#    沿用 protocol/pi0.yaml 现值；唯一改动是 h_s 轴改用本次冻结的 H 三档
+#    （网格的 H 轴必须就是冻结的 H 档，否则扫描点落在未冻结的窗上）。
+# ---------------------------------------------------------------------------
+perturbation_grid:
+  eps_sys_s: [-1.0, -0.5, -0.25, 0.0, 0.25, 0.5, 1.0]
+  eps_jit_sd_s: [0.0, 0.1, 0.25, 0.5]
+  delta_s: [0.25, 0.5, 1.0]
+  h_s: [4.0, 10.0, 21.5]
+  jitter_seed: 20260903
+  plausible_subgrid:                 # π0 每个分量前后各一档
+    eps_sys_s: [-0.25, 0.25]
+    eps_jit_sd_s: [0.0, 0.25]
+    delta_s: [0.25, 1.0]
+    h_s: [4.0, 21.5]
+  rationale: >
+    ε_sys 上限 1 s 覆盖 t_co（碰撞起始）与 accident time（撞击中位）两种口径的定义差量级；
+    ε_jit 上限 0.5 s 覆盖一帧到半秒的标注噪声；Δ 覆盖候选集全域；H 即三档。
+  note: "冻结后看到结果不得加档；全网格版本与 plausible 版本并排报。"
+  scan_mode_note: >
+    A 现有实现的 scan_mode 为 axis（每次只动一个旋钮，围绕 π0 的星形）。
+    本冻结件登记的是完整网格；若最终只跑 axis，须在论文明写扫描形态，
+    并且不得把 axis 扫描的结果当作填满网格的可比域来叙述。
+
+# ---------------------------------------------------------------------------
+# 6. 量块因子表（沿用 A 现有 12 个；解析预期须在运行前写下）
+# ---------------------------------------------------------------------------
+blocks:
+  count: 12
+  table:
+    - {family: oracle, params: {}}
+    - {family: lock,   params: {d0: 1.0}}
+    - {family: lock,   params: {d0: 3.0}}
+    - {family: lock,   params: {d0: 3.0}, commit_after_s: 3.0}
+    - {family: lock,   params: {d0: 8.0}}
+    - {family: lock,   params: {d0: 18.0}}
+    - {family: osc,    params: {p: 1.0, d0: 4.0}}
+    - {family: osc,    params: {p: 0.5, d0: 6.0}}
+    - {family: osc,    params: {p: 2.0, d0: 15.0}}
+    - {family: frac,   params: {c: 0.6}}
+    - {family: rand,   params: {eta: 0.5}}
+    - {family: rand,   params: {eta: 0.9}}
+  analytic_expectations_written_before_run: true
+  blocks_excluded_from_main_R_and_MRD: true
+
+# ---------------------------------------------------------------------------
+# 7. 系统库清单（B 的 20 个系统 × 3 种子 + 12 量块）
+# ---------------------------------------------------------------------------
+system_library:
+  seeds: [20260903, 20260904, 20260905]
+  distinct_systems: 20
+  trivial:                           # 4 个，无种子
+    - trivial__majority
+    - trivial__random
+    - trivial__oracle
+    - trivial__constbot
+  trained_classifiers:               # 3 个 × 3 种子 = 9 个实例
+    - clip__r18mean
+    - prefix__gru128
+    - prefix__gru512
+  postproc:                          # 4 个臂 × 3 种子 = 12 个实例，全部挂 gru512
+    parent: prefix__gru512
+    arms: [ema0p5, majority7, hysteresis0p2, patience4]
+  commit:                            # 9 个臂 × 3 种子 = 27 个实例，全部挂 gru512
+    parent: prefix__gru512
+    arms: [msp0p5, msp0p6, msp0p7, msp0p8, msp0p9,
+           margin0p1, margin0p2, margin0p4, margin0p6]
+  instance_count: 52                 # 4 + (3+4+9)*3
+  readonly_vlm: []                   # 本轮只留接口 stub，不入库
+  published_baselines: []            # ACCIDENT 论文基线是否有可复现代码待核
+  train_data_unknown_flagged: []
+  realised_at_freeze_time:
+    seeds_on_disk: [20260903]
+    note: >
+      冻结时磁盘上只有种子 20260903 的一套（20 个系统目录）加 12 个量块；
+      20260904 与 20260905 尚未训练。清单登记的是冻结的应考者名单，不是已完成状态。
+      跑不通的系统须逐条记录失败原因并列出，不得静默剔除。
+  failed_systems: []
+
+# ---------------------------------------------------------------------------
+# 8. 数据与划分留痕
+# ---------------------------------------------------------------------------
+data:
+  manifest_version: "v2 (leak-repaired)"
+  manifest_real_path: "data/manifest/manifest_real.csv"
+  manifest_real_md5: "b7a976594deeaed8cfff0ea1630dbd96"
+  manifest_real_v1_path: "data/manifest/manifest_real_v1_official.csv"
+  manifest_real_v1_md5: "15ee59a605889ff39a160748d39d9019"
+  manifest_synthetic_path: "data/manifest/manifest_synthetic.csv"
+  manifest_synthetic_md5: "94246e7f2c4fe99130d1e589d9ffc6f0"
+  leak_repair:
+    policy: >
+      源视频簇不得跨划分。整簇跟随训练侧：含 dev 片段的簇整簇进 dev，否则整簇进 train。
+      审计集因此始终是官方 test 的子集，任何片段都不会被移入 test。dev 子集不重切。
+    moved_clips: 6
+    moved_clusters: 3
+    moved_list:
+      - {video_id: OehnhIPFm4Q_01, cluster: OehnhIPFm4Q, from: test, to: train}
+      - {video_id: OehnhIPFm4Q_02, cluster: OehnhIPFm4Q, from: test, to: train}
+      - {video_id: OehnhIPFm4Q_04, cluster: OehnhIPFm4Q, from: test, to: train}
+      - {video_id: YueG1zLkV8o_01, cluster: YueG1zLkV8o, from: test, to: train}
+      - {video_id: YueG1zLkV8o_02, cluster: YueG1zLkV8o, from: test, to: train}
+      - {video_id: kd7QwQqeJZQ_00, cluster: kd7QwQqeJZQ, from: test, to: train}
+  splits_official:   {train: 507, dev: 0,   test: 1520}
+  splits_frozen:     {train: 411, dev: 102, test: 1514}
+  clusters_frozen:   {train: 283, dev: 68,  test: 1438}
+  dev_subset:
+    carved_from: "split_in_distribution == train"
+    granularity: "source video cluster"
+    fraction: 0.20
+    seed: 20260903
+    n_clips: 102
+    n_clusters: 68
+    video_id_list_sha256: "31ed09e84d2c12ffa37786ed1810b9d4932bb8063ee36d1497cff48252025565"
+    hash_recipe: >
+      sha256 of the sorted video_id list joined by a single '\n', UTF-8 encoded,
+      no trailing newline.
+    redrawn_after_leak_repair: false
+  phash_threshold: null
+  phash_note: >
+    锚点帧 pHash 在本数据上不可分：100 对抽检中同簇 22–40、跨簇 22–38，分布完全重叠。
+    簇的定义只由源视频 ID 承担；pHash 降级为近重复检测器（严格阈值，建议 ≤ 11），
+    本轮未观察到 ID 看不见的近重复，故不设阈值、不据此剔除任何片段。
+  audit_set_untouched_before_freeze: true
+  decode_failures: 0
+
+# ---------------------------------------------------------------------------
+# 9. 冻结后的纪律（承诺，不是配置）
+# ---------------------------------------------------------------------------
+discipline:
+  - "冻结后任何改动须新建版本文件并在论文声明，禁止就地覆盖本文件"
+  - "S1 之后不回改协议；要改则全部重跑并说明哪些结果来自旧版本"
+  - "冻结前的一切查看只在开发子集，审计集永不参与"
+  - "看到审计结果不得增删扰动网格档位、不得改 H 档、不得改 r0"
+  - "量块解析预期在代码运行前写下并存档"
+  - "主结果不含量块；含量块版本并排另报，永不合并"
+  - "占位系统（family=standin）的数字不得进入任何结论"
+  - "跑不通的系统记录失败原因并列出，不静默剔除"

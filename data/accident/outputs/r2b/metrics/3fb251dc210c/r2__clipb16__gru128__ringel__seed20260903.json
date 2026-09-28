@@ -1,0 +1,773 @@
+{
+  "N_H": 742,
+  "RMSCD": 16.59097035040431,
+  "RMSCD_macro": 17.025259988115213,
+  "S_H": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893,
+    0.41778975741239893
+  ],
+  "S_H_macro": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426,
+    0.38082893718168426
+  ],
+  "alt_cohorts": {
+    "conclusion_stable": null,
+    "conclusion_stable_note": "cross-system determination; decided in the reporting stage, not per system",
+    "dynamic_denominator": {
+      "RMSCD": 16.79296722231721,
+      "S_at_ref": 0.0,
+      "n_at_H": 742,
+      "n_at_start": 1514,
+      "note": "D3: stable correctness to each clip's own end with a risk set that shrinks as clips run out; same quantity as the protocol row, different denominator. The drop from n_at_start to n_at_H is the survivorship exposure",
+      "plain_accuracy_area": 16.79296722231721,
+      "plain_accuracy_at_ref": 0.0,
+      "plain_accuracy_note": "instantaneous accuracy among survivors: a DIFFERENT quantity (right now, not right from now on). Do not place it in the same column as the other rows' RMSCD / S_at_ref"
+    },
+    "fixed_H_cohort": {
+      "RMSCD": 16.590970350404312,
+      "S_at_ref": 0.0,
+      "n": 742,
+      "note": "the protocol: one cohort fixed before any grid point is scored"
+    },
+    "length_stratified_change": {
+      "fixed_H_cohort": -0.2533692722371974,
+      "note": "mean(long half) - mean(short half) of the per-video delay, split at the median post-anchor length; a convention that confounds stability with remaining length shows a large gap",
+      "per_clip_end": 7.340919085312224
+    },
+    "per_clip_end": {
+      "RMSCD": 13.033025099075298,
+      "S_at_ref": 0.013870541611624834,
+      "frac_ever_stable": 0.714663143989432,
+      "n": 1514,
+      "note": "D2: stable to each clip's own end, censored at H for comparison, denominator = every clip. Short clips are advantaged by construction: a clip whose video ends before delta_ref counts as stable there because it never had the chance to err afterwards. That vacuous credit is the short-clip bias this row exists to show"
+    },
+    "s_ref_delta_s": 1.0
+  },
+  "arm_rule": "ringel2024_conditional_adapt",
+  "arm_value": null,
+  "audit_split": "test",
+  "backbone": "clipb16",
+  "bootstrap": {
+    "RMSCD@H": {
+      "ci_hi": 17.002695417789756,
+      "ci_lo": 16.194684973045824,
+      "n_boot": 1000,
+      "point": 16.59097035040431
+    },
+    "S_H@1": {
+      "ci_hi": 0.0,
+      "ci_lo": 0.0,
+      "n_boot": 1000,
+      "point": 0.0
+    },
+    "S_H@3": {
+      "ci_hi": 0.0,
+      "ci_lo": 0.0,
+      "n_boot": 1000,
+      "point": 0.0
+    },
+    "end_window_macro_acc": {
+      "ci_hi": 0.4209510066809692,
+      "ci_lo": 0.34190496571850765,
+      "n_boot": 1000,
+      "point": 0.38082893718168426
+    },
+    "median_flips": {
+      "ci_hi": 1.0,
+      "ci_lo": 1.0,
+      "n_boot": 1000,
+      "point": 1.0
+    }
+  },
+  "card": {
+    "answers_read_from": "r2__clipb16__gru128__ringel__seed20260903__stride2",
+    "arm_rule": "ringel2024_conditional_adapt",
+    "arm_value": null,
+    "backbone": "clipb16",
+    "causal": true,
+    "cost_note": "Fixed pretrained 4 fps encoder; cached causal prefixes; weights trained only on train; all selection on dev",
+    "delta_s": 0.25,
+    "description": "R2 preregistered balanced classifier or causal rule; rule and backbone define identity",
+    "dev_summary": {
+      "H": 10.0,
+      "N_H": 52,
+      "end_acc": 0.7307692307692307,
+      "end_macro_acc": 0.6883076923076923,
+      "median_flips": 1.0,
+      "rmscd": 9.908653846153847,
+      "s_at_0": 0.0
+    },
+    "dev_tuned_params": {
+      "H_used_for_selection": 10.0,
+      "accuracy_gap_alpha": 0.1,
+      "finite_early_thresholds": 0,
+      "guarantee_claimed": false,
+      "infinite_threshold_encoding": "null",
+      "lambda_grid_step": 0.05,
+      "reference_endpoint_seconds": 10.0,
+      "screening_clusters": [
+        "8UJFstPfuhU",
+        "AEzHgZ0xjlk",
+        "ApyekBAgfg8",
+        "EzI5Rn3z4ew",
+        "F0NHENn-HS4",
+        "FFkOuMBHngY",
+        "MA3KBCQu9eY",
+        "MxiC2UdOzE8",
+        "NxY_zN9UWqA",
+        "QiRO0xdhcdY",
+        "SBTD7z4A1y8",
+        "Sv7nUzdTUDo",
+        "TvdgqAnb3QM",
+        "W0KJ7kxqtQo",
+        "Y3OQspLTLok",
+        "_9tp71S2Gwg",
+        "ao3VuM_p4",
+        "jzFOvz-C9q0",
+        "mr_it2B6muI",
+        "pMA26OVWUOY",
+        "qnyC61bVCJQ",
+        "uC7g8msxRak",
+        "video26",
+        "wQ_pGHoj2SI",
+        "yA0g2eWjmNs"
+      ],
+      "screening_n": 25,
+      "screening_trace": [
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 0,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 1,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 2,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 3,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 4,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 5,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 6,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 7,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 8,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 9,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 10,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 11,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 12,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 13,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 14,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 15,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 16,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 17,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 18,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 19,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 20,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 21,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 22,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 23,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 24,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 25,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 26,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 27,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 28,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 29,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 30,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 31,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 32,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 33,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 34,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 35,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 36,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 37,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 38,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 39,
+          "threshold": 0.0
+        },
+        {
+          "gap": 0.08,
+          "n": 25,
+          "t": 40,
+          "threshold": 0.0
+        }
+      ],
+      "selected_at_delta_s": 0.25,
+      "testing_clusters": [
+        "20zWZEGQ7GY",
+        "6AzIoSDn5Qs",
+        "93SNo1CTA_w",
+        "9XfMq4ikGTU",
+        "ALFF5620ljk",
+        "Aj5AlGboqeI",
+        "DksclwuFCXI",
+        "FV6XO5Yg9VU",
+        "H6FXwjTkWYI",
+        "HxxaCH818LI",
+        "I2qAsVRZSkc",
+        "ILLwcx7DKvM",
+        "MCeomZE3fqw",
+        "ZftLPdDo5K8",
+        "aMOOElIYyiU",
+        "bow1eKeR6oY",
+        "czn7oGEwENs",
+        "jnarvwUc5NU",
+        "kOOstkWDxz0",
+        "lgU3T6kySLw",
+        "lj2jsTChFEo",
+        "mOwuW8t6-GQ",
+        "rAqvr6D_CwU",
+        "tJlFR_bbD6s",
+        "yxdh-n8LgyY"
+      ],
+      "testing_delta": 0.05,
+      "testing_n": 27,
+      "testing_trace": [
+        {
+          "accepted": false,
+          "loss_count": 0,
+          "n": 27,
+          "p": 0.058149737003040027,
+          "t": 40,
+          "upto": 40
+        }
+      ],
+      "thresholds_by_fine_post_j": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "family": "commit",
+    "freeze_commit": "153ac3fe57520f4892c9cf9214159cbbbbeca1a3",
+    "model_kind": "gru128",
+    "parent_system_id": "r2__clipb16__gru128__seed20260903",
+    "pre_anchor_rows": "Raw base predictions; commitment may not fire at negative j; protocol layer masks negative delta",
+    "seed": 20260903,
+    "selection_sealed_utc": "2026-09-08T16:20:39.286775+00:00",
+    "stopping_model_path": "outputs/r2_S/stopping_models/r2__clipb16__gru128__seed20260903.joblib",
+    "stride_from_finest": 1,
+    "subsampling_equivalent": false,
+    "subsampling_note": "Regenerated at this delta from the base trajectory, using the fine-grid selected rule and parameters",
+    "system_id": "r2__clipb16__gru128__ringel__seed20260903",
+    "train_data_unknown": true,
+    "trained_on_split": "train"
+  },
+  "class_counts": {
+    "head-on": 51,
+    "rear-end": 92,
+    "sideswipe": 76,
+    "single": 240,
+    "t-bone": 283
+  },
+  "class_fractions": {
+    "head-on": 0.06873315363881402,
+    "rear-end": 0.12398921832884097,
+    "sideswipe": 0.10242587601078167,
+    "single": 0.32345013477088946,
+    "t-bone": 0.38140161725067384
+  },
+  "commit": {
+    "censoring": "tau_c = H for videos that never commit inside the window",
+    "e_c": 0.5822102425876011,
+    "n_committed": 742,
+    "rho": 1.0,
+    "tau_c": 10.0,
+    "tau_c_mean": 10.0,
+    "tau_c_median": 10.0
+  },
+  "commit_threshold": null,
+  "delta_s": 0.5,
+  "effective_h_s": 21.5,
+  "end_window_macro_acc": 0.38082893718168426,
+  "end_window_micro_acc": 0.41778975741239893,
+  "family": "commit",
+  "flip_rate": 1.0,
+  "flips_mean": 1.0,
+  "flips_median": 1.0,
+  "frozen_family": {
+    "RMSCD@H": 16.59097035040431,
+    "S_H@1": 0.0,
+    "S_H@3": 0.0,
+    "end_window_macro_acc": 0.38082893718168426,
+    "median_flips": 1.0
+  },
+  "full_clip_definition": "Top-1 at the longest cached causal prefix that still ends inside the clip; equals the whole-clip answer for family=clip systems.",
+  "full_clip_macro_acc": 0.38082893718168426,
+  "grid_offsets_s": [
+    0.0,
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    2.5,
+    3.0,
+    3.5,
+    4.0,
+    4.5,
+    5.0,
+    5.5,
+    6.0,
+    6.5,
+    7.0,
+    7.5,
+    8.0,
+    8.5,
+    9.0,
+    9.5,
+    10.0,
+    10.5,
+    11.0,
+    11.5,
+    12.0,
+    12.5,
+    13.0,
+    13.5,
+    14.0,
+    14.5,
+    15.0,
+    15.5,
+    16.0,
+    16.5,
+    17.0,
+    17.5,
+    18.0,
+    18.5,
+    19.0,
+    19.5,
+    20.0,
+    20.5,
+    21.0,
+    21.5
+  ],
+  "group_key": "R2|clipb16|gru128|ringel2024_conditional_adapt|None",
+  "h_s": 21.5,
+  "library_round": "R2",
+  "lookup_quantization_s": 0.25,
+  "missing_lookup_rate": 0.0,
+  "model_kind": "gru128",
+  "n_clusters": 742,
+  "parent_system_id": "r2__clipb16__gru128__seed20260903",
+  "phenomena": {
+    "K1": 0.6824307767703994,
+    "K2": 0.38082893718168426,
+    "K3": 0.0,
+    "K5": 1.0,
+    "K5_confident_cells": 37,
+    "K5_definition": "prefix-cell granularity: among (video, grid point) cells with delta <= 1.0 s and MSP >= 0.9, the fraction whose Top-1 differs from the system's terminal Top-1. This is the table-5 K5. The video-level companion is phenomena.short_prefix_confident_inconsistent_video_rate. Cells clearing the threshold here: 37. A NaN K5 means that count was zero, i.e. unmeasured, not zero",
+    "K5_video_rate": 0.018867924528301886,
+    "K6": -11.5,
+    "correct_wrong_correct": 0.0,
+    "flip_rate": 1.0,
+    "full": {
+      "K": {
+        "K1_prefix_equals_terminal_vs_prefix_equals_truth_agreement": 0.6824307767703994,
+        "K1_rate_prefix_equals_terminal": 0.5454545454545454,
+        "K1_rate_prefix_equals_truth": 0.22788532222494487,
+        "K2_full_clip_macro_acc": 0.38082893718168426,
+        "K2_full_clip_micro_acc": 0.41778975741239893,
+        "K3_terminal_wrong_but_had_correct_prefix": 0.0,
+        "K4_flips": {
+          "mean": 1.0,
+          "median": 1.0,
+          "n": 742,
+          "p25": 1.0,
+          "p75": 1.0
+        },
+        "K5_confident_cells": 37,
+        "K5_definition": "prefix-cell granularity: among (video, grid point) cells with delta <= 1.0 s and MSP >= 0.9, the fraction whose Top-1 differs from the system's terminal Top-1. This is the table-5 K5. The video-level companion is phenomena.short_prefix_confident_inconsistent_video_rate. Cells clearing the threshold here: 37. A NaN K5 means that count was zero, i.e. unmeasured, not zero",
+        "K5_short_prefix_confident_inconsistent_rate": 1.0,
+        "K5_video_rate": 0.018867924528301886,
+        "K6_first_stable_correct_s": {
+          "mean": 16.695417789757414,
+          "median": 21.5,
+          "n": 742,
+          "p25": 10.0,
+          "p75": 21.5
+        },
+        "K6_first_terminal_consistent_s": {
+          "mean": 10.0,
+          "median": 10.0,
+          "n": 742,
+          "p25": 10.0,
+          "p75": 10.0
+        },
+        "K6_ks_pvalue": 9.073890919989055e-117,
+        "K6_ks_statistic": 0.5822102425876011,
+        "K6_note": "first sustained agreement with the terminal prediction vs first sustained correctness; both censored at H",
+        "K6_paired_difference_s": {
+          "mean": -6.695417789757412,
+          "median": -11.5,
+          "n": 742,
+          "p25": -11.5,
+          "p75": 0.0
+        }
+      },
+      "N_H": 742,
+      "delta_s": 0.5,
+      "h_s": 21.5,
+      "interpretation": "report only; no pass mark, no ranking, no endorsement",
+      "phenomena": {
+        "conf_threshold": 0.9,
+        "confidence_cells_available": 2226,
+        "correct_wrong_correct_rate": 0.0,
+        "flip_rate_videos_with_any_flip": 1.0,
+        "flips": {
+          "mean": 1.0,
+          "median": 1.0,
+          "n": 742,
+          "p25": 1.0,
+          "p75": 1.0
+        },
+        "last_flip_time_s": {
+          "mean": 10.0,
+          "median": 10.0,
+          "n": 742,
+          "p25": 10.0,
+          "p75": 10.0
+        },
+        "pre_anchor_answer_rate": 0.9986522911051213,
+        "pre_anchor_cells_available": 2968,
+        "pre_anchor_confident_and_finally_correct": 0.005390835579514825,
+        "pre_anchor_confident_and_finally_wrong": 0.008086253369272238,
+        "pre_anchor_confident_cells": 29,
+        "pre_anchor_s": 2.0,
+        "short_prefix_confident_cells": 37,
+        "short_prefix_confident_inconsistent_rate": 1.0,
+        "short_prefix_confident_inconsistent_video_rate": 0.018867924528301886,
+        "short_prefix_s": 1.0
+      },
+      "pi_hash": "3fb251dc210c",
+      "system_id": "r2__clipb16__gru128__ringel__seed20260903"
+    },
+    "interpretation": "report only; no pass mark, no ranking, no endorsement",
+    "last_flip_median_s": 10.0,
+    "pre_anchor_confident_cells": 29,
+    "pre_anchor_overconfidence": 0.008086253369272238
+  },
+  "pi": {
+    "delta_s": 0.5,
+    "eps_jit_sd_s": 0.0,
+    "eps_sys_s": 0.0,
+    "h_s": 21.5,
+    "jit_seed": 20260903,
+    "pre_anchor_outputs_bot": true,
+    "protocol_version": "1.0-S1-2026-09-03"
+  },
+  "pi_hash": "3fb251dc210c",
+  "seed": "20260903",
+  "system_id": "r2__clipb16__gru128__ringel__seed20260903",
+  "track": "roadside",
+  "train_data_unknown": true
+}

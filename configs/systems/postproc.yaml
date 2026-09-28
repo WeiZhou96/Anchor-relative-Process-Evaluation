@@ -1,0 +1,18 @@
+# Post-processing arms on a base probability trajectory.
+family: postproc
+entry: systems/postproc.py
+base_default: prefix__gru512__seed20260903
+selection:
+  split: dev
+  objective: minimise dev RMSCD@H
+  constraint: dev window-end macro accuracy must not fall below the base's
+  H_used: 6.0   # placeholder; the frozen h_list is the A track's call at S1
+grids:
+  ema: [0.2, 0.35, 0.5, 0.7]          # weight on the current step
+  majority: [2, 3, 5, 7, 9]           # window length in grid steps
+  hysteresis: [0.05, 0.1, 0.2, 0.3]   # probability margin required to switch
+  patience: [2, 3, 4, 6]              # consecutive agreeing steps required to switch
+subsampling_equivalent: false
+subsampling_note: >-
+  all four arms carry state across grid steps, so a coarser delta_s is a
+  different system; regenerate with --stride instead of sub-sampling the output.

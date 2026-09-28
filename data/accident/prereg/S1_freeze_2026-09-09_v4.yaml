@@ -1,0 +1,106 @@
+# Additive R2 pre-registration, amendment v4. Immutable after this commit.
+# Written by the authors after reading REPORT_R2_S / REPORT_R2_K (K-a) / REPORT_R2_D
+# and BEFORE any audit number of the merged library (K-b) or of the VLM full run (V) exists.
+meta:
+  freeze_id: S1
+  version: v4
+  protocol_version: 1.0-S1-2026-09-03
+  frozen: true
+  frozen_by: authors
+  frozen_at_utc: '2026-09-09'
+  supersedes: v3
+  supersedes_file: prereg/S1_freeze_2026-09-04_v3.yaml
+  base_git_commit: 2c89389 (master after merging r2/systems, r2/calib, r2/data)
+  note: >
+    Three amendments, each recorded with its cause. A4-1 corrects the reading of gate G2
+    after K-a found an implementation bug in the first-round calibration. A4-2 replaces the
+    operationally degenerate G3 rule (empty strata at H=10 and H=21.5, threshold conflated
+    with sampling noise) by a within-cohort rule; both rules are evaluated and reported.
+    A4-3 registers the read-only VLM applicant before its full run. pi0, v1, v2, v3,
+    manifest v2, dev subset, H list, perturbation grid, r0, bootstrap, metric family are
+    unchanged byte for byte.
+frozen: true
+supersedes: v3
+
+amendments:
+  A4-1_G2_reading_correction:
+    cause: >
+      K-a found that ape/cli.py cmd_scan evaluated the reference significant-pair set P and the
+      per-metric ruler on the fine-step answers instead of the coarse-stride stand-ins required
+      at Delta = 0.5 and 1.0, while the scanned values did use the stand-ins. The first-round
+      value "S_H@3 min R_M = 0.890 < r0 at H = 10 on the 54-point plaus grid" came from that
+      mismatched P and is withdrawn. K-a's corrected reference-horizon values for the first-round
+      library are the numbers of record for that library (S_H@3 min R_M = 0.909).
+    rule_unchanged: >
+      G2 passes iff, at the reference horizon H = 10.0 over the frozen 54-point plaus grid, at
+      least one metric of the frozen family has min R_M < r0 = 0.9, OR its MRD_plaus is not
+      smaller than that metric's ruler (median gap among window-end-tied pairs at pi0).
+      Trivial dependences F(Delta) and RMSCD(H) do not count. Both arms are reported for every
+      metric; the paper states which arm carried the gate.
+    reporting: >
+      Values at H = 4.0 and 21.5 are reported in full as secondary horizons; they never replace
+      the reference horizon in the gate decision.
+    numbers_of_record_for_old_library_H10:
+      RMSCD@H: {min_R: 0.936105, MRD_plaus: 0.169184, ruler: 0.372417, verdict: poolable}
+      S_H@1: {min_R: 0.958984, MRD_plaus: 0.067090, ruler: 0.047619, verdict: normalize}
+      S_H@3: {min_R: 0.909272, MRD_plaus: 0.093427, ruler: 0.047619, verdict: normalize}
+      end_window_macro_acc: {min_R: 0.998741, MRD_plaus: 0.032086, ruler: 0.015310, verdict: normalize}
+      median_flips: {min_R: 1.0, ruler: 0.0, verdict: "ruler degenerate; not a comparability criterion"}
+      gate_outcome_old_library: "passed via the MRD arm (S_H@1, S_H@3, end-window); not via the R_M arm"
+
+  A4-2_G3_rule_revision:
+    original_rule_R2-8: >
+      Strata = tertiles of L+ over all 102 dev clips applied to the whole test split; naive
+      per-clip-end stable delay (D2) versus fixed-H fixed-cohort RMSCD; consequence iff
+      |gap_own| > MRD_plaus(RMSCD,H) and |gap_fixed| < MRD_plaus(RMSCD,H).
+    why_degenerate: >
+      At H = 10 and 21.5 the short stratum is empty inside E_H by construction (L+ >= H), so the
+      rule cannot be evaluated; at H = 4 the fixed-cohort gap of the random blocks (0.06 to 0.12 s)
+      exceeds MRD_plaus (0.046 s) although it is 14 to 50 times smaller than the naive gap, i.e.
+      the threshold on the fixed gap conflated a null-effect test with a sampling-noise scale.
+    revised_rule_R2-8prime:
+      clips: only E_H (same clips for both accounting rules, so only the record-keeping rule differs)
+      strata: tertiles of L+ computed on dev intersect E_H (dev-derived cut points), applied to test intersect E_H
+      naive_metric: D2 per-clip-end stable delay with visible end = min(L+, 23.5 s) (answer cache limit; documented as conservative)
+      fixed_metric: fixed-H fixed-cohort per-clip stable delay (RMSCD integrand)
+      gap: long stratum mean minus short stratum mean, cluster-level paired bootstrap 1000, seed 20260903
+      consequence: >
+        95% CI of gap_own excludes 0 AND |gap_own| > MRD_plaus(RMSCD,H)
+        AND ( 95% CI of gap_fixed includes 0 OR |gap_fixed| < ruler_RMSCD(H) )
+      pass_at_reference_H10: both random blocks show consequence AND at least 50% of non-trivial real systems show consequence
+      secondary_horizons: reported, never replace the reference horizon
+    reporting: both the original and the revised rule outcomes are reported side by side in the paper appendix.
+
+  A4-3_vlm_readonly_applicant:
+    system_id: r2__qwen25vl7b__readonly
+    model: Qwen/Qwen2.5-VL-7B-Instruct
+    revision: cc594898137f460bfe9f0759e9844b3ce807cfb5
+    config_source: systems/vlm_pilot/config.json (fixed at pilot time on dev; no further prompt search)
+    frames_per_request: 8
+    max_pixels_per_frame: 87808
+    decoding: greedy, max_new_tokens 16, bfloat16, batch 1
+    prompt: fixed closed-set prompt, answer = one of the five class names; strict parse, no alias matching
+    unparsable_output: "BOT, scored wrong (protocol rule - every post-anchor prefix must output one class)"
+    clips: dev (102) and test (1514) only; train omitted because the applicant is not trained here
+    columns: absolute times anchor + delta for delta in [-2.0, 23.5] step 0.25 (fine grid plus pad, so anchor perturbations look up cached cells)
+    causality: same CPU pre-filter timestamp <= anchor + delta as the pilot; validate_causality.py rerun on the full set
+    stateless: true
+    stateless_note: per-prefix independent inference
+    subsampling_equivalent: true
+    stride_directories: none
+    seed: not applicable (deterministic greedy)
+    train_data_unknown: true
+    reporting: >
+      Listed in Table 1 with the train_data_unknown flag. Main R_M / MRD / P / ruler are computed
+      WITHOUT the VLM (primary) and WITH the VLM (secondary column). It never enters dev selection
+      of any other system.
+    budget: single GPU (device 1), nohup, expected about 20 GPU hours at the pilot's 0.44 s per request
+
+kb_integration_rules:
+  library: 52 first-round real systems + 120 R2 fine systems (+ 204 stride stand-ins) + 12 blocks; VLM added by K-c when available
+  grouping_key: [backbone, model_kind, arm_rule, commit_threshold]
+  identity_source: system_card.yaml, never string parsing
+  r2_identity: use systems.r2_ape_entry or the cards; first-round parser must not be applied to r2__* ids
+  stride_stand_ins: only as Delta-axis stand-ins of their fine system; never independent systems
+  all_first_round_calibration_outputs: superseded by K-b recomputation on the merged library; first-round files kept under outputs/_prefreeze_stale and outputs/r2_Ka for the record
+  test_usage: audit only; no selection of anything on test

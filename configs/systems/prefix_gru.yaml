@@ -1,0 +1,25 @@
+# Plain multi-prefix classifier, two backbone scales.
+family: prefix
+entry: systems/train_prefix.py
+features: features_r18_4fps
+encoder: unidirectional GRU, 1 layer, per-step linear head
+loss: independent cross-entropy per prefix
+supervision_mask: steps with t_s >= anchor_s only; no class loss before the anchor
+consistency_terms: none
+scales:
+  - system_id: prefix__gru128__seed20260903
+    hidden: 128
+  - system_id: prefix__gru512__seed20260903
+    hidden: 512
+optimizer: adam
+lr: 1.0e-3
+weight_decay: 1.0e-4
+batch_size: 32
+epochs_max: 60
+patience: 12
+train_cap_seconds: 22.0   # matches the answer grid's reach, so no prefix is answered
+                          # outside the supervised range
+seeds_planned: [20260903, 20260904, 20260905]
+seeds_run_this_round: [20260903]
+trained_on_split: train
+model_selection: pooled post-anchor macro accuracy on split=dev

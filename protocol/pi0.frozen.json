@@ -1,0 +1,173 @@
+{
+  "alpha_pairs": 0.05,
+  "answers": {
+    "delta_fine_s": 0.25,
+    "pad_s": 2.0,
+    "stride_suffix": "__stride"
+  },
+  "audit_split": "test",
+  "blocks": [
+    {
+      "family": "oracle",
+      "params": {}
+    },
+    {
+      "family": "lock",
+      "params": {
+        "d0": 1.0
+      }
+    },
+    {
+      "family": "lock",
+      "params": {
+        "d0": 3.0
+      }
+    },
+    {
+      "commit_after_s": 3.0,
+      "family": "lock",
+      "params": {
+        "d0": 3.0
+      }
+    },
+    {
+      "family": "lock",
+      "params": {
+        "d0": 8.0
+      }
+    },
+    {
+      "family": "lock",
+      "params": {
+        "d0": 18.0
+      }
+    },
+    {
+      "family": "osc",
+      "params": {
+        "d0": 4.0,
+        "p": 1.0
+      }
+    },
+    {
+      "family": "osc",
+      "params": {
+        "d0": 6.0,
+        "p": 0.5
+      }
+    },
+    {
+      "family": "osc",
+      "params": {
+        "d0": 15.0,
+        "p": 2.0
+      }
+    },
+    {
+      "family": "frac",
+      "params": {
+        "c": 0.6
+      }
+    },
+    {
+      "family": "rand",
+      "params": {
+        "eta": 0.5
+      }
+    },
+    {
+      "family": "rand",
+      "params": {
+        "eta": 0.9
+      }
+    }
+  ],
+  "bootstrap_n": 1000,
+  "commit": {
+    "rho_levels": [
+      0.7,
+      0.9
+    ]
+  },
+  "delta_s": 0.5,
+  "dev_hash": "31ed09e84d2c12ffa37786ed1810b9d4932bb8063ee36d1497cff48252025565",
+  "frozen": true,
+  "frozen_at": "2026-09-03T10:17:25Z",
+  "frozen_by": "authors",
+  "grid_max_s": 21.5,
+  "h_list_s": [
+    4.0,
+    10.0,
+    21.5
+  ],
+  "manifest_md5": "b7a976594deeaed8cfff0ea1630dbd96",
+  "metric_family": {
+    "s_report_delta_s": [
+      1.0,
+      3.0
+    ]
+  },
+  "perturb": {
+    "delta_s": [
+      0.25,
+      0.5,
+      1.0
+    ],
+    "eps_jit_sd_s": [
+      0.0,
+      0.1,
+      0.25,
+      0.5
+    ],
+    "eps_sys_s": [
+      -1.0,
+      -0.5,
+      -0.25,
+      0.0,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "h_s": [
+      4.0,
+      10.0,
+      21.5
+    ],
+    "plaus": {
+      "delta_s": [
+        0.25,
+        1.0
+      ],
+      "eps_jit_sd_s": [
+        0.0,
+        0.25
+      ],
+      "eps_sys_s": [
+        -0.25,
+        0.25
+      ],
+      "h_s": [
+        4.0,
+        21.5
+      ]
+    }
+  },
+  "phenomena": {
+    "conf_threshold": 0.9,
+    "pre_anchor_s": 2.0,
+    "short_prefix_s": 1.0
+  },
+  "pre_anchor_outputs_bot": true,
+  "prereg_file": "prereg/S1_freeze_2026-09-03.yaml",
+  "protocol_version": "1.0-S1-2026-09-03",
+  "r0": 0.9,
+  "seed": 20260903,
+  "time_unit": "seconds",
+  "uncharacterised": {
+    "aggregation": "cluster level, frozen; appendix gives the alternatives",
+    "anchor_definition_gap": "not measured; only the tolerance eps_max is delivered",
+    "class_mapping_table": "table-level frozen artefact, published",
+    "frame_rate_resampling": "system-side input pipeline, reported per system",
+    "prefix_start": "clip head; coupled to the cohort, declared in Limitations"
+  }
+}

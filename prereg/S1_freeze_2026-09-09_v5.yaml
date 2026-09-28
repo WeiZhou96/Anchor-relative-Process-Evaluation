@@ -1,0 +1,43 @@
+# Additive R2 pre-registration, amendment v5. Immutable after this commit.
+# Written by the authors after reading REPORT_R2_Kb and REPORT_R2_V, before any
+# rerun of G3 under the corrected cap and before the VLM full run is complete.
+meta:
+  freeze_id: S1
+  version: v5
+  protocol_version: 1.0-S1-2026-09-03
+  frozen: true
+  frozen_by: "authors"
+  frozen_at_utc: "2026-09-09"
+  supersedes: v4
+  supersedes_file: prereg/S1_freeze_2026-09-09_v4.yaml
+  base_git_commit: "38a47ef (master after merging r2/calib_b)"
+  note: >
+    Two amendments. A5-1 corrects the visible-end cap of the naive per-clip-end metric used by
+    the revised G3 rule (A4-2): the answer cache of the first-round and R2 systems only covers
+    delta <= 22.0 s, so a cap of 23.5 s scored the missing cells as wrong and manufactured a
+    spurious long-stratum effect (the oracle block showed an own-metric gap of 23.5 s). A5-2
+    records a run-time discipline clarification for the VLM full run. pi0, v1 to v4, manifest v2,
+    dev subset, H list, grids, r0, bootstrap and metric family are unchanged.
+frozen: true
+supersedes: v4
+
+amendments:
+  A5-1_G3_visible_end_cap:
+    cause: >
+      K-b reported that under A4-2 all 172 non-block systems lack answer cells for 670 test clips
+      in the 22.0 to 23.5 s range (1868 cells per system), and that the oracle negative control
+      shows fixed gap 0.0 s but own gap 23.5 s. The revised-rule pass at H = 10 therefore mixes a
+      cache artefact into the real-system count and cannot be read as evidence.
+    correction: "visible end of the naive per-clip-end metric = min(L+, 22.0 s), the common cache coverage of every system in the pool"
+    negative_control: "the oracle block must show |own gap| <= ruler_RMSCD(H) and |fixed gap| <= ruler_RMSCD(H); otherwise the G3 computation is declared invalid, not the gate"
+    everything_else: "as in A4-2 (within-cohort dev terciles, cluster bootstrap 1000, seed 20260903, pass rule at the reference horizon)"
+    reporting: "original rule (R2-8), revised rule with the 23.5 s cap (K-b numbers) and revised rule with the 22.0 s cap are all reported; the 22.0 s cap is the number of record"
+  A5-2_vlm_run_discipline:
+    cause: "V stopped after 3 clips because its throughput guard treated a 2.6x speed-up (decode amortised over 103 cells instead of 11) as an anomaly"
+    clarification: "the guard stops only on a slow-down above 2x or a model-load failure; speed-ups never stop the run"
+    spec_unchanged: "model, revision, prompt, frame budget, decoding, parsing, encoding, clip set and grid exactly as A4-3; the resumed run continues from the atomic per-clip checkpoints"
+
+kc_integration_rules:
+  vlm_pool_rule: "r2__qwen25vl7b__readonly enters Table 1 with train_data_unknown = true; every calibration quantity is computed twice, without the VLM (primary) and with it (secondary column)"
+  g3_rerun: "rerun G3 only (A5-1); do not recompute eval, calibration, G2, G4 unless the VLM is being added, in which case the with-VLM column is a separate run"
+  test_usage: "audit only; no selection on test"

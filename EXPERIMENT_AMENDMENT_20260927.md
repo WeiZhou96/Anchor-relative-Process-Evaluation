@@ -1,0 +1,9 @@
+# Interval calibration amendment after run001
+
+> Release copy. Apart from this note the text is unchanged. The SHA-256 of the file as committed and hashed by the original run is listed in `docs/PROVENANCE.md`.
+
+Run001 completed without source changes and exactly reproduced 81 historical base-model/horizon RMSCD results. Its original centered max-t bootstrap approximation achieved 183/200 simultaneous coverage (91.5%, Monte Carlo SE 1.97 percentage points) in the declared 80-cluster Gaussian simulation. This is insufficient evidence to present that approximation as well calibrated. Real-data summaries had already been computed; this is explicitly a post-run method amendment, not a preregistration.
+
+Keep run001 unchanged. For run002, retain all data, model lists, comparisons, weights, horizons, masks, directions, bootstrap draws and practical thresholds. Change only the simultaneous critical value to the maximum of the original empirical max-t value and a Bonferroni Student-t reference, with alpha=0.05 divided across all coordinates in the declared family. Use G-1 degrees of freedom for micro and the smallest per-class supporting-cluster count minus one for macro. This is a conservative guard against the observed undercoverage; nonlinear clustered ratio estimates still have approximate coverage. It is not a distribution-free certificate, a novelty claim, or proof that 95% coverage holds on the traffic population.
+
+Validate once using a new simulation seed (20260928), 1000 trials and 1000 bootstrap replicates per trial. Do not tune the guard to favor real model rankings or discard the first simulation. Report both simulation versions and their Monte Carlo uncertainty. Additional representative discrete/imbalanced settings remain necessary before claiming broadly validated statistical coverage.

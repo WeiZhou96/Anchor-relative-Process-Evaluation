@@ -1,0 +1,339 @@
+# Additive R2 pre-registration. Immutable after this commit.
+meta:
+  freeze_id: S1
+  version: v3
+  protocol_version: 1.0-S1-2026-09-03
+  frozen: true
+  frozen_by: S (systems, R2 contract)
+  frozen_at_utc: '2026-09-08T15:36:36.847508+00:00'
+  supersedes: v2
+  supersedes_file: prereg/S1_freeze_2026-09-03_v2.yaml
+  base_git_commit: ed2b04422632659093c255892aee318193765c4c
+  note: R2-1..4 新应考者的追加登记。此前仅阅读契约要求的历史报告；未训练新系统或查看新系统 test 数字。v1/v2/pi0/manifest/dev/H/扰动/统计与指标族逐字节保留。
+frozen: true
+supersedes: v2
+scope: additive exam-taker library extension; no protocol change
+inherits_unchanged_from_v2:
+  pi0:
+    time_unit: seconds
+    pre_anchor_outputs_bot: true
+    prefix_start: clip_head
+    delta_s: 0.5
+    delta_candidates_s:
+    - 0.25
+    - 0.5
+    - 1.0
+    eps_sys_s: 0.0
+    eps_jit_sd_s: 0.0
+    h_ref_s: 10.0
+    grid_max_s: 21.5
+    seed: 20260903
+    pi_hash_by_h:
+      H4.0: 77200b351bf1
+      H10.0: 8ac32aae418b
+      H21.5: 3fb251dc210c
+  horizons:
+    source: dev subset L+ quantiles, rounded DOWN to a multiple of 0.5 s
+    dev_subset_n: 102
+    measured_quantiles_s:
+      q25: 4.11
+      q50: 10.03
+      q75: 21.82
+    h_list_s:
+    - 4.0
+    - 10.0
+    - 21.5
+    cohort_sizes_audit_test:
+      H4.0: 1328
+      H10.0: 1113
+      H21.5: 742
+    eligibility_tolerance_s: 1.0e-09
+  metric_family:
+  - RMSCD@H
+  - S_H@1.0
+  - S_H@3.0
+  - end_window_macro_acc
+  - median_flips
+  prereg_delta_k_s:
+  - 1.0
+  - 3.0
+  statistics:
+    unit_of_analysis: 源视频簇（source video cluster）
+    audit_split: test
+    r0: 0.9
+    bootstrap_n: 1000
+    bootstrap_seed: 20260903
+    alpha_pairs: 0.05
+    paired_test: cluster-level paired bootstrap
+    p_method: normal
+    multiple_comparison: Holm
+    mrd_quantile: 0.95
+    ruler_definition: 'median |M(a) - M(b)| over the window-end-tied system pairs
+      at pi0, in this metric''s own units; the smallest difference this study treats
+      as worth reporting for M.
+
+      '
+    unit_caveat: '簇是「同一源视频」而不是「同一类事故」。manifest v2 全部 1789 个簇中有 54 个含多于一种 碰撞类型（2 类
+      37、3 类 15、4 类 2）；按划分 train 31 / dev 6 / test 17； 按合格集合 H=4.0 档 29 个（其中恰含 2 类的
+      21 个）、H=10.0 档 1 个、H=21.5 档 0 个。 簇只承担统计独立性，不承担类别同质性。
+
+      '
+  perturbation_grid:
+    eps_sys_s:
+    - -1.0
+    - -0.5
+    - -0.25
+    - 0.0
+    - 0.25
+    - 0.5
+    - 1.0
+    eps_jit_sd_s:
+    - 0.0
+    - 0.1
+    - 0.25
+    - 0.5
+    delta_s:
+    - 0.25
+    - 0.5
+    - 1.0
+    h_s:
+    - 4.0
+    - 10.0
+    - 21.5
+    jitter_seed: 20260903
+    plausible_subgrid:
+      eps_sys_s:
+      - -0.25
+      - 0.25
+      eps_jit_sd_s:
+      - 0.0
+      - 0.25
+      delta_s:
+      - 0.25
+      - 1.0
+      h_s:
+      - 4.0
+      - 21.5
+    plaus_grid_points: 54
+    axis_scan_points: 14
+    scan_mode: axis
+  blocks:
+    count: 12
+    analytic_expectations_written_before_run: true
+    blocks_excluded_from_main_R_and_MRD: true
+  data:
+    manifest_version: v2 (leak-repaired)
+    manifest_real_md5: b7a976594deeaed8cfff0ea1630dbd96
+    manifest_real_v1_md5: 15ee59a605889ff39a160748d39d9019
+    manifest_synthetic_md5: 94246e7f2c4fe99130d1e589d9ffc6f0
+    splits_frozen:
+      train: 411
+      dev: 102
+      test: 1514
+    clusters_frozen:
+      train: 283
+      dev: 68
+      test: 1438
+    dev_subset:
+      n_clips: 102
+      n_clusters: 68
+      seed: 20260903
+      video_id_list_sha256: 31ed09e84d2c12ffa37786ed1810b9d4932bb8063ee36d1497cff48252025565
+      hash_recipe: 'sha256 of the sorted video_id list joined by a single newline,
+        UTF-8, no trailing newline.
+
+        '
+    audit_set_untouched_before_freeze: true
+    decode_failures: 0
+system_library_r2:
+  seeds:
+  - 20260903
+  - 20260904
+  - 20260905
+  backbones:
+    r18:
+      source: existing ImageNet pretrained ResNet-18 cache
+      features_dir: outputs/features
+      dim: 512
+    clipb16:
+      source: openai/clip-vit-base-patch16
+      feature: CLIP projected image features, L2-normalized, frozen encoder
+      features_dir: outputs/features/clip_b16
+      dim: 512
+      fallback: only if CLIP download/load fails after one serial retry, use pretrained
+        torchvision ResNet-50, 2048-d, explicit r50 IDs/cards; no random fallback
+  frame_grid: 4 fps; each new npz must have exactly the existing r18 t_s and frame
+    count; no new frame grid
+  trained_classifier_rules:
+  - mean_linear
+  - gru128
+  - gru512
+  base_id_template: r2__{backbone}__{mean|gru128|gru512}__seed{seed}
+  base_instances: 18
+  class_balancing: CE weights N_train/(5*n_train_class); GRU first averages supervised
+    losses within each clip, then takes class-weighted clip mean; mean classifier
+    uses one weighted CE per clip
+  time_augmentation:
+    training_only: true
+    prefix_start_jitter_seconds:
+    - 0.0
+    - 1.0
+    rule: uniform start jitter capped at the anchor and last available pre-anchor
+      frame; never shift timestamps; Bernoulli frame dropout 0.10; retain the last
+      available frame and at least one post-anchor frame if present
+    frame_dropout_probability: 0.1
+    evaluation_augmentation: false
+  optimization:
+    optimizer: Adam
+    weight_decay: 0.0001
+    mean_learning_rates:
+    - 0.001
+    - 0.01
+    gru_learning_rates:
+    - 0.0003
+    - 0.001
+    mean_max_epochs: 200
+    mean_patience: 30
+    gru_max_epochs: 60
+    gru_patience: 10
+    batch_size: 32
+    gradient_norm_clip: 5.0
+    train_normalization: train-only mean/std; mean-head statistics from whole-clip
+      means, GRU statistics from train frames through anchor+22s
+    gru_train_cap_seconds_after_anchor: 22.0
+    early_stop_and_lr_selection: max dev window-end macro-Acc at frozen H=10, eligible
+      L+ + 1e-9 >= 10; ties choose earlier epoch then first listed lr; all 102 dev
+      clips retained for trajectory generation
+    unselected_candidates: training history stored; no test inference or test metrics
+  postproc:
+    parents: new gru512 for both backbones, each seed (v2 parent scope retained)
+    arms_by_rule:
+    - ema
+    - majority
+    - hysteresis
+    - patience
+    grids:
+      ema:
+      - 0.2
+      - 0.35
+      - 0.5
+      - 0.7
+      majority:
+      - 2
+      - 3
+      - 5
+      - 7
+      - 9
+      hysteresis:
+      - 0.05
+      - 0.1
+      - 0.2
+      - 0.3
+      patience:
+      - 2
+      - 3
+      - 4
+      - 6
+    selection: per parent and seed, dev H=10 minimum RMSCD subject to endpoint macro-Acc
+      >= parent; if none feasible, minimum RMSCD and explicitly mark violation; ties
+      first listed candidate
+  commit_existing:
+    parents: new gru512 for both backbones, each seed
+    arms_by_rule:
+    - commit_msp
+    - commit_margin
+    threshold_sweep: true
+    msp_thresholds:
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.8
+    - 0.9
+    margin_thresholds:
+    - 0.1
+    - 0.2
+    - 0.4
+    - 0.6
+    note: v2 freezes a threshold sweep, not one selected threshold; retain every threshold
+      with separate dev readout, never choose using test
+  commit_published:
+    parents: both new gru128 and gru512, both backbones, each seed (12 parents)
+    ringel2024:
+      arm_rule: ringel2024_conditional_adapt
+      paper: https://arxiv.org/html/2402.00857v1
+      official_code: https://github.com/liranringel/etc/blob/master/conditional_calibration.py
+      core: MSP first crossing of a time-dependent threshold; forward candidate screening
+        of accumulated positive accuracy gap; reverse fixed-sequence binomial testing
+        over accumulated halt times
+      accuracy_gap_alpha: 0.1
+      testing_delta: 0.05
+      lambda_grid_step: 0.05
+      development_split: eligible dev source clusters sorted then shuffled by parent
+        seed; first floor(n_clusters/2) screening, remaining testing; no five-fold
+        cross-fitting
+      reference_endpoint_seconds: 10.0
+      force_stop_at_fixed_reference_endpoint: true
+      fallback: retain infinity for every unaccepted threshold; forced stop at absolute
+        anchor+10 remains
+      deviations: fixed anchor-relative 10s endpoint replaces full sequence endpoint;
+        MSP replaces optional learned correctness estimator; input is fixed GRU posterior
+        trajectory; finite dev reuse for epoch selection and within-cluster dependence
+        invalidate original iid holdout guarantee, so this is a reproducible adaptation
+        with no claimed finite-sample guarantee; all thresholds after 10s are irrelevant
+        because commitment is irreversible
+    teaser:
+      arm_rule: teaser_ocsvm_adapt
+      paper: https://doi.org/10.1007/s10618-020-00690-z
+      core: snapshot-specific one-class RBF SVM trained on correct train predictions,
+        feature vector [predicted class, five probabilities, top1-top2 margin], commit
+        after v consecutive reliable identical labels
+      ocsvm_nu: 0.05
+      gamma_grid:
+      - 1.0
+      - 10.0
+      - 100.0
+      v_grid:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      fit_data: only train, correct and observed post-anchor snapshots, minimum 2
+        examples; otherwise reliability always false
+      selection: per parent and seed dev H=10 maximize harmonic mean of window-end
+        macro-Acc and 1 - mean censored halt time/10; never-committed labels count
+        wrong; ties first gamma then first v
+      deviations: GRU posterior slave replaces WEASEL; smaller preregistered gamma
+        grid; selection on fixed dev rather than train CV; absolute seconds replace
+        fraction of unknown full length; no forced stop at clip end, never-committed
+        remain BOT; no accuracy/coverage guarantee
+  fine_system_instances: 120
+  coarse_regenerated_instances: 204
+  total_answer_directories: 324
+  stride_reruns:
+    strides:
+    - 2
+    - 4
+    base_classifiers: subsample equivalence verified on dev using explicit prefix
+      recomputation; no extra base directories
+    postproc_and_all_commit_rules: rerun on subsampled base trajectories, preserve
+      fine-selected parameters and rule; Ringel threshold and TEASER snapshot classifier
+      indexed by absolute delta, persistence counts run on the coarse grid; add __stride2
+      or __stride4
+  vlm: excluded; owned by D, no VLM in this registration
+test_access:
+  policy: all training and every arm selection completed and sealed before test inference;
+    infer each selected base once over test; no test labels consumed for generation;
+    after all answers pass structural checks, a single final endpoint-only evaluation
+    batch computes H=10 macro-Acc once per delivered new directory (fine and coarse);
+    no other new test metrics
+  manifest_labels: manifest necessarily contains labels; training/selection routines
+    receive train/dev views only; final evaluator alone uses test labels
+  guard: exclusive final evaluation ledger; rerun reads stored results and never recomputes
+    completed test rows
+reproducibility:
+  gpu: CUDA_VISIBLE_DEVICES=0
+  hf_home: /home/ps/weizhou/tmp/hf_cache/
+  no_dependency_version_changes: true
+  long_jobs: nohup with PID and logs
+  old_outputs: read-only reuse; only r2__* answer/checkpoint outputs added

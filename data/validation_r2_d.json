@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "frozen_checks": {
+    "data/manifest/manifest_real.csv": {
+      "unchanged": true,
+      "sha256": "89fa7204af53dac4b8ed3374d017adac0bd2fbe5780753de76a6434b6b42055c"
+    },
+    "data/manifest/manifest_real_v1_official.csv": {
+      "unchanged": true,
+      "sha256": "6ca901ad6b3ea85bf19ef5b782a5ac2bae9848374db9cbddf05b0ab09bb77360"
+    },
+    "data/manifest/manifest_synthetic.csv": {
+      "unchanged": true,
+      "sha256": "f70d136d0576403fbeb20638d9fd1d0949fc068fe70cb671a985b315a89c003e"
+    },
+    "protocol/pi0.yaml": {
+      "unchanged": true,
+      "sha256": "fa82a7112a74d9e422cda2671d0721522970fa9a23ea0406583919130e7d897b"
+    },
+    "protocol/pi0.frozen.sha256": {
+      "unchanged": true,
+      "sha256": "9443f530ee79a797ecff7d87c5d48885186caa2e3228cb411efceefca1150c85"
+    },
+    "prereg/S1_freeze_2026-09-03.yaml": {
+      "unchanged": true,
+      "sha256": "8f5be89334ec2231036ed8e3364e3a3dd129111d1bd5434e33bc08bba1ec37a7"
+    },
+    "prereg/S1_freeze_2026-09-03_v2.yaml": {
+      "unchanged": true,
+      "sha256": "48d5a88a98a626a56f18cbc51f76ffc979b3e31e5eaa88e13eef89d91bd32181"
+    }
+  },
+  "schema_columns": 25,
+  "synthetic_rows": 2211,
+  "real_synth_md5_overlap": 0,
+  "dev_membership_unchanged": true,
+  "causality": "passed",
+  "vlm_result_checks": "passed"
+}

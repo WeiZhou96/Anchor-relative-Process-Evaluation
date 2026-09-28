@@ -1,0 +1,30 @@
+# Additive R2 pre-registration, amendment v6. Immutable after this commit.
+# Written by the authors after V2 stopped on a frame-selector assertion, before any
+# VLM answer beyond the 6 diagnostic dev clips exists.
+meta:
+  freeze_id: S1
+  version: v6
+  protocol_version: 1.0-S1-2026-09-03
+  frozen: true
+  frozen_by: "authors"
+  frozen_at_utc: "2026-09-09"
+  supersedes: v5
+  supersedes_file: prereg/S1_freeze_2026-09-09_v5.yaml
+  base_git_commit: "dd969bb (master with v5)"
+  note: >
+    One amendment to the VLM applicant's frame selector (A4-3). The pilot selector picked 8 of n
+    causal frames by a linspace over timestamps followed by a floor-to-neighbour lookup; at a
+    floating-point boundary (target 0.0999... versus frame time 0.1) it returned a duplicate index
+    and the 8-frame uniqueness assertion failed on dev clip 8XV9oXxTZlI_00 at j = -8. Prompt, frame
+    budget, pixel budget, decoding, parsing, encoding, clip set, grid and causality filter are
+    unchanged. pi0, v1 to v5, manifest v2, dev subset, H list, grids, r0, bootstrap and the metric
+    family are unchanged.
+frozen: true
+supersedes: v5
+
+amendments:
+  A6-1_vlm_frame_selector:
+    rule: "given the n causal frames of a prefix (n >= 8), select indices round(linspace(0, n-1, 8)) on the integer index axis; unique by construction; n < 8 stays BOT as in A4-3"
+    scope: "applies to every clip and every cell of the full run; the 6 dev clips answered under the old selector are discarded and recomputed so that the whole matrix uses one selector"
+    pilot_results: "systems/vlm_pilot results (220 requests) stay as the pilot record; they are not part of the audit matrix"
+    guard: "run discipline as in A5-2"

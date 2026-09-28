@@ -1,0 +1,416 @@
+{
+  "ka_H10": {
+    "RMSCD@H": {
+      "MRD": 0.16918414288583583,
+      "MRD_full_grid": 0.16918414288583583,
+      "MRD_plaus": 0.16918414288583583,
+      "blocks_included": false,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "8ac32aae418b",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 10.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 8.254618403428896,
+      "max_b": 8.254618403428896,
+      "max_s": 1.7349160505124386,
+      "max_s_M_plaus": 1.7349160505124386,
+      "metric": "RMSCD@H",
+      "min_R": 0.936105476673428,
+      "min_R_M_full": 0.936105476673428,
+      "min_R_M_plaus": 0.936105476673428,
+      "n_pairs": 986,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        10.0
+      ],
+      "ruler": 0.3724168912848169,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.3724168912848169,
+      "verdict": "poolable"
+    },
+    "S_H@1": {
+      "MRD": 0.06708989779766822,
+      "MRD_full_grid": 0.06708989779766822,
+      "MRD_plaus": 0.06708989779766822,
+      "blocks_included": false,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "8ac32aae418b",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 10.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 0.02952133283293423,
+      "max_b": 0.02952133283293423,
+      "max_s": 0.035900708435915626,
+      "max_s_M_plaus": 0.035900708435915626,
+      "metric": "S_H@1",
+      "min_R": 0.958984375,
+      "min_R_M_full": 0.958984375,
+      "min_R_M_plaus": 0.958984375,
+      "n_pairs": 1024,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        1.0
+      ],
+      "ruler": 0.047619047619047616,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.047619047619047616,
+      "verdict": "normalize"
+    },
+    "S_H@3": {
+      "MRD": 0.0934268253128989,
+      "MRD_full_grid": 0.0934268253128989,
+      "MRD_plaus": 0.0934268253128989,
+      "blocks_included": false,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "8ac32aae418b",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 10.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 0.035335533987825095,
+      "max_b": 0.035335533987825095,
+      "max_s": 0.04371312722698654,
+      "max_s_M_plaus": 0.04371312722698654,
+      "metric": "S_H@3",
+      "min_R": 0.909272183449651,
+      "min_R_M_full": 0.909272183449651,
+      "min_R_M_plaus": 0.909272183449651,
+      "n_pairs": 1003,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        1.0
+      ],
+      "ruler": 0.047619047619047616,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.047619047619047616,
+      "verdict": "normalize"
+    },
+    "end_window_macro_acc": {
+      "MRD": 0.032086332108163945,
+      "MRD_full_grid": 0.032086332108163945,
+      "MRD_plaus": 0.032086332108163945,
+      "blocks_included": false,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "8ac32aae418b",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 10.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 0.016780337427636065,
+      "max_b": 0.016780337427636065,
+      "max_s": 0.01852137867455552,
+      "max_s_M_plaus": 0.01852137867455552,
+      "metric": "end_window_macro_acc",
+      "min_R": 0.9987405541561712,
+      "min_R_M_full": 0.9987405541561712,
+      "min_R_M_plaus": 0.9987405541561712,
+      "n_pairs": 794,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        1.0
+      ],
+      "ruler": 0.015310339916820126,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.015310339916820126,
+      "verdict": "normalize"
+    },
+    "median_flips": {
+      "MRD": 2.0,
+      "MRD_full_grid": 2.0,
+      "MRD_plaus": 2.0,
+      "blocks_included": false,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "8ac32aae418b",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 10.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 1.7884615384615385,
+      "max_b": 1.7884615384615385,
+      "max_s": 7.3310791132894755,
+      "max_s_M_plaus": 7.3310791132894755,
+      "metric": "median_flips",
+      "min_R": 1.0,
+      "min_R_M_full": 1.0,
+      "min_R_M_plaus": 1.0,
+      "n_pairs": 51,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        16.0
+      ],
+      "ruler": 0.0,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": true,
+      "ruler_window_end_tied_median_progress_diff": 0.0,
+      "verdict": "normalize (ruler is zero: metric cannot resolve tied systems)"
+    }
+  },
+  "ka_fig1": [
+    {
+      "RMSCD": 5.7324797843665785,
+      "end_window_macro_acc": 0.3274467709995183,
+      "system_id": "clip__r18mean__seed20260903"
+    },
+    {
+      "RMSCD": 6.975067385444744,
+      "end_window_macro_acc": 0.30232190597505654,
+      "system_id": "postproc__ema0p7__prefix__gru512__seed20260903"
+    }
+  ],
+  "ka_g4": [
+    {
+      "h_s": 4.0,
+      "n_cross_base_heterogeneous": 44,
+      "n_heterogeneous": 128,
+      "n_replicated_cross_base_groups": 3,
+      "n_tied": 443,
+      "pass_gate": true,
+      "pi_hash": "77200b351bf1"
+    },
+    {
+      "h_s": 10.0,
+      "n_cross_base_heterogeneous": 84,
+      "n_heterogeneous": 245,
+      "n_replicated_cross_base_groups": 8,
+      "n_tied": 515,
+      "pass_gate": true,
+      "pi_hash": "8ac32aae418b"
+    },
+    {
+      "h_s": 21.5,
+      "n_cross_base_heterogeneous": 104,
+      "n_heterogeneous": 340,
+      "n_replicated_cross_base_groups": 9,
+      "n_tied": 589,
+      "pass_gate": true,
+      "pi_hash": "3fb251dc210c"
+    }
+  ],
+  "old_H10": {
+    "RMSCD@H": {
+      "MRD": 0.16918414288583583,
+      "MRD_full_grid": 0.16918414288583583,
+      "MRD_plaus": 0.16918414288583583,
+      "blocks_included": false,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "8ac32aae418b",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 10.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 8.254618403428896,
+      "max_b": 8.254618403428896,
+      "max_s": 1.7349160505124386,
+      "max_s_M_plaus": 1.7349160505124386,
+      "metric": "RMSCD@H",
+      "min_R": 0.9347604485219164,
+      "min_R_M_full": 0.9347604485219164,
+      "min_R_M_plaus": 0.9347604485219164,
+      "n_pairs": 981,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        10.0
+      ],
+      "ruler": 0.37264150943396235,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.37264150943396235,
+      "verdict": "poolable"
+    },
+    "S_H@1": {
+      "MRD": 0.06708989779766822,
+      "MRD_full_grid": 0.06708989779766822,
+      "MRD_plaus": 0.06708989779766822,
+      "blocks_included": false,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "8ac32aae418b",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 10.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 0.02952133283293423,
+      "max_b": 0.02952133283293423,
+      "max_s": 0.035900708435915626,
+      "max_s_M_plaus": 0.035900708435915626,
+      "metric": "S_H@1",
+      "min_R": 0.9422310756972112,
+      "min_R_M_full": 0.9422310756972112,
+      "min_R_M_plaus": 0.9422310756972112,
+      "n_pairs": 1004,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        1.0
+      ],
+      "ruler": 0.047619047619047616,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.047619047619047616,
+      "verdict": "normalize"
+    },
+    "S_H@3": {
+      "MRD": 0.0934268253128989,
+      "MRD_full_grid": 0.0934268253128989,
+      "MRD_plaus": 0.0934268253128989,
+      "blocks_included": false,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "8ac32aae418b",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 10.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 0.035335533987825095,
+      "max_b": 0.035335533987825095,
+      "max_s": 0.04371312722698654,
+      "max_s_M_plaus": 0.04371312722698654,
+      "metric": "S_H@3",
+      "min_R": 0.8901322482197355,
+      "min_R_M_full": 0.8901322482197355,
+      "min_R_M_plaus": 0.8901322482197355,
+      "n_pairs": 983,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        1.0
+      ],
+      "ruler": 0.048517520215633436,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.048517520215633436,
+      "verdict": "not comparable"
+    },
+    "end_window_macro_acc": {
+      "MRD": 0.032086332108163945,
+      "MRD_full_grid": 0.032086332108163945,
+      "MRD_plaus": 0.032086332108163945,
+      "blocks_included": false,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "8ac32aae418b",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 10.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 0.016780337427636065,
+      "max_b": 0.016780337427636065,
+      "max_s": 0.01852137867455552,
+      "max_s_M_plaus": 0.01852137867455552,
+      "metric": "end_window_macro_acc",
+      "min_R": 1.0,
+      "min_R_M_full": 1.0,
+      "min_R_M_plaus": 1.0,
+      "n_pairs": 786,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        1.0
+      ],
+      "ruler": 0.01483955522531688,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.01483955522531688,
+      "verdict": "normalize"
+    },
+    "median_flips": {
+      "MRD": 2.0,
+      "MRD_full_grid": 2.0,
+      "MRD_plaus": 2.0,
+      "blocks_included": false,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "8ac32aae418b",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 10.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 1.7884615384615385,
+      "max_b": 1.7884615384615385,
+      "max_s": 7.3310791132894755,
+      "max_s_M_plaus": 7.3310791132894755,
+      "metric": "median_flips",
+      "min_R": 1.0,
+      "min_R_M_full": 1.0,
+      "min_R_M_plaus": 1.0,
+      "n_pairs": 51,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        16.0
+      ],
+      "ruler": 0.0,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": true,
+      "ruler_window_end_tied_median_progress_diff": 0.0,
+      "verdict": "normalize (ruler is zero: metric cannot resolve tied systems)"
+    }
+  },
+  "old_eval_P": {
+    "RMSCD@H": 986,
+    "S_H@1": 1024,
+    "S_H@3": 1003,
+    "end_window_macro_acc": 794,
+    "median_flips": 51
+  },
+  "old_fig1": [
+    {
+      "RMSCD": 5.7324797843665785,
+      "end_window_macro_acc": 0.3274467709995183,
+      "system_id": "clip__r18mean__seed20260903"
+    },
+    {
+      "RMSCD": 7.092318059299192,
+      "end_window_macro_acc": 0.30528428679944797,
+      "system_id": "postproc__majority2__prefix__gru512__seed20260903"
+    }
+  ],
+  "old_g4": "No original R2-9 gate artifact exists; first-round tied-pair demonstration is not a completed R2-9 gate.",
+  "old_tied_with_trivial": 529,
+  "sources": [
+    "ape/REPORT.md",
+    "data/REPORT.md",
+    "outputs/calib_plaus",
+    "outputs/metrics",
+    "outputs/r2_Ka/gates/g4.json",
+    "REPORT_R2_K.md"
+  ]
+}

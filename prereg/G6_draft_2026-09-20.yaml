@@ -1,0 +1,208 @@
+# G6 -- cross-track direction agreement: executable draft
+#
+# Status: DRAFT. This file is executable configuration, not a registration.
+# `registered: false` below is what `ape.g6` checks; while it is false the module
+# will compute and report the direction statistic but will refuse to emit a
+# pass/fail verdict. Nothing in this file may be filled in from an MM-AU audit
+# result: the null fields are the ones that must be chosen on the MM-AU
+# development subset and registered, with this file's sha256 recorded, *before*
+# the first MM-AU audit number exists.
+
+g6_version: "0.1-draft"
+drafted_on: "2026-09-20"
+drafted_by: "authors"
+registered: false
+registered_at: null
+registered_config_sha256: null
+
+# --------------------------------------------------------------------------
+# What G6 claims, and what it does not
+# --------------------------------------------------------------------------
+claim:
+  statement: >-
+    A process difference that the protocol reports between two system families on
+    the ACCIDENT track reproduces with the same sign on the MM-AU track.
+  is_not:
+    - "Not a claim that the two tracks' metric levels are comparable. They are not:
+       the tracks have different label spaces, different anchor semantics and, on
+       MM-AU, an unknown frame rate. Only the sign of a within-track difference is
+       carried across."
+    - "Not an equivalence test. A pair whose track-B interval contains zero is
+       recorded as a tie, which is a failure to reproduce, not evidence of sameness."
+    - "Not a statement about human earliest-decidability, warning benefit or
+       deployment safety on either track."
+    - "Not an independent-sample comparison: system pairs share systems, so the
+       agreement rate's interval is resampled over families, never over pairs."
+
+# --------------------------------------------------------------------------
+# System family matching
+# --------------------------------------------------------------------------
+family_matching:
+  # Cross-track matching is on the training/inference *recipe*, because the
+  # weights are necessarily different on the two tracks. These are the fields of
+  # ape.r2b_identity.group_key minus library_round.
+  fields:
+    - backbone
+    - model_kind
+    - arm_rule
+    - commit_threshold
+  # library_round (R1/R2) is within-track provenance of the ACCIDENT library and
+  # would make every cross-track family fail to match. It is recorded on both
+  # sides and reported, but it is not matched on.
+  recorded_not_matched:
+    - library_round
+    - train_data_unknown
+  seed_handling: >-
+    Seeds are replicates inside a family, never separate families. A family
+    contributes to the direction statistic only if it holds at least
+    min_seeds_per_family seeds on both tracks, and the family-level difference is
+    the median of within-track paired-seed differences. Pairwise seed intersections
+    and unmatched seeds are reported; a pair requires the minimum shared seeds.
+    Training-seed uncertainty is conditional on the supplied ensemble, not resampled.
+  min_seeds_per_family: 2
+  require_symmetric_report: true  # unmatched families on both sides must be listed
+
+# --------------------------------------------------------------------------
+# Metrics and read-outs
+# --------------------------------------------------------------------------
+metrics:
+  # RMSCD normalised by the common horizon is the only primary metric that is
+  # dimensionless on both tracks; the frame-axis track has no seconds.
+  primary: "RMSCD@H_norm"
+  secondary:
+    - "end_window_macro_acc"
+    - "median_flips"
+  # S_H read-out offsets are deliberately absent for the MM-AU track: the seconds
+  # track reports 1 s and 3 s because those were registered for it, and the frame
+  # equivalents must be chosen on the MM-AU development subset.
+  mmau_s_report_delta_f: null
+
+# --------------------------------------------------------------------------
+# Track parameters that are not yet legitimately choosable
+# --------------------------------------------------------------------------
+tracks:
+  a:
+    name: "ACCIDENT"
+    axis_unit: "second"
+    # Frozen in S1; quoted here for provenance, not re-decided.
+    h_s: 10.0
+    delta_s: 0.5
+    pi_hash: "8ac32aae418b"
+    closed_set: ["head-on", "rear-end", "t-bone", "sideswipe", "single"]
+  b:
+    name: "MM-AU"
+    axis_unit: "frame"
+    h_f: null            # choose on the MM-AU dev subset, then register
+    delta_f: null        # choose on the MM-AU dev subset, then register
+    grid_max_f: null
+    closed_set: null     # depends on the two-person mapping; see fallback below
+    split_source: null   # ArA covers only CAP; DADA has no ArA split
+
+# --------------------------------------------------------------------------
+# Direction statistic
+# --------------------------------------------------------------------------
+direction:
+  # Pair selection happens entirely on track A, so that track B is never used to
+  # choose which pairs it is then asked to confirm.
+  selection:
+    track: "a"
+    require_significant: true
+    alpha: 0.05
+    correction: "holm"
+  # Four-way outcome per selected pair. A tie and an uncertain outcome are
+  # distinct: a tie is a difference too small to read, an uncertain outcome is a
+  # pair that could not be evaluated on track B at all.
+  outcomes: ["agree", "reverse", "tie", "uncertain"]
+  tie_rule:
+    # Either condition makes it a tie.
+    ci_contains_zero: true
+    below_ruler: true
+    ruler_metric: "MRD"   # the same minimum resolvable difference the calibration layer reports
+  # Registered primary denominator. A tie counts against reproduction; reporting
+  # only the tie-excluded rate would let an unreadable difference look like a
+  # success. Both rates are always emitted; this names which one is primary.
+  primary_denominator: "selected_pairs_excluding_uncertain"
+  secondary_denominator: "selected_pairs_excluding_uncertain_and_ties"
+  # The interval on the agreement rate resamples families, because pairs share
+  # systems and are not independent.
+  resample_unit: "family"
+  interval_status: "exploratory_reweighting_not_calibrated_confidence_interval"
+  n_boot: 1000
+  seed: 20260920
+  # No pass threshold or universal null is supplied. Both need scientific justification.
+  pass_threshold: null
+  null_reference: null  # no universal sign-symmetry null assumed
+
+# --------------------------------------------------------------------------
+# Fallback when the class mapping is insufficient
+# --------------------------------------------------------------------------
+# Conservative definition-only mapping currently populates only single.
+# An interpretive three-class proposal is retained separately and needs extra
+# geometry assumptions. Neither establishes final labels, and neither proves
+# that the videos themselves lack head-on or rear-end collisions.
+mapping_fallback:
+  primary: "abstain"  # conservative definition-only mapping currently populates one class
+  modes:
+    restricted_closed_set:
+      description: >-
+        Track B runs on its own closed set, restricted to the classes its mapping
+        actually populates. Each track's metrics remain internally valid; the
+        cross-track claim is restricted to the sign of a within-track difference.
+      requires: "closed set fixed before the audit split is touched"
+      voids: "all cross-track level comparisons, and any statement that the two
+              tracks measure the same task"
+    shared_closed_set:
+      description: >-
+        Both tracks restricted to the intersection of their closed sets. Reported
+        as a secondary arm only.
+      requires: >-
+        A new, separately named ACCIDENT arm. The frozen ACCIDENT results are not
+        recomputed, relabelled or overwritten to produce it.
+    abstain:
+      description: >-
+        G6 is reported as not evaluable, with reasons. Not evaluable is not the
+        same as not passed, and must not be written as a failed gate.
+  # Codes the proposal leaves ambiguous are excluded from track B's cohort rather
+  # than assigned a best guess, and the exclusion is reported as attrition.
+  ambiguous_codes: "excluded_and_reported_as_attrition"
+  out_of_scope_codes: "excluded_and_reported_as_attrition"
+
+# --------------------------------------------------------------------------
+# Evaluability preconditions
+# --------------------------------------------------------------------------
+# Every one of these must hold before a G6 number is reported at all. They are
+# structural preconditions, not a pass threshold; the sample-size floors are left
+# null because they belong to the same registration act as the threshold.
+evaluability:
+  require_human_mapping: true          # B8: two independent human mappings, merged
+  require_source_clusters: true        # a cluster-level bootstrap needs a defined unit
+  require_decode_verified: true        # every cohort clip fully decodable
+  require_registered_config: true      # this file registered, with its sha256 recorded
+  min_populated_classes_track_b: 2     # a one-class closed set has no classification task
+  min_clusters_track_b: null           # register on the dev subset
+  min_videos_per_class_track_b: null   # register on the dev subset
+  min_matched_families: null           # register on the dev subset
+  min_selected_pairs: null             # register on the dev subset
+
+# --------------------------------------------------------------------------
+# What is already known to be unmet, as of the draft date
+# --------------------------------------------------------------------------
+open_preconditions:
+  - "B8 two-person mapping not returned; only an automatic proposal exists, which is not
+     a substitute and is not loaded as ground truth."
+  - "Source-video clusters for MM-AU not established; hashcode is a release
+     identifier, not a verified cluster."
+  - "MM-AU H, step and split not chosen on a development subset, therefore not
+     registered."
+  - "No MM-AU system library exists yet; no family can be matched."
+  - "Sample-size floors and the pass threshold are unregistered."
+
+# Formal registration uses a separate receipt with config_sha256 over these exact bytes,
+# development_split, registered_at and registered_before_first_audit=true.
+# A receipt records provenance; chronology still needs review against the audit artifacts.
+
+# Diagnostic implementation: python -m ape.g6_pipeline. It accepts only explicitly
+# synthetic/development inputs, uses video-weighted cluster resampling and a
+# median of paired-seed differences, and cannot emit a formal pass/fail verdict.
+# Its normal-SE/Holm selector is a diagnostic approximation, not a new registration.
+# Four synthetic CLI checks: python -m data.mmau.g6_pipeline_smoke --config THIS_FILE --out NEW_DIRECTORY.

@@ -1,0 +1,83 @@
+[
+  {
+    "dataset": "MM-AU",
+    "video_id": "0d37451c",
+    "offset_frames": 0,
+    "dataset_relative_path": "extracted/CAP-DATA/12-42/12/009984/images/000097.jpg",
+    "local": "mmau_0d37451c_0.jpg",
+    "sha256": "eacccb249e98329ba85448f378d70ded4d778fc1222acf1e7b8e098495e8a099",
+    "processing": "Original JPEG byte copy; no enhancement or crop."
+  },
+  {
+    "dataset": "MM-AU",
+    "video_id": "0d37451c",
+    "offset_frames": 32,
+    "dataset_relative_path": "extracted/CAP-DATA/12-42/12/009984/images/000129.jpg",
+    "local": "mmau_0d37451c_32.jpg",
+    "sha256": "cfe0b58d79457abfb721a64a1b788d4edb7af95e726496dcb4924424b159c5fc",
+    "processing": "Original JPEG byte copy; no enhancement or crop."
+  },
+  {
+    "dataset": "MM-AU",
+    "video_id": "0d37451c",
+    "offset_frames": 64,
+    "dataset_relative_path": "extracted/CAP-DATA/12-42/12/009984/images/000161.jpg",
+    "local": "mmau_0d37451c_64.jpg",
+    "sha256": "eaee713c2e66b3af208f90a4a3ef0bbb6b520dec82fd4e1b7e87183983f7f43b",
+    "processing": "Original JPEG byte copy; no enhancement or crop."
+  },
+  {
+    "dataset": "MM-AU",
+    "video_id": "1c08612f",
+    "offset_frames": 0,
+    "dataset_relative_path": "extracted/CAP-DATA/43/43/010206/images/000160.jpg",
+    "local": "mmau_1c08612f_0.jpg",
+    "sha256": "e2785b15d9419db618617b9c9482aeabae5efaacc0f776befdaf6679c861ad8b",
+    "processing": "Original JPEG byte copy; no enhancement or crop."
+  },
+  {
+    "dataset": "MM-AU",
+    "video_id": "1c08612f",
+    "offset_frames": 32,
+    "dataset_relative_path": "extracted/CAP-DATA/43/43/010206/images/000192.jpg",
+    "local": "mmau_1c08612f_32.jpg",
+    "sha256": "dee7a91d6b0782facdab0c25e4f50ff1ff64092a61c0cb7cb9f95ae5a17e4d81",
+    "processing": "Original JPEG byte copy; no enhancement or crop."
+  },
+  {
+    "dataset": "MM-AU",
+    "video_id": "1c08612f",
+    "offset_frames": 64,
+    "dataset_relative_path": "extracted/CAP-DATA/43/43/010206/images/000224.jpg",
+    "local": "mmau_1c08612f_64.jpg",
+    "sha256": "fcea23d2bb96d2ae43a141e0432fb7ede0522ddd87f8236bae06db62cd550fd6",
+    "processing": "Original JPEG byte copy; no enhancement or crop."
+  },
+  {
+    "dataset": "MM-AU",
+    "video_id": "00786b67",
+    "offset_frames": 0,
+    "dataset_relative_path": "extracted/CAP-DATA/43/43/008742/images/000091.jpg",
+    "local": "mmau_00786b67_0.jpg",
+    "sha256": "c2200c1ee6e526dc5f0699ca563554e399399237a6cb4690a19b4f5218a139a9",
+    "processing": "Original JPEG byte copy; no enhancement or crop."
+  },
+  {
+    "dataset": "MM-AU",
+    "video_id": "00786b67",
+    "offset_frames": 32,
+    "dataset_relative_path": "extracted/CAP-DATA/43/43/008742/images/000123.jpg",
+    "local": "mmau_00786b67_32.jpg",
+    "sha256": "379e2f64a9b980d4b2b60e964fc2fbd9d06793a2fd2480a8c400f055e35bf87a",
+    "processing": "Original JPEG byte copy; no enhancement or crop."
+  },
+  {
+    "dataset": "MM-AU",
+    "video_id": "00786b67",
+    "offset_frames": 64,
+    "dataset_relative_path": "extracted/CAP-DATA/43/43/008742/images/000155.jpg",
+    "local": "mmau_00786b67_64.jpg",
+    "sha256": "b0620fd971388ea1f53d851021cc4a35cd47125acaee6a166c7d93aaa36e384a",
+    "processing": "Original JPEG byte copy; no enhancement or crop."
+  }
+]

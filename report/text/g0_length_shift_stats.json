@@ -1,0 +1,112 @@
+{
+  "source": "data/manifest/manifest_real.csv",
+  "manifest_md5": "b7a976594deeaed8cfff0ea1630dbd96",
+  "algorithm": "L=duration_s-anchor_s; check against post_anchor_length_s at abs tolerance 1e-9; group by split_official for original IID, split for repaired subsets; numpy quantile(method=linear), index (n-1)*q; eligibility L >= H-1e-9; denominator all group rows; no re-selection of H.",
+  "groups": {
+    "split_official=train": {
+      "n": 507,
+      "q25_s": 3.8297394999999996,
+      "median_s": 8.933,
+      "q75_s": 22.5165,
+      "eligible": {
+        "4.0": {
+          "n": 370,
+          "fraction": 0.7297830374753451
+        },
+        "10.0": {
+          "n": 240,
+          "fraction": 0.47337278106508873
+        },
+        "21.5": {
+          "n": 142,
+          "fraction": 0.28007889546351084
+        }
+      }
+    },
+    "split_official=test": {
+      "n": 1520,
+      "q25_s": 8.893749999999999,
+      "median_s": 21.2,
+      "q75_s": 25.083083249999998,
+      "eligible": {
+        "4.0": {
+          "n": 1328,
+          "fraction": 0.8736842105263158
+        },
+        "10.0": {
+          "n": 1113,
+          "fraction": 0.7322368421052632
+        },
+        "21.5": {
+          "n": 742,
+          "fraction": 0.4881578947368421
+        }
+      }
+    },
+    "split=train": {
+      "n": 411,
+      "q25_s": 3.72,
+      "median_s": 7.719416,
+      "q75_s": 22.604,
+      "eligible": {
+        "4.0": {
+          "n": 293,
+          "fraction": 0.7128953771289538
+        },
+        "10.0": {
+          "n": 188,
+          "fraction": 0.45742092457420924
+        },
+        "21.5": {
+          "n": 116,
+          "fraction": 0.2822384428223844
+        }
+      }
+    },
+    "split=dev": {
+      "n": 102,
+      "q25_s": 4.11244175,
+      "median_s": 10.033666499999999,
+      "q75_s": 21.817,
+      "eligible": {
+        "4.0": {
+          "n": 77,
+          "fraction": 0.7549019607843137
+        },
+        "10.0": {
+          "n": 52,
+          "fraction": 0.5098039215686274
+        },
+        "21.5": {
+          "n": 26,
+          "fraction": 0.2549019607843137
+        }
+      }
+    },
+    "split=test": {
+      "n": 1514,
+      "q25_s": 9.004249999999999,
+      "median_s": 21.25,
+      "q75_s": 25.09583325,
+      "eligible": {
+        "4.0": {
+          "n": 1328,
+          "fraction": 0.8771466314398944
+        },
+        "10.0": {
+          "n": 1113,
+          "fraction": 0.7351387054161163
+        },
+        "21.5": {
+          "n": 742,
+          "fraction": 0.4900924702774108
+        }
+      }
+    }
+  },
+  "official_test_minus_train_percentage_points": {
+    "4.0": 14.390117305097071,
+    "10.0": 25.886406104017446,
+    "21.5": 20.80789992733313
+  }
+}

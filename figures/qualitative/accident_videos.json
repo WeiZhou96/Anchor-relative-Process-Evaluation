@@ -1,0 +1,20 @@
+[
+  {
+    "video_id": "-RrDtLjWsT4_00",
+    "dataset_relative_path": "real_videos/-RrDtLjWsT4_00.mp4",
+    "sha256": "67349a980f65943aef78647e366db55204aa37c7f20f1c7157f2ac872d0714d5",
+    "bytes": 4373250
+  },
+  {
+    "video_id": "-NgnSm_oEB4_00",
+    "dataset_relative_path": "real_videos/-NgnSm_oEB4_00.mp4",
+    "sha256": "68310cb5793f2b9b4a308716e95bb49a3353149d951162c9654888a2af56d55c",
+    "bytes": 2462124
+  },
+  {
+    "video_id": "-PpBteU0p3Q_00",
+    "dataset_relative_path": "real_videos/-PpBteU0p3Q_00.mp4",
+    "sha256": "d4b1495ca73837a397ecff1e8baba8c59e8651964dd68ae696dcdc950a3f6e49",
+    "bytes": 1740108
+  }
+]

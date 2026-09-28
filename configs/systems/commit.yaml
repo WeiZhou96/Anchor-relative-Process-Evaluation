@@ -1,0 +1,16 @@
+# Irrevocable commitment arms.
+family: commit
+entry: systems/commit.py
+base_default: prefix__gru512__seed20260903
+rules:
+  msp: [0.5, 0.6, 0.7, 0.8, 0.9]
+  margin: [0.1, 0.2, 0.4, 0.6]
+pre_registered_rho_levels: [0.7, 0.9]   # protocol/pi0.yaml commit.rho_levels
+semantics: >-
+  the first grid step whose score reaches the threshold fixes the current Top-1;
+  the prediction never changes afterwards and committed becomes true. Steps
+  before that carry the bot code. Clips that never cross keep the bot code for
+  the whole grid and are never dropped; the A track charges them the full window
+  in tau_c.
+reported_triplet: [rho, tau_c, e_c]
+subsampling_equivalent: false

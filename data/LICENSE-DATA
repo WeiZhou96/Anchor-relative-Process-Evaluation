@@ -1,0 +1,34 @@
+DRAFT - TO BE CONFIRMED BY THE AUTHORS BEFORE DEPOSIT
+
+APE derived-data package
+Licence: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
+Legal code: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+Summary:    https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+Copyright (c) [year] [authors of "Stable correctness after impact: Evaluating collision-type recognition
+beyond final accuracy"]  (to be completed)
+
+You are free to share and adapt the material for non-commercial purposes, provided you give appropriate
+credit, indicate if changes were made, and distribute your contributions under the same licence. See the
+legal code for the full terms, which govern.
+
+Why this licence is proposed
+----------------------------
+The package contains data derived from two third-party datasets and must not grant more than their terms allow.
+
+* ACCIDENT (Kaggle `picekl/accident`). The Kaggle listing states CC BY-NC-SA 4.0. The ACCIDENT paper states
+  CC BY 4.0 for the annotations and metadata, Apache-2.0 for code and CARLA assets, and upstream terms for the
+  videos. The two statements conflict; the stricter Kaggle terms (non-commercial, share-alike) are applied
+  here until the dataset authors clarify. Some real clips originate from other Kaggle uploads with their own
+  terms. The manifests (clip identifiers, anchors, class labels, splits, timing) and all stored answers,
+  audit results and re-analysis outputs are derived from this dataset.
+* MM-AU (Hugging Face `JeffreyChou/MM-AU`, revision 540cb1277cb70e91a7022abe852decb3ee9adb0a) is released
+  under CC BY-NC 4.0. The MM-AU part of the package (ledgers, development manifest, predictions and
+  evaluations) is derived from it; CC BY-NC-SA 4.0 satisfies its non-commercial and attribution terms.
+
+Not covered: the package contains no raw videos, frames or pretrained weights. Obtain the datasets and models
+from their sources under their own terms. Files that reproduce the authors' own protocol and pre-registration
+(accident/protocol/, accident/prereg/) are also part of the code repository under its licence.
+
+Open points for the authors: confirm the licence choice; confirm or obtain the ACCIDENT authors' position on
+the licence conflict; decide whether the ShareAlike term is required for the MM-AU-only files.

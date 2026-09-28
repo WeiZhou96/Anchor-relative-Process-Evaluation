@@ -1,0 +1,16 @@
+H,Metric,Min R,MRD plaus,Ruler,R arm,MRD arm,Excluded trivial dependence
+4.0,RMSCD@H,0.872097,0.042255,0.109563,yes,no,False
+4.0,S_H@1,0.938410,0.083734,0.031627,no,yes,False
+4.0,S_H@3,0.913649,0.106762,0.024096,no,yes,False
+4.0,end_window_macro_acc,0.827192,0.076460,0.018932,yes,yes,False
+4.0,median_flips,0.504172,1.000000,0.000000,n/a,n/a,True
+10.0,RMSCD@H,0.955624,0.159095,0.419362,no,no,False
+10.0,S_H@1,0.974436,0.056602,0.054807,no,yes,False
+10.0,S_H@3,0.953096,0.067523,0.050314,no,yes,False
+10.0,end_window_macro_acc,0.919586,0.038494,0.021982,no,yes,False
+10.0,median_flips,0.183197,1.000000,0.000000,n/a,n/a,True
+21.5,RMSCD@H,0.880544,0.648621,1.333221,yes,no,False
+21.5,S_H@1,0.920809,0.083392,0.078167,no,yes,False
+21.5,S_H@3,0.864357,0.102655,0.079515,yes,yes,False
+21.5,end_window_macro_acc,0.920378,0.063322,0.028230,no,yes,False
+21.5,median_flips,0.116131,2.000000,0.000000,n/a,n/a,True

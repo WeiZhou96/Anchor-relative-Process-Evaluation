@@ -1,0 +1,2406 @@
+{
+  "audit_split": "test",
+  "correction": "holm",
+  "correction_resolution": {
+    "alpha": 0.05,
+    "n_boot": 1000,
+    "n_boot_needed_for_percentile": 294120,
+    "n_pairs": 14706,
+    "percentile_ok": false,
+    "percentile_p_floor": 0.001,
+    "smallest_adjusted_p_reachable": 14.706
+  },
+  "delta_star": {
+    "block__frac__c-0.6": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "block__lock__commit-3_d0-3": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 1.0,
+        "0.5": 1.0,
+        "1.0": 1.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "block__lock__d0-1": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 1.0,
+        "0.5": 1.0,
+        "1.0": 1.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "block__lock__d0-18": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "block__lock__d0-3": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 1.0,
+        "0.5": 1.0,
+        "1.0": 1.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "block__lock__d0-8": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "block__oracle__default": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "block__osc__d0-15_p-2": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 2.0,
+        "0.5": 2.0,
+        "1.0": 2.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "block__osc__d0-4_p-1": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 3.0,
+        "0.5": 3.0,
+        "1.0": 3.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "block__osc__d0-6_p-0.5": {
+      "delta_star": 0.5,
+      "flips_by_delta": {
+        "0.25": 8.0,
+        "0.5": 8.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "block__rand__eta-0.5": {
+      "delta_star": 0.25,
+      "flips_by_delta": {
+        "0.25": 11.0,
+        "0.5": 6.0,
+        "1.0": 3.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": false
+    },
+    "block__rand__eta-0.9": {
+      "delta_star": 0.5,
+      "flips_by_delta": {
+        "0.25": 2.0,
+        "0.5": 2.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "clip__r18mean__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "clip__r18mean__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "clip__r18mean__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__margin0p1__prefix__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__margin0p1__prefix__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__margin0p1__prefix__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__margin0p2__prefix__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__margin0p2__prefix__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__margin0p2__prefix__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__margin0p4__prefix__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__margin0p4__prefix__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__margin0p4__prefix__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__margin0p6__prefix__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__margin0p6__prefix__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__margin0p6__prefix__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__msp0p5__prefix__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__msp0p5__prefix__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__msp0p5__prefix__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__msp0p6__prefix__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__msp0p6__prefix__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__msp0p6__prefix__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__msp0p7__prefix__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__msp0p7__prefix__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__msp0p7__prefix__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__msp0p8__prefix__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__msp0p8__prefix__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__msp0p8__prefix__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__msp0p9__prefix__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__msp0p9__prefix__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "commit__msp0p9__prefix__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "postproc__ema0p2__prefix__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "postproc__ema0p2__prefix__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "postproc__ema0p7__prefix__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "postproc__hysteresis0p05__prefix__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "postproc__hysteresis0p05__prefix__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "postproc__hysteresis0p2__prefix__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "postproc__majority2__prefix__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "postproc__majority2__prefix__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "postproc__majority9__prefix__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "postproc__patience2__prefix__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "postproc__patience2__prefix__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "postproc__patience6__prefix__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "prefix__gru128__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "prefix__gru128__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "prefix__gru128__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "prefix__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "prefix__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "prefix__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru128__ringel__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru128__ringel__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru128__ringel__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru128__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru128__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru128__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru128__teaser__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru128__teaser__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 1.0,
+        "0.5": 1.0,
+        "1.0": 1.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru128__teaser__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 1.0,
+        "0.5": 1.0,
+        "1.0": 1.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__ema__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__ema__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__ema__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__hysteresis__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__hysteresis__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__hysteresis__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__majority__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__majority__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__majority__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__margin0p1__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__margin0p1__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__margin0p1__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__margin0p2__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__margin0p2__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__margin0p2__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__margin0p4__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__margin0p4__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__margin0p4__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__margin0p6__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__margin0p6__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__margin0p6__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__msp0p5__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__msp0p5__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__msp0p5__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__msp0p6__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__msp0p6__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__msp0p6__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__msp0p7__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__msp0p7__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__msp0p7__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__msp0p8__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__msp0p8__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__msp0p8__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__msp0p9__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__msp0p9__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__msp0p9__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__patience__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__patience__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__patience__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__ringel__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__ringel__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__ringel__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__teaser__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__teaser__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 1.0,
+        "0.5": 1.0,
+        "1.0": 1.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__gru512__teaser__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__mean__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__mean__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__clipb16__mean__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru128__ringel__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru128__ringel__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru128__ringel__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru128__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru128__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru128__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru128__teaser__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 1.0,
+        "0.5": 1.0,
+        "1.0": 1.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru128__teaser__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru128__teaser__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__ema__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__ema__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__ema__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__hysteresis__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__hysteresis__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__hysteresis__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__majority__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__majority__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__majority__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__margin0p1__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__margin0p1__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__margin0p1__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__margin0p2__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__margin0p2__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__margin0p2__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__margin0p4__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__margin0p4__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__margin0p4__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__margin0p6__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__margin0p6__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__margin0p6__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__msp0p5__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__msp0p5__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__msp0p5__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__msp0p6__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__msp0p6__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__msp0p6__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__msp0p7__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__msp0p7__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__msp0p7__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__msp0p8__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__msp0p8__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__msp0p8__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__msp0p9__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__msp0p9__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__msp0p9__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__patience__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__patience__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__patience__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__ringel__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__ringel__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__ringel__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__teaser__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__teaser__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__gru512__teaser__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__mean__seed20260903": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__mean__seed20260904": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "r2__r18__mean__seed20260905": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "trivial__constbot": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "trivial__majority": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "trivial__oracle": {
+      "delta_star": 1.0,
+      "flips_by_delta": {
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "1.0": 0.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": true
+    },
+    "trivial__random": {
+      "delta_star": 0.25,
+      "flips_by_delta": {
+        "0.25": 13.0,
+        "0.5": 7.0,
+        "1.0": 3.0
+      },
+      "monotone_nonincreasing_with_coarser_step": true,
+      "n_points": 3,
+      "saturated": false
+    }
+  },
+  "metrics": {
+    "RMSCD@H": {
+      "MRD": 0.04225531466793214,
+      "MRD_full_grid": 0.04225531466793214,
+      "MRD_plaus": 0.04225531466793214,
+      "blocks_included": false,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "77200b351bf1",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 4.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 12.440489348019083,
+      "max_b": 12.440489348019083,
+      "max_s": 2.0007160865829645,
+      "max_s_M_plaus": 2.0007160865829645,
+      "metric": "RMSCD@H",
+      "min_R": 0.8720970140716165,
+      "min_R_M_full": 0.8720970140716165,
+      "min_R_M_plaus": 0.8720970140716165,
+      "n_pairs": 8741,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        4.0
+      ],
+      "ruler": 0.10956325301204828,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.10956325301204828,
+      "verdict": "not comparable"
+    },
+    "RMSCD@H [with blocks]": {
+      "MRD": 0.09182445419243256,
+      "MRD_full_grid": 0.09182445419243256,
+      "MRD_plaus": 0.09182445419243256,
+      "blocks_included": true,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "77200b351bf1",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 4.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 12.02321226791022,
+      "max_b": 12.02321226791022,
+      "max_s": 3.001555602909617,
+      "max_s_M_plaus": 3.001555602909617,
+      "metric": "RMSCD@H",
+      "min_R": 0.8720970140716165,
+      "min_R_M_full": 0.8720970140716165,
+      "min_R_M_plaus": 0.8720970140716165,
+      "n_pairs": 8741,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        4.0
+      ],
+      "ruler": 0.10956325301204828,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.10956325301204828,
+      "verdict": "not comparable"
+    },
+    "S_H@1": {
+      "MRD": 0.0837338972662091,
+      "MRD_full_grid": 0.0837338972662091,
+      "MRD_plaus": 0.0837338972662091,
+      "blocks_included": false,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "77200b351bf1",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 4.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 0.038850942121305465,
+      "max_b": 0.038850942121305465,
+      "max_s": 0.0500724584573779,
+      "max_s_M_plaus": 0.0500724584573779,
+      "metric": "S_H@1",
+      "min_R": 0.9384098544232923,
+      "min_R_M_full": 0.9384098544232923,
+      "min_R_M_plaus": 0.9384098544232923,
+      "n_pairs": 8930,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        1.0
+      ],
+      "ruler": 0.03162650602409639,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.03162650602409639,
+      "verdict": "normalize"
+    },
+    "S_H@1 [with blocks]": {
+      "MRD": 0.08876274277418418,
+      "MRD_full_grid": 0.08876274277418418,
+      "MRD_plaus": 0.08876274277418418,
+      "blocks_included": true,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "77200b351bf1",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 4.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 0.03973185409184179,
+      "max_b": 0.03973185409184179,
+      "max_s": 0.11659570869400497,
+      "max_s_M_plaus": 0.11659570869400497,
+      "metric": "S_H@1",
+      "min_R": 0.9384098544232923,
+      "min_R_M_full": 0.9384098544232923,
+      "min_R_M_plaus": 0.9384098544232923,
+      "n_pairs": 8930,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        1.0
+      ],
+      "ruler": 0.03162650602409639,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.03162650602409639,
+      "verdict": "normalize"
+    },
+    "S_H@3": {
+      "MRD": 0.10676181611800134,
+      "MRD_full_grid": 0.10676181611800134,
+      "MRD_plaus": 0.10676181611800134,
+      "blocks_included": false,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "77200b351bf1",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 4.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 0.048071905055658844,
+      "max_b": 0.048071905055658844,
+      "max_s": 0.060785187610706004,
+      "max_s_M_plaus": 0.060785187610706004,
+      "metric": "S_H@3",
+      "min_R": 0.9136493716560906,
+      "min_R_M_full": 0.9136493716560906,
+      "min_R_M_plaus": 0.9136493716560906,
+      "n_pairs": 8037,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        1.0
+      ],
+      "ruler": 0.024096385542168697,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.024096385542168697,
+      "verdict": "normalize"
+    },
+    "S_H@3 [with blocks]": {
+      "MRD": 0.1233099161340745,
+      "MRD_full_grid": 0.1233099161340745,
+      "MRD_plaus": 0.1233099161340745,
+      "blocks_included": true,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "77200b351bf1",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 4.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 0.051563056212358446,
+      "max_b": 0.051563056212358446,
+      "max_s": 0.16589491093972947,
+      "max_s_M_plaus": 0.16589491093972947,
+      "metric": "S_H@3",
+      "min_R": 0.9136493716560906,
+      "min_R_M_full": 0.9136493716560906,
+      "min_R_M_plaus": 0.9136493716560906,
+      "n_pairs": 8037,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        1.0
+      ],
+      "ruler": 0.024096385542168697,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.024096385542168697,
+      "verdict": "normalize"
+    },
+    "end_window_macro_acc": {
+      "MRD": 0.07646025172799736,
+      "MRD_full_grid": 0.07646025172799736,
+      "MRD_plaus": 0.07646025172799736,
+      "blocks_included": false,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "77200b351bf1",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 4.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 0.04564280241757809,
+      "max_b": 0.04564280241757809,
+      "max_s": 0.08240115627660727,
+      "max_s_M_plaus": 0.08240115627660727,
+      "metric": "end_window_macro_acc",
+      "min_R": 0.8271915482329266,
+      "min_R_M_full": 0.8271915482329266,
+      "min_R_M_plaus": 0.8271915482329266,
+      "n_pairs": 7951,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        1.0
+      ],
+      "ruler": 0.018932283751222273,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.018932283751222273,
+      "verdict": "not comparable"
+    },
+    "end_window_macro_acc [with blocks]": {
+      "MRD": 0.2794760302862628,
+      "MRD_full_grid": 0.2794760302862628,
+      "MRD_plaus": 0.2794760302862628,
+      "blocks_included": true,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "77200b351bf1",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 4.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 0.06870624731683629,
+      "max_b": 0.06870624731683629,
+      "max_s": 0.17208317993816294,
+      "max_s_M_plaus": 0.17208317993816294,
+      "metric": "end_window_macro_acc",
+      "min_R": 0.8271915482329266,
+      "min_R_M_full": 0.8271915482329266,
+      "min_R_M_plaus": 0.8271915482329266,
+      "n_pairs": 7951,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        1.0
+      ],
+      "ruler": 0.018932283751222273,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": false,
+      "ruler_window_end_tied_median_progress_diff": 0.018932283751222273,
+      "verdict": "not comparable"
+    },
+    "median_flips": {
+      "MRD": 1.0,
+      "MRD_full_grid": 1.0,
+      "MRD_plaus": 1.0,
+      "blocks_included": false,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "77200b351bf1",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 4.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 0.9825581395348837,
+      "max_b": 0.9825581395348837,
+      "max_s": 4.764906962921005,
+      "max_s_M_plaus": 4.764906962921005,
+      "metric": "median_flips",
+      "min_R": 0.5041716328963052,
+      "min_R_M_full": 0.5041716328963052,
+      "min_R_M_plaus": 0.5041716328963052,
+      "n_pairs": 839,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        7.0
+      ],
+      "ruler": 0.0,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": true,
+      "ruler_window_end_tied_median_progress_diff": 0.0,
+      "verdict": "not comparable"
+    },
+    "median_flips [with blocks]": {
+      "MRD": 1.0,
+      "MRD_full_grid": 1.0,
+      "MRD_plaus": 1.0,
+      "blocks_included": true,
+      "eps_max": {
+        "eps_max": 0.25,
+        "n_points": 2,
+        "pi0_hash_used": "77200b351bf1",
+        "reference_delta_s": 0.5,
+        "reference_h_s": 4.0,
+        "saturated": true,
+        "scanned_max_abs_eps": 0.25
+      },
+      "max_abs_b_M_plaus": 1.358695652173913,
+      "max_b": 1.358695652173913,
+      "max_s": 6.09561885753657,
+      "max_s_M_plaus": 6.09561885753657,
+      "metric": "median_flips",
+      "min_R": 0.5041716328963052,
+      "min_R_M_full": 0.5041716328963052,
+      "min_R_M_plaus": 0.5041716328963052,
+      "n_pairs": 839,
+      "r0": 0.9,
+      "reference_range": [
+        0.0,
+        8.0
+      ],
+      "ruler": 0.0,
+      "ruler_definition": "median |M(a) - M(b)| over the window-end-tied system pairs at pi0, in this metric's own units",
+      "ruler_degenerate": true,
+      "ruler_window_end_tied_median_progress_diff": 0.0,
+      "verdict": "not comparable"
+    }
+  },
+  "n_clips_scored": 1514,
+  "n_pi": 54,
+  "n_systems": 184,
+  "p_method": "normal",
+  "pi0": {
+    "delta_s": 0.5,
+    "eps_jit_sd_s": 0.0,
+    "eps_sys_s": 0.0,
+    "h_s": 4.0,
+    "jit_seed": 20260903,
+    "pre_anchor_outputs_bot": true,
+    "protocol_version": "1.0-S1-2026-09-03"
+  },
+  "pi0_hash": "77200b351bf1",
+  "r0": 0.9,
+  "reference_stride_reruns_applied": true,
+  "rulers_by_metric": {
+    "RMSCD@H": 0.10956325301204828,
+    "S_H@1": 0.03162650602409639,
+    "S_H@3": 0.024096385542168697,
+    "end_window_macro_acc": 0.018932283751222273,
+    "median_flips": 0.0
+  },
+  "scan_mode": "full",
+  "stride_notes": []
+}

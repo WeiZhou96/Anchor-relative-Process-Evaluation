@@ -1,0 +1,27 @@
+# Method-strengthening experiment scope
+
+> Release copy. Internal process references (review sessions, internal names, local paths) were removed for publication; the analysis plan itself is unchanged. The SHA-256 of the file as committed and hashed by the original run is listed in `docs/PROVENANCE.md`.
+
+Fixed on 2026-09-27, after an internal review of the audit and before the calculations below. This is a retrospective extension on already inspected ACCIDENT test data, not a new preregistered confirmatory test. It covers the new `ape/method_analysis.py`, `scripts/method_experiments.py`, the associated tests and this plan only. Existing frozen protocols, manifests, predictions and historical outputs remain unchanged.
+
+## Version preservation
+
+- ACCIDENT baseline: `2835c86542934fd470d375692aa9929849d787af`, tag `baseline/accident-before-method-20260927`.
+- MM-AU interface baseline: `f99e5cab26f28246e6b6e037a80b854b11c030b9`, tag `baseline/mmau-interface-before-method-20260927`.
+- The MM-AU experiment source was committed and tagged separately (`baseline/mmau-source-20260927`).
+- New branch: `research/method-strengthening-20260927` in an independent clone. Inputs are read from the audit repository; new outputs are written only in the clone.
+
+## Plan fixed before the new dataset calculations
+
+1. Inventory by existing system cards, without selecting on outcomes: 168 nontrivial systems, comprising 27 base classifiers, 36 stateful postprocessors and 105 commitment rules. Primary comparisons use the 27 base classifiers, paired only within the same training seed. The 63 noncommitment systems form a secondary comparison family. Neither seeds nor system pairs are independent observations.
+2. Reference grid: 0.25 seconds. Primary horizon: 10 seconds; 4 and 21.5 seconds are secondary. Use the unchanged test manifest, horizon-specific raw-video eligibility and all five classes. All compared systems share each cohort. Report clip-weighted and class-balanced versions of every component; class-balanced H=10 is the primary weighting/horizon. Missing cached cells are distinguished from explicit BOT and stop complete-data inference, rather than silently dropping clips.
+3. Compute stable delay, ordinary error area, retracted-correct area, endpoint accuracy, anchor-to-end recovery/loss, and the paired four-stratum decomposition. Report the common-success contribution over the full cohort and the success-set mismatch contribution, not a causal effect or a pure endpoint-accuracy effect. Always report stratum mass. No CI-overlap selection of pairs.
+4. Shared source-cluster bootstrap: 2000 replicates, RNG seed 20260927. Class-balanced replicates recompute within-class denominators and keep equal class mass. Resamples missing a class are redrawn and counted. Use approximate centered max-t simultaneous intervals across all pairs and all six predeclared contrasts within each family/horizon/weighting. These families are reported separately; no global error control across every secondary analysis is claimed. Zero bootstrap variance is flagged. No endpoint-equivalence claim is made without a prespecified meaningful equivalence margin.
+5. Output-reading experiments: hide cells of the fixed dense trajectory at 0.5/1.0-second strides, all distinct phases, retaining both endpoints. Compute sharp finite-grid optimistic/pessimistic bounds, interval width, and the naive coarser-grid score. The target remains the original 0.25-second finite grid. Hidden outputs are not model abstentions. This experiment does not alter model input cadence or replay stateful rules. Report fine-score containment, optimistic/pessimistic score errors and identification of pairwise signs. No continuous-time guarantee.
+6. Protocol comparison prototype: base classifiers only, H=4/10, shifts {-0.5,0,0.5} seconds crossed with output steps {0.25,0.5,1.0}, fixed common raw-video cohort requiring anchor>=0.5 and post-anchor coverage>=H+0.5. This changes reading coordinates on cached fixed-input predictions, not the model's start/input frames. Shared bootstrap and max-t intervals span all 108 same-seed pairs and all nine protocols, separately per weighting/horizon. Report minimum lower bounds, contradictory protocols and inconclusive cases at epsilon={0,0.125,0.25} seconds, without choosing the most favorable epsilon. The measured finite-grid functional depends on the declared read grid. Bounds from item 5 address this separate measurement issue.
+7. Horizon versus population: compare H=4/10 on their own cohorts and the fixed E_21.5 population. This is descriptive decomposition, not generalization to excluded clips.
+8. Mathematical tests cover decomposition identities, equal-accuracy counterexamples, missing-data bounds, irregular-grid integration, paired bootstrap behavior and simultaneous-band construction. The prototype's statistical coverage is additionally checked on synthetic clustered samples; simulation results are not traffic-dataset results or universal coverage guarantees.
+
+## Conditional next step
+
+First inspect whether base classifiers retain meaningful process differences and late-error/recovery mass. If they do, a later separately specified development-only suffix-loss pilot may proceed against ordinary/time-weighted CE and relevant temporal baselines. No training is part of the first CPU run. No existing MM-AU development subset is relabeled as independent validation. No paper claims are updated until the calculations and limitations are reviewed.
