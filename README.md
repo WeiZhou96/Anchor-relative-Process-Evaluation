@@ -68,6 +68,69 @@ RMSCD is the cohort mean of these per-clip areas. This is a single clip that ill
 
 [MP4](docs/media/ape_eligibility_cohort.mp4) · [caption, data sources and limits](docs/media/MEDIA.md#ape_eligibility_cohortgif--mp4)
 
+## Qualitative cases on real footage
+
+The paper's six qualitative cases are replayed on the real dataset frames, in sync with the stored predictions:
+
+- **Fig. 5:** ACCIDENT test clips, systems A and B.
+- **Fig. S3:** MM-AU development clips, one GRU checkpoint with input every q = 2, 4, 8 frames.
+
+A tile and its p(reference class) point appear when the video reaches the read's offset; nothing changes between reads. The stable-correct suffix is computed offline, so it is shown only after the window. Each case ends on a held frame with the read-outs and note of the paper's panel. The cases are post hoc illustrations, not prevalence estimates.
+
+<details>
+<summary><b>Fig. 5 · ACCIDENT, systems A and B (three GIFs)</b></summary>
+
+<p align="center">
+  <img src="docs/media/qual_accident_1.gif" width="880" alt="Real ACCIDENT footage of clip -RrDtLjWsT4_00 with the stored answers of systems A and B appearing read by read">
+</p>
+
+**(a) `-RrDtLjWsT4_00`, t-bone.** B answers SS until 1 s, then TB; both end on TB (A stable from 0 s, d_i = 0 s; B stable from 1.5 s, d_i = 1.25 s).
+
+<p align="center">
+  <img src="docs/media/qual_accident_2.gif" width="880" alt="Real ACCIDENT footage of clip -NgnSm_oEB4_00 with the stored answers of systems A and B appearing read by read">
+</p>
+
+**(b) `-NgnSm_oEB4_00`, rear-end.** B is right at 0 s and from 1.5 to 8 s, then ends on SI (A stable from 2 s, d_i = 1.75 s; B never stable, d_i = 10 s).
+
+<p align="center">
+  <img src="docs/media/qual_accident_3.gif" width="880" alt="Real ACCIDENT footage of clip -PpBteU0p3Q_00 with the stored answers of systems A and B appearing read by read">
+</p>
+
+**(c) `-PpBteU0p3Q_00`, single.** Both systems predict SS at every offset (d_i = 10 s for both).
+
+</details>
+
+<details>
+<summary><b>Fig. S3 · MM-AU development, input cadence q = 2, 4, 8 (three GIFs)</b></summary>
+
+<p align="center">
+  <img src="docs/media/qual_mmau_1.gif" width="880" alt="Real MM-AU frames of clip 0d37451c with the stored GRU traces for three input cadences appearing read by read">
+</p>
+
+**(a) `0d37451c`, native class 12.** q=2 ends on 8; q=4 and q=8 return to 12 from 56 f.
+
+<p align="center">
+  <img src="docs/media/qual_mmau_2.gif" width="880" alt="Real MM-AU frames of clip 1c08612f with the stored GRU traces for three input cadences appearing read by read">
+</p>
+
+**(b) `1c08612f`, native class 43.** Only q=2 switches to 43, at the last offset.
+
+<p align="center">
+  <img src="docs/media/qual_mmau_3.gif" width="880" alt="Real MM-AU frames of clip 00786b67 with the stored GRU traces for three input cadences appearing read by read">
+</p>
+
+**(c) `00786b67`, native class 43.** All cadences change from 12 to 14 at 32 f.
+
+</details>
+
+[ACCIDENT MP4](docs/media/qual_accident_replay.mp4) · [MM-AU MP4](docs/media/qual_mmau_replay.mp4) · [caption, sources, checks, selection and limits](docs/media/MEDIA.md#qualitative-replays-on-real-footage)
+
+**Attribution and licence.**
+
+- **ACCIDENT frames.** ACCIDENT dataset (Picek & Hanzl, 2026), Kaggle `picekl/accident`. It is listed on Kaggle under CC BY-NC-SA 4.0; clarification from the dataset authors is pending.
+- **MM-AU frames.** MM-AU dataset (Fang et al., 2024), Hugging Face `JeffreyChou/MM-AU`, under CC BY-NC 4.0.
+- **Terms.** The frames are shown for non-commercial research illustration with attribution. These media files are not covered by the repository's code licence ([licence note](docs/media/MEDIA.md#licence-of-the-frames)).
+
 ## Results at a glance
 
 <p align="center">
@@ -102,7 +165,7 @@ The paper's quantitative figures, as written by `figures/run_all.sh` (full capti
   </tr>
 </table>
 
-All media are drawn from stored records only; they contain no dataset imagery. [docs/media/MEDIA.md](docs/media/MEDIA.md) lists for each file what it shows, which records it reads, which checks it passes and its limits.
+Apart from the qualitative replays in [Qualitative cases on real footage](#qualitative-cases-on-real-footage), all media are drawn from stored records only and contain no dataset imagery. [docs/media/MEDIA.md](docs/media/MEDIA.md) lists for each file what it shows, which records it reads, which checks it passes and its limits.
 
 ## What is in this repository
 
@@ -114,7 +177,7 @@ The repository implements anchor-relative process evaluation (APE) of streaming 
 - the MM-AU development study (frame-axis adapter, native nine-class task, pixel and control pilots, anchor shift, input stride, output-reading sensitivity);
 - the scripts that draw the figures and tables of the article and its electronic supplementary material (ESM).
 
-Derived data (manifests, stored answers of all systems, audit and re-analysis outputs, MM-AU predictions and evaluations) are distributed separately as the **APE derived-data package** (see [Data availability](#data-availability)). Raw videos, frames and pretrained weights are not redistributed.
+Derived data (manifests, stored answers of all systems, audit and re-analysis outputs, MM-AU predictions and evaluations) are distributed separately as the **APE derived-data package** (see [Data availability](#data-availability)). Raw videos, original dataset frames and pretrained weights are not redistributed. Scaled frames of six clips appear only in the qualitative replay media (see [Qualitative cases on real footage](#qualitative-cases-on-real-footage)).
 
 ## Quick start
 
@@ -186,6 +249,16 @@ Three points apply to the subset (details in [data/README.md](data/README.md)):
 - **Excluded items.** The subset excludes the full answer matrices, the coarse-step answer sets and two ablation records above 50 MB.
 - **Availability.** The availability of raw videos, dataset frames and model weights must not be inferred from the future derived-data archive.
 - **Pending decisions.** Third-party permissions remain to be clarified before distribution. Contact and copyright holder: [TO BE CONFIRMED BY THE AUTHORS].
+
+**Dataset imagery.** Dataset imagery appears only in the qualitative replay media, which are part of the repository:
+
+- **Files.** `docs/media/qual_accident_1.gif` to `qual_accident_3.gif`, `qual_mmau_1.gif` to `qual_mmau_3.gif`, `qual_accident_replay.mp4` and `qual_mmau_replay.mp4`.
+- **Content.** Scaled frames of three ACCIDENT clips and three MM-AU development clips, with the datasets' attribution burned into every frame.
+- **Licences.**
+  - ACCIDENT: listed on Kaggle under CC BY-NC-SA 4.0; clarification from the dataset authors is pending.
+  - MM-AU: CC BY-NC 4.0.
+  - The files are shown for non-commercial research illustration and are not covered by the repository's code licence.
+- **Everything else.** No other file of this repository contains dataset imagery. The original videos and image files are not redistributed.
 
 ## Citation
 

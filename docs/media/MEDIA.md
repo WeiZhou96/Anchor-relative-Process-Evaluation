@@ -1,16 +1,26 @@
 # Media files
 
-This folder holds the visuals shown in the repository's README. One command writes all of them:
+This folder holds the visuals shown in the repository's README. Two scripts write them:
 
-    python figures/make_media.py            # GIF + MP4 (MP4 only when ffmpeg is on PATH)
+    python figures/make_media.py            # stored-record media: GIF + MP4 (MP4 only when ffmpeg is on PATH)
     python figures/make_media.py --no-mp4   # GIF and PNG only
+    APE_ACCIDENT=/path/to/ACCIDENT APE_MMAU=/path/to/MM-AU python figures/make_qual_media.py   # qualitative replays
+    python figures/make_qual_media.py --no-mp4 --cases accident_2 mmau                         # subset, GIF only
 
 `APE_DATA` defaults to the repository's `data/` folder. To include the copies of the paper figures, run `figures/run_all.sh` first.
+
+`make_qual_media.py` needs local copies of the two datasets:
+
+- **`APE_ACCIDENT`.** The ACCIDENT dataset root, which contains `real_videos/`.
+- **`APE_MMAU`.** The MM-AU dataset root, which contains `extracted/CAP-DATA/`.
+- **OpenCV.** It decodes the ACCIDENT videos. The published frames are reproduced bit for bit by `opencv-python-headless==4.11.0.86` (see `figures/extract_qual_frames.py`).
 
 ## Rules that apply to every file
 
 - **Stored records only.** Every value, curve, tile, count and label is read from the records named below.
-- **No dataset imagery.** No video frame, image or thumbnail from ACCIDENT or MM-AU is used.
+- **No dataset imagery, with one exception.**
+  - **Exception.** The qualitative replays (`qual_*.gif`, `qual_*.mp4`) show scaled real frames of three ACCIDENT clips and three MM-AU clips. See [Qualitative replays on real footage](#qualitative-replays-on-real-footage) and its [licence note](#licence-of-the-frames).
+  - **Everything else.** No other file uses a video frame, image or thumbnail from ACCIDENT or MM-AU.
 - **Computed areas are checked.** Where a frame shows an area computed for display, the script recomputes it from the stored values. Where a stored metric exists, the script asserts agreement (tolerance 1e-6 s or tighter) and prints the comparison.
 - **Animation reveals real values only.** It reveals stored values progressively, offset by offset or horizon by horizon on the stored grids. Nothing is interpolated, smoothed or extrapolated. Straight segments between grid points are drawing aids; the areas between them are the trapezoidal areas used by the metric.
 - **Colours follow the paper.**
@@ -21,6 +31,13 @@ This folder holds the visuals shown in the repository's README. One command writ
   - System A: blue `#0072B2`. System B: vermillion `#D55E00`.
 
   The A and B colours are fixed hex values. Their area fills are opaque light tints of the same colours (16% on white).
+
+  The qualitative replays use the colours of the paper's Figs. 5 and S3 (`figures/fig_qualitative_cases.py`):
+
+  - **Tiles.** Correct: fill `#D3ECE2`, edge `#8CC2AE`. Wrong: white fill, edge `#CBD2D8`.
+  - **Markers.** Filled marker: correct class. Hollow marker: wrong class.
+  - **Stable-correct suffix.** It is drawn as underlines in the system or cadence colour; tiles outside it get a grey `#E7EAED` underline.
+  - **Cadences.** q = 2 blue `#0072B2`, q = 4 vermillion `#D55E00`, q = 8 reddish purple `#CC79A7`.
 - **Fonts differ by platform.** Text is drawn in Calibri on Windows and in DejaVu Sans elsewhere. Text widths therefore differ slightly between platforms; the data are the same.
 - **Animation format.** Every animation loops and ends on a held final frame that reads as a complete static figure.
 
@@ -33,6 +50,11 @@ This folder holds the visuals shown in the repository's README. One command writ
 | `ape_eligibility_cohort.gif`, `ape_eligibility_cohort.mp4` | Eligibility cohort against the horizon; per-clip-end vs fixed-cohort accounting |
 | `results_at_a_glance.png` | Three-panel static summary of the same records |
 | `paper_fig3_accounting.png`, `paper_fig4_tied_pairs.png`, `paper_fig6_knobs.png`, `paper_figS1_comparability.png`, `paper_figS2_mmau.png` | Unchanged copies of the paper's quantitative figures (present only if they were generated first) |
+| `qual_accident_1.gif`, `qual_accident_2.gif`, `qual_accident_3.gif` | Fig. 5 cases (a)–(c), one per file: real ACCIDENT footage with the stored A/B predictions (contains dataset frames) |
+| `qual_accident_replay.mp4` | The three Fig. 5 cases in sequence (contains dataset frames) |
+| `qual_mmau_1.gif`, `qual_mmau_2.gif`, `qual_mmau_3.gif` | Fig. S3 cases (a)–(c), one per file: real MM-AU frames with the stored traces per input cadence (contains dataset frames) |
+| `qual_mmau_replay.mp4` | The three Fig. S3 cases in sequence (contains dataset frames) |
+| `qual_media_record.json` | For the qualitative replays: source hashes, the decoded frame or image file shown at every display position, checks, read-outs, display steps and file sizes |
 
 ### `ape_reverse_and.gif` / `.mp4`
 
@@ -170,6 +192,156 @@ These are byte-for-byte copies of the 300-dpi PNG files that `figures/run_all.sh
 
 Their captions are those of the paper.
 
+### Qualitative replays on real footage
+
+Files:
+
+- **ACCIDENT.** `qual_accident_1.gif` to `qual_accident_3.gif` and `qual_accident_replay.mp4`.
+- **MM-AU.** `qual_mmau_1.gif` to `qual_mmau_3.gif` and `qual_mmau_replay.mp4`.
+- **Record.** `qual_media_record.json`.
+
+Script: `figures/make_qual_media.py`.
+
+**Shown.** The six qualitative cases of the paper, in the paper's order, replayed on the real dataset frames and synchronised with the stored predictions.
+
+- **Fig. 5 (ACCIDENT test clips).**
+  - Systems: A, prefix-mean ResNet-18; B, GRU-512 with EMA smoothing, replayed at the 0.5-s step.
+  - Settings: seed 20260903, H = 10 s, Δ = 0.5 s.
+- **Fig. S3 (MM-AU development clips).**
+  - Model: one frozen class-weighted GRU checkpoint, with input every q = 2, 4, 8 frames.
+  - Settings: seed 20260920, output step 8 frames, H = 64 frames.
+  - Tiles show native class IDs.
+
+Each GIF holds one case. Each MP4 holds the three cases of its dataset in sequence.
+
+| n | Panel | Clip | Stratum (clips in stratum) | Reference | Stored note |
+|---|---|---|---|---|---|
+| 1 | Fig. 5 (a) | `-RrDtLjWsT4_00` | `same_endpoint_different_onset` (99) | t-bone (TB) | B answers SS until 1 s, then TB; both end on TB. |
+| 2 | Fig. 5 (b) | `-NgnSm_oEB4_00` | `early_correct_late_error` (57) | rear-end (RE) | B is right at 0 s and from 1.5 to 8 s, then ends on SI. |
+| 3 | Fig. 5 (c) | `-PpBteU0p3Q_00` | `both_wrong_at_end` (524) | single (SI) | Both predict SS at every offset. |
+| 1 | Fig. S3 (a) | `0d37451c` | `denser_input_loses` (6) | native class 12 | q=2 ends on 8; q=4 and q=8 return to 12 from 56 f. |
+| 2 | Fig. S3 (b) | `1c08612f` | `denser_input_gains` (3) | native class 43 | Only q=2 switches to 43, at the last offset. |
+| 3 | Fig. S3 (c) | `00786b67` | `all_cadences_wrong_at_end` (193) | native class 43 | All cadences change from 12 to 14 at 32 f. |
+
+**Layout of every frame.**
+
+- **Video panel (top left).** The real frame, letterboxed.
+- **Info column (right).**
+  - Case header, clip and reference class.
+  - The clock "t − anchor = … s" (ACCIDENT) or "frame offset = …" (MM-AU).
+  - The decoded frame index and timestamp, or the image file name, of the frame on screen.
+  - During playback, the latest read of each system or cadence.
+- **Prediction panel (bottom).** The p(reference class) trace and the tile lanes against the offset after the published anchor.
+- **Bottom lines.** The legend, the key of the systems, and the burned-in source line:
+  - "Frames: ACCIDENT dataset (Picek & Hanzl, 2026), Kaggle picekl/accident · predictions: stored outputs of this study", or
+  - "Frames: MM-AU dataset (Fang et al., 2024), Hugging Face JeffreyChou/MM-AU · predictions: stored outputs of this study".
+
+**Video panel.**
+
+- **What is done to the frames.**
+  - Frames are scaled only, by area averaging, into a black 512×288 px letterbox at their own aspect ratio. ACCIDENT 1584×1080 becomes 422×288, 1080×720 becomes 432×288 and 1280×720 becomes 512×288; MM-AU 1280×720 becomes 512×288.
+  - There is no crop, no enhancement, no frame interpolation and no generated or retouched content.
+  - The frame is pasted into the page pixel for pixel after the page is drawn. No text or graphic is drawn on the footage.
+- **ACCIDENT.**
+  - The video plays from 1 s before the anchor to anchor + 10 s at the native timestamps (real time).
+  - The videos are decoded sequentially with OpenCV, with the frame-selection rule of the published figure: for each display time, the last decoded frame whose timestamp is at or before anchor + t is shown.
+  - Display rates:
+    - MP4: 10 display frames per second (every 0.1 s).
+    - GIF: 4 per second (every 0.25 s). If a GIF would exceed 6 MB, it is rewritten at 2 per second (every 0.5 s); the rate used is listed in `qual_media_record.json`.
+  - Native rates are 29.73, 14.43 and 14.98 fps. A decoded frame can therefore be skipped, or repeated over two display times.
+- **MM-AU.**
+  - The image files from anchor − 8 to anchor + 64 are shown in order (frame numbers are the 1-based file names).
+  - MP4: every image file, 100 ms each.
+  - GIF: every second image file, 200 ms each. If a GIF would exceed 6 MB, every fourth file is shown, 400 ms each.
+  - The display pace of 10 image files per second is not the recording rate of the clips.
+
+**Prediction panel, synchronised.**
+
+- **Reads appear in time.** A read at offset δ uses only the prefix up to anchor + δ. Its tile and its point on the p(reference class) trace appear when the display reaches anchor + δ.
+- **Between reads.** Nothing new is shown between reads; answers and probabilities are never interpolated. Tiles that are not yet read are dashed outlines, and a slate cursor marks the display time.
+- **Reading cadence.**
+  - ACCIDENT shows systems A and B, read every 0.5 s.
+  - MM-AU shows the three input cadences q = 2, 4, 8. Every cadence is read every 8 frames, and its inputs are the frames 0, q, 2q, … up to the read offset.
+- **Offline suffix.** The stable-correct suffix, the endpoint marker, "stable from" and d_i are computed offline, after the window. They are not shown during playback.
+
+**Final frame.** Each case ends in two holds:
+
+- a 1.5-s hold at the window end;
+- a 6-s held final frame that matches the paper's panel:
+  - the full trace and tiles;
+  - one underline per tile (system or cadence colour if the tile is in the stable-correct suffix, grey otherwise);
+  - the endpoint marker (filled: correct, hollow: wrong);
+  - "stable from" and d_i;
+  - the stored case note.
+
+The video panel keeps the frame at anchor + 10 s, or anchor + 64 frames, which is the right-hand photo of the paper's panel. The final read-outs are:
+
+| Case | System | End | Stable from | d_i |
+|---|---|---|---|---|
+| ACCIDENT 1 `-RrDtLjWsT4_00` | A | correct | 0 s | 0 s |
+| | B | correct | 1.5 s | 1.25 s |
+| ACCIDENT 2 `-NgnSm_oEB4_00` | A | correct | 2 s | 1.75 s |
+| | B | wrong (SI) | none | 10 s |
+| ACCIDENT 3 `-PpBteU0p3Q_00` | A | wrong (SS) | none | 10 s |
+| | B | wrong (SS) | none | 10 s |
+| MM-AU 1 `0d37451c` | q=2 | wrong (8) | none | 64 f |
+| | q=4 | correct | 56 f | 52 f |
+| | q=8 | correct | 56 f | 52 f |
+| MM-AU 2 `1c08612f` | q=2 | correct | 64 f | 60 f |
+| | q=4 | wrong (14) | none | 64 f |
+| | q=8 | wrong (14) | none | 64 f |
+| MM-AU 3 `00786b67` | q=2, 4, 8 | wrong (14) | none | 64 f |
+
+**Reads.**
+
+- `figures/qualitative/accident_cases.json` and `mmau_cases.json`: stored `pred`, `p_true`, `correct`, `stable`, `delay` (ACCIDENT) and `input_offsets` (MM-AU), together with the case metadata (anchor, class, path or image directory).
+- `figures/qualitative/accident_videos.json`, `accident_frames.json`, `accident_frame_pixels.json` and `mmau_frames.json`: hashes of the sources and of the published frames.
+- `$APE_ACCIDENT/real_videos/<video_id>.mp4` and `$APE_MMAU/<relative_image_directory>/000NNN.jpg`.
+- Optional, with `--verify-sources`: the ACCIDENT answer-set CSVs (`$APE_QUAL_SOURCES`) and the MM-AU prediction arrays (`$APE_DATA`).
+
+**Checks.** All of these run before any frame is rendered; any failure stops the script.
+
+- **Case read-outs.**
+  - The case notes are asserted against the stored arrays with `check_notes` of `fig_qualitative_cases.py`.
+  - Correctness and the stable-correct suffix are recomputed from `pred` and the reference class, and must equal the stored flags.
+  - d_i is recomputed with the trapezoidal rule. For ACCIDENT it must equal the stored `delay` (tolerance 1e-12 s).
+  - Probabilities must lie inside the plotted range.
+  - MM-AU input offsets must be the prefix grid of each cadence.
+- **Videos.** The SHA-256 and byte size of the three ACCIDENT videos must equal `accident_videos.json`.
+- **MM-AU frames.** The nine recorded MM-AU frames must equal `mmau_frames.json` (SHA-256). Each recorded path must equal `relative_image_directory/anchor + offset`.
+- **Published ACCIDENT frames.** At the display times anchor + 0, + 3 and + 10 s, the decoded frame index, timestamp and RGB pixel hash must equal the frames of the published figure (`accident_frames.json`, `accident_frame_pixels.json`).
+  - With a different OpenCV build the pixels can differ by a few grey levels. The script then stops unless `--allow-decoder-drift` is given, and the result is recorded.
+- **Record.** The SHA-256 of every MM-AU image file shown, and the frame index and timestamp of every ACCIDENT frame shown, are written to `qual_media_record.json`.
+- **GIF background.** Each GIF is read back and its page background is checked to be #FFFFFF.
+
+**Selection.** Copied from the stored records:
+
+- ACCIDENT (`accident_cases.json`): "Post hoc display: lexicographically first eligible clip per outcome stratum, fixed manuscript A/B systems and seed; no largest-effect/visual-quality selection. Delay-difference stratum requires >=1 s solely for legible contrast. Cases are illustrative, not prevalence estimates."
+- MM-AU (`mmau_cases.json`): "Post hoc display: first identifier per outcome stratum in all 269 development clips, fixed weighted GRU checkpoint and first seed 20260920. Includes denser-input gain, loss and shared failure; not representative frequencies or evidence for preferred cadence."
+
+**Limits.**
+
+- **Illustrative cases.** These six clips are post hoc illustrations. They are not prevalence estimates, and they are not evidence that one system or cadence is preferable.
+- **System B's answers.** The B answer set of ACCIDENT is the recorded replay at the 0.5-s step. Subsampling the 0.25-s EMA output instead would give different answers at some offsets (`fig_qualitative_cases.py` counts these differences under `--verify-sources`).
+- **MM-AU development clips.** They are not a source-independent audit (`usage: development_only_not_source_independent_audit`).
+- **Offline read-outs.** The stable-correct suffix, onset and d_i depend on the whole window. They are not available to a streaming system at the time of a read.
+- **Frame selection.**
+  - The display grid subsamples the video; the frames between display times are not shown.
+  - When a display rate exceeds the native rate, the same decoded frame is shown at consecutive display times.
+- **Format limits.** These are limits of the formats, not edits of the footage:
+  - GIF frames are reduced to one 256-colour palette per file without dithering, so the footage shows colour banding.
+  - The MP4 uses H.264 with 4:2:0 chroma subsampling.
+- **Content.** The clips show real road collisions.
+
+#### Licence of the frames
+
+These files contain third-party frames:
+
+- `qual_accident_1.gif` to `qual_accident_3.gif` and `qual_accident_replay.mp4`: frames of the ACCIDENT dataset (Picek & Hanzl, 2026), Kaggle `picekl/accident`. The dataset is listed on Kaggle under CC BY-NC-SA 4.0; clarification from the dataset authors is pending.
+- `qual_mmau_1.gif` to `qual_mmau_3.gif` and `qual_mmau_replay.mp4`: frames of the MM-AU dataset (Fang et al., 2024), Hugging Face `JeffreyChou/MM-AU`, under CC BY-NC 4.0.
+
+They are shown for non-commercial research illustration, with attribution. The attribution line is burned into every frame. These files are not covered by the repository's code licence. The original videos and image files are not redistributed.
+
 ## Format
 
 - **Frames.**
@@ -186,3 +358,11 @@ Their captions are those of the paper.
   - Timing: each GIF frame is repeated for its duration.
   - Size: the script warns above 2 MB.
 - **Static PNG.** Written at 200 dpi.
+- **Qualitative replays (`qual_*`).** These settings replace the ones above for these files only.
+  - **Frames.** 960 px wide; 650 px high (ACCIDENT) or 686 px high (MM-AU), with a fixed layout and no trimming. The near-white snapping applies to the page only; the video panel is pasted afterwards, unchanged apart from scaling.
+  - **GIF palette.** One palette of at most 256 colours per file. It starts with pure white and the exact colours of the paper's tile, marker and system semantics. Median-cut colours of the page (24) and of the video panel of eight evenly spaced frames fill the rest.
+  - **GIF mapping and check.** Exact nearest-colour mapping, no dithering. The background is read back and checked to be #FFFFFF.
+  - **GIF timing.** ACCIDENT frames last 250 ms (500 ms in the fallback); MM-AU frames last 200 ms (400 ms). The window-end hold is 1.5 s and the final hold is 6 s.
+  - **GIF size.** Target at most 6 MB per GIF, with the deterministic fallback described above.
+  - **MP4.** H.264, yuv420p, 10 fps, CRF 24, streamed from the rendered frames. Target at most 10 MB per file; the script warns above it.
+  - **Determinism.** Output is deterministic for a given set of library versions. The display step actually used, the frame counts and the sizes are written to `qual_media_record.json`.
