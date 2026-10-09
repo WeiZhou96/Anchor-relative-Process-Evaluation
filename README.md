@@ -1,275 +1,209 @@
-> **Private pre-release snapshot.** The code and data licences are drafts awaiting author confirmation. This repository contains only key derived data; the complete derived-data package will be provided with a DOI archive (DOI: [TO BE ASSIGNED]). See [data/README.md](data/README.md) for this subset's scope, checksums and limitations. The original replication instructions below describe the larger release package; `install_data.py install`, full audit recomputation and training are not supported by this subset alone.
+# Anchor-relative process evaluation (APE)
 
-# Anchor-relative process evaluation (APE): code for "Stable correctness after impact"
+**Code for "Stable correctness after impact: Evaluating collision-type recognition beyond final accuracy"**
 
-This repository contains the code for the paper
+![Python 3.11](https://img.shields.io/badge/python-3.11-0072B2)
+![Paper: under review](https://img.shields.io/badge/paper-under%20review-6A7F93)
+![Repository: private pre-release](https://img.shields.io/badge/repository-private%20pre--release-6A7F93)
+![Code licence: Apache-2.0 draft](https://img.shields.io/badge/code%20licence-Apache--2.0%20draft-4F6272)
+![Data licence: CC BY-NC-SA 4.0 draft](https://img.shields.io/badge/data%20licence-CC%20BY--NC--SA%204.0%20draft-4F6272)
 
-> *Stable correctness after impact: Evaluating collision-type recognition beyond final accuracy.*
+APE measures how long a streaming collision-type classifier takes to become, and stay, correct after a published collision anchor. It does so on one fixed cohort of clips that are visible throughout the observation window.
 
-It implements anchor-relative process evaluation (APE) of streaming collision-type classifiers and every
-computation behind the paper:
+> **Private pre-release snapshot.**
+>
+> - **Availability.** This repository is private now and becomes public upon acceptance of the paper. Upon acceptance, the complete package will also be deposited on ETS-Data.
+> - **Licences.** The code and data licences are drafts awaiting author confirmation.
+> - **Data in this repository.** It contains only key derived data. The complete derived-data package will be provided with a DOI archive (DOI: [TO BE ASSIGNED]). See [data/README.md](data/README.md) for this subset's scope, checksums and limitations.
+> - **Replication.** The replication instructions in [docs/REPRODUCE.md](docs/REPRODUCE.md) describe the larger release package. `install_data.py install`, full audit recomputation and training are not supported by this subset alone.
 
-* the frozen audit on the ACCIDENT real-video subset (manifest and cohorts, 185 answer sets, gauge blocks,
-  characterization of the metric family, gates G2 to G5, window-end-tied pairs, the VLM secondary pool);
-* the re-analyses of the stored answers (E/R components, paired decomposition, sparse-output bounds, reading
-  protocols, coverage calibration, conditional delay, selection and per-class components);
-* the training-objective comparison on the development data;
-* the MM-AU development study (frame-axis adapter, native nine-class task, pixel and control pilots, anchor shift,
-  input stride, output-reading sensitivity);
-* the scripts that draw the figures and tables of the article and its electronic supplementary material (ESM).
+<p align="center">
+  <img src="docs/media/ape_tied_pair_rmscd.gif" width="880" alt="Stable-correct curves of two systems that are tied at the window end; the area above each curve fills offset by offset">
+</p>
 
-Derived data (manifests, stored answers of all systems, audit and re-analysis outputs, MM-AU predictions and
-evaluations) are distributed separately as the **APE derived-data package** (see [Data](#data)). Raw videos,
-frames and pretrained weights are not redistributed.
+**Same end, different course.** Systems A and B are scored on the ACCIDENT test eligibility cohort at H = 10 s (N_H = 1113 clips):
 
-**Licence (draft, to be confirmed by the authors).** The code is released under the Apache License 2.0 (`LICENSE`).
-The derived-data package carries its own licence (`LICENSE-DATA` in the package; draft CC BY-NC-SA 4.0).
-`REPLICATION.md` is the replication explanatory file required by the journal.
+- **A:** prefix-mean ResNet-18.
+- **B:** GRU-512 + EMA smoothing.
 
-## Repository layout
+The 95% intervals of their window-end macro-accuracy overlap. The area above each stable-correct curve S_H(δ) fills as the offset advances. At δ = H that area is RMSCD@10: **5.73 s for A** and **6.98 s for B**. Grey lines show S_H of all 168 non-trivial systems.
+
+[MP4](docs/media/ape_tied_pair_rmscd.mp4) · [caption, data sources and limits](docs/media/MEDIA.md#ape_tied_pair_rmscdgif--mp4)
+
+## What APE measures
+
+- **Anchor-relative reading.** Answers are read on causal prefixes at offsets δ after a published collision anchor. The offsets lie on a declared grid (step Δ = 0.5 s) up to the horizon H.
+- **Eligibility cohort.** At horizon H, only clips observed for at least H s after the anchor are scored. All systems share this one cohort, so no clip is scored up to its own end.
+- **Stable correctness.** An answer at δ counts as stable correct only if it and every later answer up to H are correct. This is an offline reverse AND over the trajectory. S_H(δ) is the fraction of the cohort that is stable correct at δ.
+- **RMSCD@H.** The restricted mean stable-correct delay is the area above S_H(δ) over [0, H]. It measures how long answers take to become and stay correct. A clip that never becomes stable within the window counts with the full window H.
+- **Exact split.** On the declared grid, RMSCD splits exactly into two areas:
+  - **E_H**, the error area above the cohort's accuracy curve;
+  - **R_H**, the retracted-correct area spent on correct answers that are later replaced by errors.
+- **Window-end accuracy.** Accuracy at δ = H, the quantity that final-accuracy evaluation reports.
+
+<p align="center">
+  <img src="docs/media/ape_reverse_and.gif" width="880" alt="Answer tiles of two systems on one clip; the reverse AND keeps only the stable-correct suffix, and the area above the stable indicator fills">
+</p>
+
+**Offline reverse AND on one stored ACCIDENT test clip (`-NgnSm_oEB4_00`, H = 10 s).**
+
+- **A** becomes stable correct from δ = 2 s. It contributes d = 1.75 s: e = 1.00 s error area plus r = 0.75 s retracted-correct area.
+- **B** is correct at some offsets but never stable within the window. It contributes the full d = 10.00 s: e = 2.75 s plus r = 7.25 s.
+
+RMSCD is the cohort mean of these per-clip areas. This is a single clip that illustrates the mechanism; it says nothing about how often the pattern occurs.
+
+[MP4](docs/media/ape_reverse_and.mp4) · [caption, data sources and limits](docs/media/MEDIA.md#ape_reverse_andgif--mp4)
+
+## Why one fixed cohort
+
+<p align="center">
+  <img src="docs/media/ape_eligibility_cohort.gif" width="880" alt="The horizon sweeps from 0 to 21.5 s while test clips leave the eligibility cohort; long-minus-short delay gaps under the two accountings">
+</p>
+
+**The cohort.** Of the 1514 ACCIDENT test clips, 1328, 1113 and 742 are observed for at least 4, 10 and 21.5 s after the anchor.
+
+**Per-clip-end scoring.** When each clip is scored up to its own end, random-answer blocks show a long-minus-short gap in mean stable-correct delay of +7.70 s and +7.84 s at H = 10 s. In other words, random answers look 7.7–7.8 s faster on short clips.
+
+**Fixed cohort.** The same gaps are +0.03 s and +0.18 s, inside the ±0.42 s RMSCD ruler of that horizon.
+
+[MP4](docs/media/ape_eligibility_cohort.mp4) · [caption, data sources and limits](docs/media/MEDIA.md#ape_eligibility_cohortgif--mp4)
+
+## Results at a glance
+
+<p align="center">
+  <img src="docs/media/results_at_a_glance.png" width="880" alt="Three panels: eligibility cohort against the horizon; window-end macro-accuracy against RMSCD@10; random-answer gaps under two accountings">
+</p>
+
+| Panel | Content |
+|---|---|
+| (a) | Share of ACCIDENT test clips observed for at least H s; N_H at the registered horizons. |
+| (b) | Window-end macro-accuracy against RMSCD@10 for the 168 non-trivial systems, with A and B and their 95% intervals. |
+| (c) | Long-minus-short gaps of the random-answer blocks, fixed cohort vs per-clip end, at H = 4, 10 and 21.5 s. |
+
+The paper also reports two further results:
+
+- Classifiers with nearly equal error areas differed several-fold in retracted-correct area.
+- Among systems that never withhold answers, selecting by window-end accuracy instead of RMSCD lengthened held-out delay on average without raising accuracy.
+
+The paper's quantitative figures, as written by `figures/run_all.sh` (full captions are in the paper):
+
+<table>
+  <tr>
+    <td width="50%" valign="top"><a href="docs/media/paper_fig3_accounting.png"><img src="docs/media/paper_fig3_accounting.png" width="420" alt="Paper Fig. 3"></a><br><sub><b>Fig. 3</b> Eligibility and accounting</sub></td>
+    <td width="50%" valign="top"><a href="docs/media/paper_fig4_tied_pairs.png"><img src="docs/media/paper_fig4_tied_pairs.png" width="420" alt="Paper Fig. 4"></a><br><sub><b>Fig. 4</b> Window-end-tied pairs</sub></td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top"><a href="docs/media/paper_fig6_knobs.png"><img src="docs/media/paper_fig6_knobs.png" width="420" alt="Paper Fig. 6"></a><br><sub><b>Fig. 6</b> Protocol knobs</sub></td>
+    <td width="50%" valign="top"><a href="docs/media/paper_figS1_comparability.png"><img src="docs/media/paper_figS1_comparability.png" width="420" alt="Paper Fig. S1"></a><br><sub><b>Fig. S1</b> Comparability (ESM)</sub></td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top"><a href="docs/media/paper_figS2_mmau.png"><img src="docs/media/paper_figS2_mmau.png" width="420" alt="Paper Fig. S2"></a><br><sub><b>Fig. S2</b> MM-AU development study (ESM)</sub></td>
+    <td width="50%"></td>
+  </tr>
+</table>
+
+All media are drawn from stored records only; they contain no dataset imagery. [docs/media/MEDIA.md](docs/media/MEDIA.md) lists for each file what it shows, which records it reads, which checks it passes and its limits.
+
+## What is in this repository
+
+The repository implements anchor-relative process evaluation (APE) of streaming collision-type classifiers and every computation behind the paper:
+
+- the frozen audit on the ACCIDENT real-video subset (manifest and cohorts, 185 answer sets, gauge blocks, characterization of the metric family, gates G2 to G5, window-end-tied pairs, the VLM secondary pool);
+- the re-analyses of the stored answers (E/R components, paired decomposition, sparse-output bounds, reading protocols, coverage calibration, conditional delay, selection and per-class components);
+- the training-objective comparison on the development data;
+- the MM-AU development study (frame-axis adapter, native nine-class task, pixel and control pilots, anchor shift, input stride, output-reading sensitivity);
+- the scripts that draw the figures and tables of the article and its electronic supplementary material (ESM).
+
+Derived data (manifests, stored answers of all systems, audit and re-analysis outputs, MM-AU predictions and evaluations) are distributed separately as the **APE derived-data package** (see [Data availability](#data-availability)). Raw videos, frames and pretrained weights are not redistributed.
+
+## Quick start
+
+These steps use the key derived-data subset in `data/`, which is enough for the paper's quantitative figures and numeric tables and for the README media. Access to the repository is restricted until it becomes public.
+
+```bash
+git clone https://github.com/WeiZhou96/Anchor-relative-Process-Evaluation.git
+cd Anchor-relative-Process-Evaluation
+conda env create -f environment.yml && conda activate ape       # or: python -m pip install -r requirements.txt
+python scripts/release/install_data.py verify --data data        # SHA-256 check of the subset
+export APE_DATA="$PWD/data"
+bash figures/run_all.sh                                          # tables and quantitative figures -> figures/out/
+python figures/make_media.py                                     # README media -> docs/media/ (MP4 only if ffmpeg is on PATH)
+```
+
+On PowerShell, set `APE_DATA` before invoking individual Python figure/table scripts. The shell entry point `figures/run_all.sh` requires Bash.
+
+```powershell
+$env:APE_DATA = (Resolve-Path data).Path
+python figures\make_media.py
+```
+
+Set `APE_DATA` explicitly for `run_all.sh`: its default expects a separate sibling data package. `figures/make_media.py` defaults `APE_DATA` to `data/`. No data installation is required for the `figures/` entry points.
+
+**Do not run `install_data.py install` against this subset.** That command requires the omitted `accident/outputs/answers/` directory and its complete answer index, and it may copy partial outputs before failing. `verify` supports this subset without changes.
+
+The subset supports the quantitative figure inputs and the eight numerical/table entry points through `check_reproduce.py`. The qualitative figures need original frames. `report/make_tables.py`, `k_c_verify.py` and all answer-level audit and re-analysis entry points require additional archive inputs.
+
+The full replication guide is in **[docs/REPRODUCE.md](docs/REPRODUCE.md)**. It covers:
+
+- installation and the environment variables;
+- the data sources: the derived-data package, ACCIDENT, MM-AU and the pretrained models;
+- tests and the commands for the re-analyses, the audit and the figures;
+- the map from each paper result to its code and outputs;
+- the steps that need raw data or a GPU;
+- seeds.
+
+## Repository map
 
 | Path | Content |
 |---|---|
 | `ape/` | APE library: protocol vectors and cohorts (`protocol.py`, `cohort.py`), scoring (`metrics.py`), calibration and rank preservation (`calib.py`), gauge blocks (`blocks.py`), statistics (`stats.py`), CLI (`cli.py`); audit stages K-a/K-b/K-c (`r2.py`, `r2b.py`, `r2c.py`); re-analyses (`method_analysis.py`, `m3_analysis.py`); MM-AU frame axis (`frame_axis.py`, `vocabulary.py`, `g0_floor.py`, `g6.py`, `g6_pipeline.py`) |
 | `protocol/` | Frozen reference protocol `pi0.yaml`, its digest `pi0.frozen.json` / `pi0.frozen.sha256` |
 | `prereg/` | Frozen pre-registration files S1 v1–v6, template, and the (unregistered) MM-AU G6 draft |
-| `data/` | Manifest builders (`build_manifest.py`, `clusters.py`, `stats.py`, `g0_length_shift_r2.py`, ...). `data/manifest/` is filled by the data package. `data/mmau/`: MM-AU preflight, decoding, overlap audit, split constraints and native development manifest |
+| `data/` | Manifest builders (`build_manifest.py`, `clusters.py`, `stats.py`, `g0_length_shift_r2.py`, ...). `data/manifest/` is filled by the data package. `data/mmau/`: MM-AU preflight, decoding, overlap audit, split constraints and native development manifest. In this snapshot, `data/` also holds the key derived-data subset (`data/accident/`, `data/mmau/deliverables/`; see [data/README.md](data/README.md)) |
 | `systems/`, `configs/systems/` | System library: frozen feature extractors, training, inference, post-processing arms, commitment rules, trivial systems, the read-only VLM (`vlm_full.py`) and its pilot (`vlm_pilot/`), stage-two learning recipes (`stage2_learning.py`) |
 | `scripts/` | Run-order entry points: `b_*` system library (first round), `b_r2_run.py` (second round), `a_*` first audit pass, `c_*` data track, `k_*` audit stages K-a/K-b/K-c, `method_experiments.py` (first re-analysis), `m3_*.py` (M3 re-analysis), `stage2_*.py` (calibration and training comparison), `release/install_data.py` |
 | `report/` | Audit tables and internal audit figures (`make_tables.py`, `make_figs.py`, `r2*_tables.py`, `r2*_figs.py`) |
-| `figures/` | Scripts for the article/ESM figures and tables, with the vendored plotting style (`figures/README.md`) |
+| `figures/` | Scripts for the article/ESM figures and tables, with the vendored plotting style ([figures/README.md](figures/README.md)); `make_media.py` writes the README media into `docs/media/` |
 | `mmau/study/` | MM-AU development-study scripts (pixel pilot, controls, dense overlap and reading sensitivity, anchor shift, input stride) |
 | `tests/` | Unit and integration tests (`python -m pytest tests data/mmau`) |
 | `*.md` at the root | Analysis plans and the deviation log of the re-analyses (`EXPERIMENT_*`, `M3_SCOPE_*`, `STAGE2_*`, `DEVIATIONS.md`). Several scripts hash these files into their run records, so they stay at the root |
+| `docs/REPRODUCE.md` | Replication guide: installation, environment variables, data sources, commands, map from paper results to code, raw-data and GPU steps, seeds |
 | `docs/PROVENANCE.md` | Where every part of this repository and of the data package comes from; release edits |
+| `docs/media/` | README animations and images, with captions, sources and limits in [`MEDIA.md`](docs/media/MEDIA.md) |
 
-## Installation
+## Data availability
 
-The computations were run with Python 3.11.14 on Linux.
+The paper's Replication section says: "The code of the evaluation protocol, the system library and the analyses, a replication guide and key derived data are hosted at https://github.com/WeiZhou96/Anchor-relative-Process-Evaluation (public upon acceptance). Upon acceptance, the complete package will also be deposited on ETS-Data." The three data sources are:
 
-```bash
-conda env create -f environment.yml      # CPU+GPU environment as used (PyTorch 2.5.1, CUDA 12.1)
-conda activate ape
-# or: python -m pip install -r requirements.txt
-```
-
-All evaluation, audit, re-analysis, calibration and figure steps are CPU-only. A CUDA GPU is needed only for
-feature extraction, system training, the VLM run and the stage-two training comparison. The MM-AU model runs
-used a separate environment (Python 3.10.21, `torch==2.6.0+cu124`, `torchvision==0.21.0+cu124`,
-`numpy==2.2.6`, `Pillow==12.3.0`), see `mmau/requirements-training.txt`.
-
-### Paths and environment variables
-
-No absolute path is hard-coded. Scripts resolve the repository root from their own location; external locations
-are set with environment variables (shell scripts read the defaults from `scripts/env.sh`):
-
-| Variable | Meaning | Default |
+| Source | Content | Where |
 |---|---|---|
-| `APE_ROOT` | repository root | parent of `scripts/` |
-| `APE_DATA` | root of the derived-data package | none (required by `install_data.py` and `figures/`) |
-| `APE_ACCIDENT` | ACCIDENT dataset root (contains `metadata-real.csv`, `real_videos/`) | `$APE_ROOT/external/ACCIDENT_2026` |
-| `APE_MMAU` | MM-AU release root (contains `extracted/`, `official_metadata/`) | none; MM-AU scripts take `--root` |
-| `APE_TMP` | scratch space for logs, pid files and run records | `$APE_ROOT/tmp` |
-| `APE_PY` | interpreter used by the shell scripts | `python` |
-| `HF_HOME` | Hugging Face cache (CLIP, Qwen2.5-VL) | `~/.cache/huggingface` |
-| `TORCH_HOME` | torchvision weight cache (ResNet) | `~/.cache/torch` |
-| `APE_FIG_OUT` | output directory of `figures/` | `figures/out` |
+| **Key derived-data subset** (this repository) | 635 selected source files (53,465,929 bytes), copied byte-for-byte with their original relative paths and covered by `data/SHA256SUMS` | [`data/`](data/README.md) |
+| **APE derived-data package** (complete) | Manifests, stored answers of the 185 library systems, audit results, re-analysis outputs, MM-AU predictions and evaluations | DOI archive (DOI: [TO BE ASSIGNED]); upon acceptance also deposited on ETS-Data |
+| **Third-party data and models** (not redistributed) | ACCIDENT videos (Kaggle `picekl/accident`), MM-AU frames (Hugging Face `JeffreyChou/MM-AU`), pretrained weights | Obtain under their own terms; see [docs/REPRODUCE.md](docs/REPRODUCE.md#data) |
 
-Some scripts pin GPUs exactly as in the original runs (for example `CUDA_VISIBLE_DEVICES=5` in
-`scripts/b_04_train.sh`, physical GPU 1 in `systems/vlm_full.py`); adjust them to your machine.
+Three points apply to the subset (details in [data/README.md](data/README.md)):
 
-Several entry points record `git rev-parse HEAD` in their run records, and `scripts/stage2_train.py` refuses to
-start from a dirty working tree. Run them from a git checkout of this repository.
-
-## Data
-
-### 1. Derived-data package (required for everything except the raw-data steps)
-
-The package (`ape-derived-data`, deposited with the article; DOI to be added) contains the manifests, the stored
-answers of the 185 library systems, the audit results, the re-analysis outputs and the MM-AU predictions and
-evaluations. Its `README.md` describes every file. Install it into this repository:
-
-```bash
-export APE_DATA=/path/to/ape-derived-data
-python scripts/release/install_data.py verify  --data "$APE_DATA"   # SHA-256 of every file
-python scripts/release/install_data.py install --data "$APE_DATA"   # copies into data/manifest/ and outputs/
-```
-
-`install` decompresses the 185 answer matrices (`answers.csv.gz`, 1.2 GB) to `outputs/answers/<system>/answers.csv`
-(4.7 GB) and checks each restored file against the SHA-256 of the file used in the original analyses, so restored
-files are byte-identical to the originals. The frozen protocol and pre-registration files of the package are
-checked against `protocol/` and `prereg/` of this repository.
-
-### 2. ACCIDENT (raw videos; needed only to rebuild manifests, features, systems or the VLM run)
-
-Download the ACCIDENT release from Kaggle (`picekl/accident`), for example with `kagglehub`:
-
-```python
-import kagglehub
-path = kagglehub.dataset_download("picekl/accident")
-```
-
-Point `APE_ACCIDENT` to the directory that holds `metadata-real.csv` and `real_videos/` (2,027 mp4 files,
-4.6 GB). The copy used for the paper was downloaded on 2026-05-14; its `metadata-real.csv` has SHA-256
-`a3d06073353a7fedff140b652d025135f017860a240cad693990f5288c6c0ec9`. Every row of
-`data/manifest/manifest_real.csv` stores the MD5 of the video file in `decode_hash`; check your copy with
-
-```bash
-python - <<'EOF'
-import hashlib, os, pandas as pd
-root = os.environ["APE_ACCIDENT"]; m = pd.read_csv("data/manifest/manifest_real.csv")
-bad = [r.path for r in m.itertuples() if hashlib.md5(open(os.path.join(root, r.path), "rb").read()).hexdigest() != r.decode_hash]
-print(len(m), "videos,", len(bad), "mismatches")
-EOF
-```
-
-The synthetic (CARLA) part of the release is not used.
-
-### 3. MM-AU (raw frames; needed only for the MM-AU model runs and overlap audits)
-
-MM-AU is available from Hugging Face, `JeffreyChou/MM-AU`, revision `540cb1277cb70e91a7022abe852decb3ee9adb0a`
-(CAP-DATA and DADA-2000 image sequences plus `official_metadata/`). The released native development manifest,
-decode ledger and planning ledger (`mmau/deliverables/` in the data package) record relative image directories and
-SHA-256 digests of the frames that were read.
-
-### 4. Pretrained models (not redistributed)
-
-| Model | Source and revision | Used for |
-|---|---|---|
-| ResNet-18 | torchvision `IMAGENET1K_V1` | first-round frame features; MM-AU pilots |
-| ResNet-50 | torchvision `IMAGENET1K_V2` | feature check (`r50`) |
-| CLIP ViT-B/16 | Hugging Face `openai/clip-vit-base-patch16`, revision `57c216476eefef5ab752ec549e440a49ae4ae5f3` | second-round features; stage-two training |
-| Qwen2.5-VL-7B-Instruct | Hugging Face `Qwen/Qwen2.5-VL-7B-Instruct`, revision `cc594898137f460bfe9f0759e9844b3ce807cfb5` | read-only VLM applicant (`systems/vlm_pilot/download.py` fetches and verifies it) |
-
-## Reproducing the results
-
-Unless stated otherwise the commands start from the stored answers of the data package and run on a CPU.
-Runtimes were measured on a 2×Intel Xeon Gold 6530 server (4 threads unless noted).
-
-```bash
-CUBLAS_WORKSPACE_CONFIG=:4096:8 python -m pytest -q tests data/mmau   # about 45 s
-# with a visible GPU: 628 passed, 12 skipped; CPU only (CUDA_VISIBLE_DEVICES=""): 618 passed, 22 skipped.
-# The GPU tests of the stage-two recipes enable deterministic algorithms and fail without CUBLAS_WORKSPACE_CONFIG.
-```
-
-### Re-analyses (start from the released answers)
-
-```bash
-python scripts/method_experiments.py --source-root . --out outputs/run002_rerun              # about 1.5 min
-python scripts/m3_reanalysis.py --source-root . --run002 outputs/run002 \
-       --out outputs/m3_rerun --bootstrap 2000                                                # about 2.5 min
-python scripts/m3_compare_runs.py outputs/m3_20260928 outputs/m3_rerun                        # rerun check
-python scripts/stage2_calibration.py --out outputs/stage2_calibration_rerun                  # about 1 min
-python scripts/stage2_plasmode.py --source-root . --out outputs/stage2_plasmode_rerun        # under 1 min
-python scripts/stage2_final_calibration.py --source-root . --out outputs/stage2_final_rerun  # about 6 min
-python scripts/stage2_final_calibration.py --source-root . --out outputs/stage2_exact_rerun \
-       --only-h10-decomposition --bootstrap 2000                                              # about 5 min
-python scripts/stage2_readout.py outputs/stage2_training_v2   # rewrites the paired readouts from the released out-of-fold predictions
-```
-
-`scripts/stage2_calibration.py` at this version is the one that produced `outputs/stage2_calibration_v2`
-(the first calibration run, `stage2_calibration`, used the version before the unconditional micro bootstrap was
-added; see `STAGE2_CALIBRATION_AMENDMENT.md`).
-
-### Audit (start from the released audit results)
-
-```bash
-python -X utf8 report/make_tables.py && python -X utf8 report/make_figs.py   # audit tables/figures in outputs/r2c/, about 30 s
-python scripts/k_c_verify.py                                                   # 5,677 consistency assertions, about 10 s
-```
-
-Recomputing the audit itself from the answer matrices also needs the coarse-step answer matrices of the 141
-stateful systems (`outputs/answers/<system>__stride2|4`, 284 directories, 2.2 GB): the per-system evaluation and
-the protocol scans read them for the 0.5-s and 1.0-s steps. They are an optional extra of the data package, or can
-be regenerated with the system library (`scripts/b_06_postproc.sh`, `b_07_commit.sh`, `b_08b_trivial_stride.sh`,
-`b_r2_run.py generate`). With them, in a checkout whose `outputs/` holds only `answers/`, `prefix_lists/`, `r2_S/` and
-`report_index.json` of the data package (`k_c_all.py prepare` refuses to overwrite an existing K-c index):
-
-```bash
-python scripts/k_b_all.py prepare && python scripts/k_b_all.py eval && python scripts/k_b_all.py remaining   # K-b -> outputs/r2b, about 14 min, 1 thread
-python scripts/k_c_validate_vlm.py        # checks the VLM run records (optional extra) -> outputs/r2c/vlm_acceptance.json
-python scripts/k_c_all.py prepare && python scripts/k_c_all.py all                                           # K-c -> outputs/r2c, about 7 min
-python -X utf8 report/make_tables.py && python -X utf8 report/make_figs.py
-python scripts/k_c_verify.py
-```
-
-`scripts/k_c_report.py` renders the internal K-c run report and the final-conclusions table
-(`outputs/r2c/final_conclusions.json`, `tables/final_conclusions.csv`); it reads the K-c run records
-(`$APE_TMP/r2/Kc/`), which are not distributed, so the released `final_conclusions.json` is provided as produced.
-The release verification recomputed K-b and K-c this way; all metric records, calibrations, gates, ablations,
-mechanisms and tables were byte-identical to the released ones (see the verification record).
-
-### Article and ESM figures and tables
-
-```bash
-export APE_DATA=/path/to/ape-derived-data
-bash figures/run_all.sh          # about 20 s; see figures/README.md
-```
-
-The figures were drawn with Calibri on Windows; elsewhere matplotlib falls back to DejaVu Sans (same data and
-layout, different text metrics). The qualitative figures (Fig. 5, Fig. S3) need 18 original frames, which are not
-redistributed: `figures/extract_qual_frames.py` extracts them from your own dataset copy and checks the recorded
-hashes (pin `opencv-python-headless==4.11.0.86` for bit-identical ACCIDENT frames; later OpenCV versions select the
-same frames but decode slightly different pixels).
-
-### Map from paper results to code and outputs
-
-Numbering of the manuscript version of 2026-09-28 (article: Figs. 1–6, Tables 1–7, Algorithm 1; ESM: Figs. S1–S3,
-Tables S1–S8). "Needs" names what a full recomputation needs beyond the data package: "raw" = raw videos or frames,
-"GPU" = a GPU, "stride" = the optional coarse-step answer matrices. All article and ESM tables and quantitative
-figures are regenerated from the data package by `figures/run_all.sh`; the table numbers were checked against the
-manuscript (1,136 numbers in 14 tables, no mismatch).
-
-| Paper result | Figure/table script (`figures/`) | Upstream computation | Data (package path under `accident/` or `mmau/`) | Needs |
-|---|---|---|---|---|
-| Fig. 1, Fig. 2 | schematics drawn in PowerPoint; photographs are original dataset frames | – | – | – |
-| Algorithm 1 | – | `ape/metrics.py` (`evaluate_system`, `stable_correct`, `rmscd_from_curve`) | – | – |
-| Table 1 (cohorts) | `make_tables.py` → `tab_cohorts.tex` | `make manifest`, `data/clusters.py` | `manifest/manifest_real.csv` | raw (manifest only) |
-| Fig. 3 (eligibility, accounting) | `fig_accounting.py` → `fig3_accounting.*` | `scripts/k_c_all.py` (G3 v5) | `manifest/manifest_real.csv`, `outputs/r2c/gates/g3_v5.json` | stride |
-| Fig. 4 (window-end-tied pairs) | `build_system_table.py`, `fig_tied_pairs.py` → `fig2_tied_pairs.*` | `scripts/k_b_all.py` (eval, g4) | `outputs/r2b/metrics/<hash>/*.json`, `outputs/r2b/gates/g4.json` | stride |
-| Table 2 (tied-pair decomposition) | `tied_pairs_decomposition.py`, `g4_composition.py`, `make_tables.py` → `tab_tied.tex` | `scripts/k_b_all.py` | `outputs/r2b/gates/g4.json` | stride |
-| Fig. 5 (ACCIDENT trajectories) | `fig_qualitative_cases.py` (frames via `extract_qual_frames.py`) | stored answers | `outputs/answers/clip__r18mean__seed20260903`, `figures/qualitative/*.json` | raw |
-| Table 3 (E/R components, 27 base classifiers) | `paper_numbers.py` → `paper_base_process*` | `scripts/method_experiments.py` | `outputs/run002/systems_H10.csv` | – |
-| Table 4 (per-class components) | `paper_numbers.py` → `paper_per_class*` | `scripts/m3_reanalysis.py` | `outputs/m3_20260928_r2/D_*.csv` | – |
-| Table 5 (selection) | `paper_numbers.py` → `paper_selection*` | `scripts/m3_reanalysis.py` | `outputs/m3_20260928_r2/C1_test_selection.csv`, `C2_split_selection.csv`, `C3_dev_selection.csv` | – |
-| Table 6 (characterization) | `knob_decomposition.py`, `make_tables.py` → `tab_characterization.tex`; check: `check_reproduce.py` | `scripts/k_b_all.py` (calibrate) | `outputs/r2b/calib_plaus/<hash>/calibration.json`, `R_*.csv`, `outputs/r2b/r2/scan_all.csv` | stride |
-| Fig. 6 (protocol knobs) | `fig_knobs.py` → `fig5_knobs.*` | `scripts/k_b_all.py` | `outputs/r2b/r2/scan_all.csv`, `outputs/r2b/calib*/`, `outputs/r2b/mechanisms/p_c.json` | stride |
-| Table 7 (reading protocols) | `paper_numbers.py` → `paper_process_protocols*` | `scripts/method_experiments.py` | `outputs/run002/robust_H{4,10}_{macro,micro}.csv` | – |
-| Tied/heterogeneous pair counts in the text (5427/7815/9021; 1283/3019/3952 at H = 4/10/21.5 s), M3 text numbers | – | `scripts/k_b_all.py` (g4); `scripts/m3_reanalysis.py` | `outputs/r2b/gates/g4.json`; `outputs/m3_20260928_r2/A_tied_noncommit.json`, `SUMMARY.json`, `B_*.csv` | – |
-| VLM secondary pool | – | `systems/vlm_full.py run`, `scripts/k_c_validate_vlm.py`, `scripts/k_c_all.py` | `outputs/answers/r2__qwen25vl7b__readonly/`, `outputs/r2c/tables/table1_audit_H10p00.csv` | raw, GPU |
-| Table S1 (counterexample) | `paper_numbers.py` → `paper_counterexample*` | `ape.method_analysis.trajectory_components` | – | – |
-| Table S2 (gauge blocks) | `make_tables.py` → `tab_blocks.tex` | `python -m ape.cli blocks`; `scripts/k_b_all.py` | `outputs/r2b/metrics` (blocks) | – |
-| Table S3 (protocol revisions) | written by hand | – | `prereg/S1_freeze_*.yaml`; two values from `outputs/r2b/first_round_baseline.json` | – |
-| Table S4 (G3 rules) | `make_tables.py` → `tab_g3.tex` | `scripts/k_c_all.py` | `outputs/r2c/gates/g3_v5.json` | stride |
-| Table S5 (contrasts), Fig. S1 (comparability) | `make_tables.py` → `tab_contrasts.tex`; `fig_comparability.py` → `fig4_comparability.*` | `scripts/k_b_all.py` | `outputs/r2b/calib_plaus`, `outputs/r2b/calib`, `outputs/r2b/r2/scan_all.csv` | stride |
-| Table S6 (coverage calibration) | `paper_numbers.py` → `paper_process_calibration*` | `scripts/stage2_calibration.py`, `stage2_final_calibration.py` | `outputs/stage2_calibration_v2`, `outputs/stage2_final_calibration`, `outputs/stage2_exact_bootstrap` | – |
-| Fig. S2, Table S7 (MM-AU) | `fig_mmau.py` → `fig6_mmau.*`; `make_tables.py` → `tab_mmau.tex` | `mmau/study/*` runs (raw, GPU), `evaluate_*.py`, `protocol_sensitivity.py`, `summarize_*.py` | `mmau/deliverables/*/RESULTS.json`, `*/ape_evaluation.json`, `overlap_dense_20260920/sensitivity/summary.json` | raw, GPU to retrain |
-| Fig. S3 (MM-AU trajectories) | `fig_qualitative_cases.py` | stored predictions | `mmau/deliverables/pixel_pilot_20260920/model_run`, `figures/qualitative/*.json` | raw |
-| Table S8 (training objectives) | `paper_numbers.py` → `paper_process_training*` | `scripts/stage2_train.py` (GPU), `scripts/stage2_readout.py` | `outputs/stage2_training_v2/primary_summary.csv` | GPU and CLIP features to retrain |
-
-`figures/README.md` gives the exact table and figure files each script writes.
-
-## Steps that need raw data or a GPU
-
-| Step | Command | Input | Hardware | Time (original run) |
-|---|---|---|---|---|
-| Manifest v2 (md5, decode probe, leak repair), clusters, statistics | `make manifest clusters stats` | ACCIDENT videos | CPU | minutes |
-| Prefix lists, gauge blocks | `python -m ape.cli make-prefixes ...`, `python -m ape.cli blocks ...` | manifest | CPU | minutes |
-| First-round systems (R18 features, prefix-mean and GRU classifiers, arms, commitment rules, trivial) | `scripts/b_02_*` to `b_11_*.sh` | videos, torchvision ResNet-18 | GPU | features 47 min; training to answers about 6 min |
-| Second-round systems (CLIP-B/16 and R18, 120 fine-step systems, 204 coarse-step answer sets) | `python scripts/b_r2_run.py features|train|select|generate|verify|final|checks` | videos, CLIP | GPU | features 6 min, training 35 min |
-| VLM applicant | `python systems/vlm_pilot/download.py`, `prepare.py`, `run.py`; `python systems/vlm_full.py run` | videos, Qwen2.5-VL-7B | 1 GPU (48 GB) | 10.3 h |
-| Stage-two training comparison (250 fits) | `python scripts/stage2_train.py --source-root . --out outputs/stage2_training_v2` | CLIP-B/16 features (`outputs/features/clip_b16`) | 1 GPU | 6 min |
-| MM-AU pilots, controls, anchor shift, input stride | `mmau/study/*/` (see `mmau/README.md`) | MM-AU frames, ResNet-18 | 1 GPU | 0.5–7 min per run after frame decoding and feature extraction |
-
-## Seeds
-
-All randomness is seeded. Manifest split and audit bootstrap: 20260903 (`protocol/pi0.yaml`, 1,000 source-cluster
-replicates); system training seeds 20260903/04/05; VLM pilot selection 20260904; first re-analysis 20260927
-(2,000 replicates; coverage simulation 20260928); M3 20260928 (2,000 replicates, 500 split-halves);
-stage-two finite-template calibration 20260929, empirical population 20260930, final calibration and exact
-bootstrap 20260931; training cross-fitting split 20260929 and RNG seeds 20260930–20260934; MM-AU model seeds
-20260920/21/22.
+- **Excluded items.** The subset excludes the full answer matrices, the coarse-step answer sets and two ablation records above 50 MB.
+- **Availability.** The availability of raw videos, dataset frames and model weights must not be inferred from the future derived-data archive.
+- **Pending decisions.** Third-party permissions remain to be clarified before distribution. Contact and copyright holder: [TO BE CONFIRMED BY THE AUTHORS].
 
 ## Citation
 
-To be added after publication.
+**Placeholder.** The citation will be added after publication. Until then, please refer to the submitted manuscript:
+
+```bibtex
+@misc{zhou_stable_correctness_placeholder,
+  title  = {Stable correctness after impact: Evaluating collision-type recognition beyond final accuracy},
+  author = {Zhou, Wei and Tang, Wenjie and Xu, Jinwei and Lu, Jing and Yang, Li},
+  note   = {Manuscript submitted for publication. PLACEHOLDER: venue, year and DOI to be added after publication}
+}
+```
+
+## Licence
+
+**Draft, to be confirmed by the authors.**
+
+- **Code.** Released under the Apache License 2.0 (`LICENSE`).
+- **Derived-data package.** It carries its own licence (`LICENSE-DATA` in the package; draft CC BY-NC-SA 4.0).
+- **Data subset.** The subset in `data/` includes the unchanged draft data licence, [`data/LICENSE-DATA`](data/LICENSE-DATA).
+- **Replication file.** `REPLICATION.md` is the replication explanatory file required by the journal.
