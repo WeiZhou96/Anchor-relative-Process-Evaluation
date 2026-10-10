@@ -30,6 +30,8 @@ The 95% intervals of their window-end macro-accuracy overlap. The area above eac
 
 [MP4](docs/media/ape_tied_pair_rmscd.mp4) · [caption, data sources and limits](docs/media/MEDIA.md#ape_tied_pair_rmscdgif--mp4)
 
+**Animations:** [what APE measures](#what-ape-measures) · [why one fixed cohort](#why-one-fixed-cohort) · [qualitative cases on real footage](#qualitative-cases-on-real-footage)
+
 ## What APE measures
 
 - **Anchor-relative reading.** Answers are read on causal prefixes at offsets δ after a published collision anchor. The offsets lie on a declared grid (step Δ = 0.5 s) up to the horizon H.
@@ -77,8 +79,7 @@ The paper's six qualitative cases are replayed on the real dataset frames, in sy
 
 A tile and its p(reference class) point appear when the video reaches the read's offset; nothing changes between reads. The stable-correct suffix is computed offline, so it is shown only after the window. Each case ends on a held frame with the read-outs and note of the paper's panel. The cases are post hoc illustrations, not prevalence estimates.
 
-<details>
-<summary><b>Fig. 5 · ACCIDENT, systems A and B (three GIFs)</b></summary>
+### Fig. 5 · ACCIDENT test clips, systems A and B
 
 <p align="center">
   <img src="docs/media/qual_accident_1.gif" width="880" alt="Real ACCIDENT footage of clip -RrDtLjWsT4_00 with the stored answers of systems A and B appearing read by read">
@@ -98,10 +99,7 @@ A tile and its p(reference class) point appear when the video reaches the read's
 
 **(c) `-PpBteU0p3Q_00`, single.** Both systems predict SS at every offset (d_i = 10 s for both).
 
-</details>
-
-<details>
-<summary><b>Fig. S3 · MM-AU development, input cadence q = 2, 4, 8 (three GIFs)</b></summary>
+### Fig. S3 · MM-AU development clips, input cadence q = 2, 4, 8
 
 <p align="center">
   <img src="docs/media/qual_mmau_1.gif" width="880" alt="Real MM-AU frames of clip 0d37451c with the stored GRU traces for three input cadences appearing read by read">
@@ -121,7 +119,6 @@ A tile and its p(reference class) point appear when the video reaches the read's
 
 **(c) `00786b67`, native class 43.** All cadences change from 12 to 14 at 32 f.
 
-</details>
 
 [ACCIDENT MP4](docs/media/qual_accident_replay.mp4) · [MM-AU MP4](docs/media/qual_mmau_replay.mp4) · [caption, sources, checks, selection and limits](docs/media/MEDIA.md#qualitative-replays-on-real-footage)
 
